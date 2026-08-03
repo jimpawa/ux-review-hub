@@ -284,6 +284,8 @@ const html = `<!doctype html><html lang="en"><head>
 :root[data-theme="light"] .tab .c{background:#eef1f6}
 :root[data-theme="light"] .card{box-shadow:0 1px 3px rgba(20,30,50,.06)}
 :root[data-theme="light"] .law{color:#6a3fb0;background:rgba(124,79,192,.10);border-color:rgba(124,79,192,.30)}
+:root[data-theme="light"] .tab.active{color:var(--ink);background:rgba(18,161,80,.16)}
+:root[data-theme="light"] .sevf .chip.active{color:var(--ink)}
 .themebtn{margin-left:auto;background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:999px;width:36px;height:36px;cursor:pointer;font-size:15px;line-height:1;flex:0 0 auto}
 *{box-sizing:border-box}
 html{transition:background .2s,color .2s}
@@ -348,6 +350,7 @@ main{padding:22px 0 80px}
 .tc-h b{font-size:14.5px;letter-spacing:-.2px}
 .tc-n{display:flex;gap:6px;margin-bottom:10px}
 .tc-sev{display:flex;gap:5px;flex-wrap:wrap}
+.tc-fig{margin-top:12px;padding:4px 10px !important;font-size:11px !important}
 .crmeta{margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .crtopic{font-size:11.5px;color:var(--mut);font-weight:600}
 footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:18px 0;text-align:center}
@@ -364,7 +367,7 @@ footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
-let current = 'summary', sevFilter = 'ALL';
+let current = 'summary', sevFilter = 'ALL', critFilter = 'ALL';
 const SEV=['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -412,6 +415,7 @@ function renderSummary(){
   m.append(sb);
   // per-topic cards
   const grid=el('div','tgrid');
+  function addFig(card,url){ if(!url)return; const fl=el('a','figlink tc-fig','<span class="fi"></span>Άνοιγμα στο Figma'); fl.href=url; fl.target='_blank'; fl.rel='noopener'; fl.onclick=(e)=>e.stopPropagation(); card.append(fl); }
   DATA.topics.forEach((tp,i)=>{
     const c=tp.counts;
     const sev=SEV.filter(k=>c.sev[k]).map(k=>'<span class="sev '+k+'">'+k+' '+c.sev[k]+'</span>').join(' ');
@@ -419,22 +423,31 @@ function renderSummary(){
       '<div class="tc-n"><span class="pill g">'+c.s+' strengths</span><span class="pill r">'+c.f+' friction</span></div>'+
       '<div class="tc-sev">'+(sev||'<span class="by" style="font-size:12px">— χωρίς severity —</span>')+'</div>');
     card.onclick=()=>{current=i;sevFilter='ALL';render();window.scrollTo(0,0);};
+    addFig(card,tp.figma);
     grid.append(card);
   });
-  DATA.todo.forEach(td=>{ grid.append(el('div','tcard todo','<div class="tc-h"><b>'+esc(td.name)+'</b><span class="by">TODO</span></div><div class="by" style="font-size:12px">'+esc(td.note)+'</div>')); });
+  DATA.todo.forEach(td=>{ const card=el('div','tcard todo','<div class="tc-h"><b>'+esc(td.name)+'</b><span class="by">TODO</span></div><div class="by" style="font-size:12px">'+esc(td.note)+'</div>'); addFig(card,td.figma); grid.append(card); });
   const gw=el('div','sumblock'); gw.append(el('h2',null,'Topics')); gw.append(grid); m.append(gw);
   // top critical across all topics
   const crits=[];
   DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL') crits.push({topic:tp.name,flow:f.flow,text:x.text}); })));
   if(crits.length){
     const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — CRITICAL ('+crits.length+')'));
-    crits.forEach(c=>cb.append(el('div','card bad','<div class="crmeta"><span class="sev CRITICAL">CRITICAL</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text))));
+    const withCrit=[...new Set(crits.map(c=>c.topic))];
+    const ct=el('div','sevf');
+    const list=el('div');
+    function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paintCrits();};return c;}
+    function paintCrits(){ list.innerHTML=''; const shown=critFilter==='ALL'?crits:crits.filter(c=>c.topic===critFilter); shown.forEach(c=>list.append(el('div','card bad','<div class="crmeta"><span class="sev CRITICAL">CRITICAL</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)))); }
+    ct.append(chipEl('All','ALL',crits.length));
+    withCrit.forEach(tn=>ct.append(chipEl(tn,tn,crits.filter(c=>c.topic===tn).length)));
+    cb.append(ct); cb.append(list); paintCrits();
     m.append(cb);
   }
 }
 function renderTopic(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.topics[current];
+  const hasSev=t.flows.some(f=>f.frictions.some(x=>x.severity));
   const head=el('div','topichead','<h1>'+esc(t.name)+'</h1><span class="by">reviewer · '+esc(t.reviewer)+'</span>'+figLink(t.figma));
   m.append(head);
   const mini=el('div','mini');
@@ -442,14 +455,13 @@ function renderTopic(){
   mini.append(el('span','pill r',t.counts.f+' friction'));
   SEV.forEach(k=>{ if(t.counts.sev[k]) mini.append(el('span','pill',k+' '+t.counts.sev[k])); });
   m.append(mini);
-  if(t.tag==='severity'){
+  if(hasSev){
     const sf=el('div','sevf');
     ['ALL',...SEV].forEach(k=>{const c=el('span','chip'+(sevFilter===k?' active':''),k);c.onclick=()=>{sevFilter=k;render();};sf.append(c);});
     m.append(sf);
   }
   t.flows.forEach(f=>{
-    const fr = f.frictions.filter(x=> sevFilter==='ALL'||!x.severity ? true : x.severity===sevFilter);
-    const frShown = t.tag==='severity' && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
+    const frShown = hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
     if(t.flows.length>1 && f.strengths.length===0 && frShown.length===0) return;
     const flow=el('div','flow'); flow.append(el('h2',null,esc(f.flow)));
     const cols=el('div','cols');
