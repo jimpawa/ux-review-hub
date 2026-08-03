@@ -730,7 +730,39 @@
         },
         {
           "flow": "Additional heuristic suggestions (review team)",
-          "numbered": false,
+          "images": [
+            {
+              "src": "img/pre-match/ps1.png",
+              "label": "01 · Discovery",
+              "nums": [
+                "r1",
+                "r6"
+              ]
+            },
+            {
+              "src": "img/pre-match/ps2.png",
+              "label": "02 · Event card",
+              "nums": [
+                "r2",
+                "r5"
+              ]
+            },
+            {
+              "src": "img/pre-match/ps3.png",
+              "label": "03 · Event page · H2H",
+              "nums": [
+                "r7"
+              ]
+            },
+            {
+              "src": "img/pre-match/ps4.png",
+              "label": "04 · Event page · markets",
+              "nums": [
+                "r3",
+                "r4"
+              ]
+            }
+          ],
           "strengths": [],
           "frictions": [
             {

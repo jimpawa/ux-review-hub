@@ -340,7 +340,8 @@ const topics = [
         {text:"Once a selection is made there’s no confirmation — the only way to check is to find it manually in the market list.", n:6, severity:"HIGH", law:"Doherty Threshold"},
        ]},
       {flow:'Additional heuristic suggestions (review team)',
-       numbered:false, strengths:[], frictions:[
+       images:[{src:'img/pre-match/ps1.png',label:'01 · Discovery'},{src:'img/pre-match/ps2.png',label:'02 · Event card'},{src:'img/pre-match/ps3.png',label:'03 · Event page · H2H'},{src:'img/pre-match/ps4.png',label:'04 · Event page · markets'}],
+       strengths:[], frictions:[
         {text:"Pre-match cards give no kickoff countdown or clear time-to-start — a countdown as kickoff nears sets expectations and adds urgency (builds on the discovery-scanning findings).", severity:"LOW", law:"Goal-Gradient Effect"},
         {text:"There’s no odds-movement indicator on pre-match markets (up / down since last view) — showing drift helps users decide when to place, and complements the “how many markets” friction.", severity:"LOW", law:"Von Restorff Effect"},
         {text:"Suspended or unavailable selections need a clear locked state before kickoff, so users aren’t surprised when a bet can’t be placed.", severity:"MEDIUM", law:"Von Restorff Effect"},
@@ -579,6 +580,7 @@ const IMG_NUMS = {
   'img/casino-virtuals/v2.png':['r1','r2','r3','r4','r5','r6','g2'],'img/casino-virtuals/v4.png':['r7','g1'],'img/casino-virtuals/v6.png':['r8','g6'],'img/casino-virtuals/v7.png':['r9','g5'],'img/casino-virtuals/v9.png':['g4'],'img/casino-virtuals/v10.png':['r10'],'img/casino-virtuals/v11.png':['r11'],'img/casino-virtuals/v12.png':['g3'],'img/casino-virtuals/v13.png':['g7'],
   'img/pre-match/pm1-1.png':['g1','g2','r3','r4'],'img/pre-match/pm1-2.png':['r5','r6','g7','r8','r9'],'img/pre-match/pm1-3.png':['r10','g11','r12'],'img/pre-match/pm1-4.png':['r13','g14'],
   'img/pre-match/pm2-1.png':['g2','r1'],'img/pre-match/pm2-2.png':['g3'],'img/pre-match/pm2-3.png':['g5','r4'],'img/pre-match/pm2-4.png':['r6'],
+  'img/pre-match/ps1.png':['r1','r6'],'img/pre-match/ps2.png':['r2','r5'],'img/pre-match/ps3.png':['r7'],'img/pre-match/ps4.png':['r3','r4'],
   'img/help-support/a1-1.png':['g1','g2'],'img/help-support/a1-2.png':['g3','r1'],'img/help-support/a1-3.png':['r2'],
   'img/help-support/a2-1.png':['g1','g2','r3'],'img/help-support/a2-2.png':['g3','r1'],'img/help-support/a2-3.png':['r2'],
   'img/help-support/a3-1.png':['g1','g2','r2'],'img/help-support/a3-2.png':['g3','r1','r3'],
