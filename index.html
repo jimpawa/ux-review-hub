@@ -62,6 +62,7 @@ main{padding:22px 0 80px}
 .todo-note{color:var(--mut);font-size:14px;background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:20px}
 .sumblock{margin:0 0 28px}
 .sumblock h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.about-intro{margin:2px 0 16px;font-size:14px;line-height:1.65;color:var(--ink);opacity:.92;max-width:940px}
 .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:800px){.about-grid{grid-template-columns:1fr}}
 .about-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px}
@@ -205,6 +206,7 @@ function renderSummary(){
   m.append(el('div','topichead','<h1>Summary</h1><span class="by">all topics at a glance · snapshot '+esc(DATA.snapshot)+'</span>'));
   // how this review was done
   const about=el('div','sumblock'); about.append(el('h2',null,'How this review was done'));
+  about.append(el('p','about-intro','This is a <b>heuristic evaluation</b> — an expert walkthrough of each journey measured against the <b>Laws of UX</b> (established usability principles), rather than live user testing. It is a fast, low-cost way to surface usability issues, inconsistencies, and ideas worth discussing <i>before</i> they reach customers. Every finding is tied to a real screen, rated by severity, and grounded in a named principle — so the result is a prioritised, evidence-based list the team can act on, not a matter of opinion.'));
   const ag=el('div','about-grid');
   ag.append(el('div','about-card','<h4><span class="step">1</span>Reviewing the flows</h4><ul class="about-list"><li>Each topic is a journey on betPawa Nigeria (mobile), walked <b>flow by flow</b>.</li><li>Key screens are captured in order, with numbered badges dropped on the UI.</li><li>Every observation is logged as a <b>🟢 strength</b> (works well) or a <b>🔴 friction / idea</b>.</li><li>Every finding traces back to a real screen.</li></ul>'));
   const sevDefs=[['CRITICAL','blocks or breaks the task, or misleads the user / loses their action'],['HIGH','significant friction — costs time or trust, but has a workaround'],['MEDIUM','a noticeable issue or inconsistency worth fixing'],['LOW','minor polish — small clarity or consistency gains'],['NIT','cosmetic, nice-to-have']];
