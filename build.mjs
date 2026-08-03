@@ -367,7 +367,7 @@ const topics = [
         {text:"Home leads with 'Popular Match Combos' — pre-built multi-selection bets accelerate the core action right on the homepage.",law:"Goal-Gradient Effect"},
        ],
        frictions:[
-        {text:"Three promo cards plus the bonus banner push real match lists well below the fold.",severity:"HIGH",law:"Hick's Law · Cognitive Load"},
+        {text:"Promo cards should always be replaced with USPs. USPs push real match lists well below the fold.",severity:"HIGH",law:"Hick's Law · Cognitive Load"},
         {text:"Casino Cashback is the first promo card on a sports home — casino cross-sell ahead of sport.",severity:"MEDIUM",law:""},
         {text:"The three promo cards are visually near-identical (‘Read More’), so no single offer stands out.",severity:"LOW",law:"Law of Similarity"},
         {text:"Every visit starts by scrolling past promos.",severity:"MEDIUM",law:"Cognitive Load"},
