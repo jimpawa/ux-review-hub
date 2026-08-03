@@ -713,6 +713,9 @@ main{padding:22px 0 80px}
 .dlg.open{display:flex}
 .dlg-box{background:var(--bg);border:1px solid var(--line);border-radius:16px;max-width:760px;width:100%;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
 .dlg-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.prio-num{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;color:#fff;font-weight:800;font-size:12.5px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.prio-num.r{background:#dc2626}.prio-num.g{background:#16a34a}
+.prio-numlab{font-size:11.5px;color:var(--mut);font-weight:600;margin-left:2px}
 .dlg-text{font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
 .dlg-2col{display:flex;gap:24px;align-items:flex-start}
 @media(max-width:640px){.dlg-2col{flex-direction:column;align-items:center}}
@@ -746,7 +749,9 @@ function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 window._lb=function(src){const lb=document.getElementById('lb');document.getElementById('lbimg').src=src;lb.classList.add('open');};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.getElementById('dlg').classList.remove('open');}});
 function openPrio(it){var box=document.getElementById('dlgbox');
-  box.innerHTML='<div class="dlg-2col"><div class="dlg-shots" id="dlgshots"></div><div class="dlg-info"><div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span>'+(it.law?'<span class="law" data-law="'+esc(it.law)+'">'+esc(it.law)+'</span>':'')+'</div><div class="dlg-topic">'+esc(it.topic)+' · '+esc(it.flow)+'</div><p class="dlg-text">'+esc(it.text)+'</p></div></div>';
+  var _bk=(it.tok||'').charAt(0)==='g'?'g':'r', _bn=(it.tok||'').slice(1);
+  var _badge=_bn?'<span class="prio-num '+_bk+'">'+esc(_bn)+'</span><span class="prio-numlab">← this badge on the screen</span>':'';
+  box.innerHTML='<div class="dlg-2col"><div class="dlg-shots" id="dlgshots"></div><div class="dlg-info"><div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span>'+(it.law?'<span class="law" data-law="'+esc(it.law)+'">'+esc(it.law)+'</span>':'')+_badge+'</div><div class="dlg-topic">'+esc(it.topic)+' · '+esc(it.flow)+'</div><p class="dlg-text">'+esc(it.text)+'</p></div></div>';
   var sh=document.getElementById('dlgshots');(it._imgs||it.images||[]).forEach(function(im){var fig=el('figure','dshot');var img=el('img','dshotimg');img.src=im.src;img.loading='lazy';img.onclick=function(){_lb(im.src);};fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));sh.append(fig);});
   document.getElementById('dlg').classList.add('open');}
 window._closeDlg=function(){document.getElementById('dlg').classList.remove('open');};
