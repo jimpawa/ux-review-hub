@@ -292,7 +292,7 @@ function renderTopic(){
     const f=o.f;
     const frShown = frShownOf(f);
     const showNum = f.numbered!==false && !!(f.images && f.images.length);
-    const flow=el('div','flow'); flow.id='flow-'+o.i; flow.append(el('h2',null,esc(f.flow)));
+    const flow=el('div','flow'); flow.id='flow-'+o.i; if(!tabbed) flow.append(el('h2',null,esc(f.flow)));
     if(f.images && f.images.length){
       flow.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click any to zoom.'));
       const w=el('div','shots');
