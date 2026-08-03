@@ -1597,7 +1597,8 @@
                 "r3",
                 "r4",
                 "r5",
-                "r6"
+                "r6",
+                "g2"
               ]
             },
             {
@@ -1608,7 +1609,8 @@
               "src": "img/casino-virtuals/v4.png",
               "label": "04 · Match list",
               "nums": [
-                "r7"
+                "r7",
+                "g1"
               ]
             },
             {
@@ -1619,14 +1621,16 @@
               "src": "img/casino-virtuals/v6.png",
               "label": "06 · Match details",
               "nums": [
-                "r8"
+                "r8",
+                "g6"
               ]
             },
             {
               "src": "img/casino-virtuals/v7.png",
               "label": "07 · Live matches",
               "nums": [
-                "r9"
+                "r9",
+                "g5"
               ]
             },
             {
@@ -1635,7 +1639,10 @@
             },
             {
               "src": "img/casino-virtuals/v9.png",
-              "label": "09 · League statistics"
+              "label": "09 · League statistics",
+              "nums": [
+                "g4"
+              ]
             },
             {
               "src": "img/casino-virtuals/v10.png",
@@ -1653,14 +1660,56 @@
             },
             {
               "src": "img/casino-virtuals/v12.png",
-              "label": "12 · Bet placed"
+              "label": "12 · Bet placed",
+              "nums": [
+                "g3"
+              ]
             },
             {
               "src": "img/casino-virtuals/v13.png",
-              "label": "13 · My Bets (Virtuals)"
+              "label": "13 · My Bets (Virtuals)",
+              "nums": [
+                "g7"
+              ]
             }
           ],
-          "strengths": [],
+          "strengths": [
+            {
+              "text": "Virtuals reuse the exact sportsbook UI (leagues, match list, 1X2 odds, betslip) — players already know how to bet, with zero relearning.",
+              "n": 1,
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "A coherent end-to-end flow: landing → league → match list → match details → betslip → “Bet Placed” → My Bets.",
+              "n": 2,
+              "law": "Goal-Gradient Effect"
+            },
+            {
+              "text": "The “Bet Placed” screen gives a clear success confirmation and receipt — strong system-status feedback.",
+              "n": 3,
+              "law": "Peak-End Rule"
+            },
+            {
+              "text": "League standings and statistics are provided for virtual leagues, so bets feel as informed as real sports.",
+              "n": 4,
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "A live match visualiser (animated pitch) makes virtual in-play feel like real football — engaging to watch.",
+              "n": 5,
+              "law": "Von Restorff Effect"
+            },
+            {
+              "text": "Odds use the same 1X2 layout and colours as the sportsbook — instant familiarity.",
+              "n": 6,
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "A dedicated “My Bets (Virtuals)” view keeps virtual bet history in one place.",
+              "n": 7,
+              "law": "Law of Common Region"
+            }
+          ],
           "frictions": [
             {
               "text": "The illustrations don’t catch the eye.",
@@ -1722,7 +1771,7 @@
       ],
       "figma": "https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan",
       "counts": {
-        "s": 8,
+        "s": 15,
         "f": 23,
         "sev": {
           "CRITICAL": 0,
@@ -1797,7 +1846,7 @@
     }
   ],
   "totals": {
-    "s": 65,
+    "s": 72,
     "f": 115,
     "sev": {
       "CRITICAL": 17,

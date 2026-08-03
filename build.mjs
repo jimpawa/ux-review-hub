@@ -231,7 +231,15 @@ const topics = [
       ]},
       {flow:'Virtuals',
        images:[{src:'img/casino-virtuals/v1.png',label:'01 · Landing'},{src:'img/casino-virtuals/v2.png',label:'02 · Virtuals page'},{src:'img/casino-virtuals/v3.png',label:'03 · Favourites'},{src:'img/casino-virtuals/v4.png',label:'04 · Match list'},{src:'img/casino-virtuals/v5.png',label:'05 · Leagues'},{src:'img/casino-virtuals/v6.png',label:'06 · Match details'},{src:'img/casino-virtuals/v7.png',label:'07 · Live matches'},{src:'img/casino-virtuals/v8.png',label:'08 · Results'},{src:'img/casino-virtuals/v9.png',label:'09 · League statistics'},{src:'img/casino-virtuals/v10.png',label:'10 · Active betslip'},{src:'img/casino-virtuals/v11.png',label:'11 · Betslip'},{src:'img/casino-virtuals/v12.png',label:'12 · Bet placed'},{src:'img/casino-virtuals/v13.png',label:'13 · My Bets (Virtuals)'}],
-       strengths:[], frictions:[
+       strengths:[
+        {text:"Virtuals reuse the exact sportsbook UI (leagues, match list, 1X2 odds, betslip) — players already know how to bet, with zero relearning.", n:1, law:"Jakob's Law"},
+        {text:"A coherent end-to-end flow: landing → league → match list → match details → betslip → “Bet Placed” → My Bets.", n:2, law:"Goal-Gradient Effect"},
+        {text:"The “Bet Placed” screen gives a clear success confirmation and receipt — strong system-status feedback.", n:3, law:"Peak-End Rule"},
+        {text:"League standings and statistics are provided for virtual leagues, so bets feel as informed as real sports.", n:4, law:"Cognitive Load"},
+        {text:"A live match visualiser (animated pitch) makes virtual in-play feel like real football — engaging to watch.", n:5, law:"Von Restorff Effect"},
+        {text:"Odds use the same 1X2 layout and colours as the sportsbook — instant familiarity.", n:6, law:"Jakob's Law"},
+        {text:"A dedicated “My Bets (Virtuals)” view keeps virtual bet history in one place.", n:7, law:"Law of Common Region"},
+       ], frictions:[
         {text:"The illustrations don’t catch the eye."},
         {text:"Multiple entries essentially lead to the same Virtuals game and take up a lot of space."},
         {text:"There aren’t many objects here — the layout could show everything to the user at once."},
@@ -470,7 +478,7 @@ const IMG_NUMS = {
   'img/my-bets-cashout/ca1.png':['r1'],'img/my-bets-cashout/ca2.png':['g1','r2'],'img/my-bets-cashout/ca3.png':['g2','r3'],'img/my-bets-cashout/ca4.png':['g3','r4','r5'],
   'img/my-bets-cashout/se1.png':['r1','r2','r3'],'img/my-bets-cashout/se2.png':['g1','r4'],'img/my-bets-cashout/se3.png':['g4','r5'],'img/my-bets-cashout/se4.png':['g5','r6'],'img/my-bets-cashout/se5.png':['g2','g3','g6'],'img/my-bets-cashout/se6.png':['r7'],
   'img/casino-virtuals/c2.png':['r1','r3','r4','g2','g3','g4','g5','g6'],'img/casino-virtuals/c3.png':['r5'],'img/casino-virtuals/c4.png':['r6','g7'],'img/casino-virtuals/c5.png':['r7','r8','g1','g2'],'img/casino-virtuals/c7.png':['r9','r12'],'img/casino-virtuals/c8.png':['r10','r11'],'img/casino-virtuals/c9.png':['r13'],
-  'img/casino-virtuals/v2.png':['r1','r2','r3','r4','r5','r6'],'img/casino-virtuals/v4.png':['r7'],'img/casino-virtuals/v6.png':['r8'],'img/casino-virtuals/v7.png':['r9'],'img/casino-virtuals/v10.png':['r10'],'img/casino-virtuals/v11.png':['r11'],
+  'img/casino-virtuals/v2.png':['r1','r2','r3','r4','r5','r6','g2'],'img/casino-virtuals/v4.png':['r7','g1'],'img/casino-virtuals/v6.png':['r8','g6'],'img/casino-virtuals/v7.png':['r9','g5'],'img/casino-virtuals/v9.png':['g4'],'img/casino-virtuals/v10.png':['r10'],'img/casino-virtuals/v11.png':['r11'],'img/casino-virtuals/v12.png':['g3'],'img/casino-virtuals/v13.png':['g7'],
 };
 for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
