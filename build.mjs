@@ -131,7 +131,7 @@ const topics = [
     flows: [
       {flow:'Open Bets',
        numbered:false,
-       images:[{src:'img/my-bets-cashout/mb1-open-bets.png',label:'My Open Bets'}],
+       images:[{src:'img/my-bets-cashout/ob1.png',label:'01 · My Open Bets'},{src:'img/my-bets-cashout/ob2.png',label:'02 · Scroll'},{src:'img/my-bets-cashout/ob3.png',label:'03 · Open bet (single)'},{src:'img/my-bets-cashout/ob4.png',label:'04 · Open bet (multiple)'}],
        strengths:[
         {text:"Categorized tabs provide structured navigation across primary wagering categories."},
         {text:"Detailed headers and item counts streamline content consumption without cognitive overload."},
@@ -157,7 +157,7 @@ const topics = [
        ]},
       {flow:'Cashout',
        numbered:false,
-       images:[{src:'img/my-bets-cashout/mb2-cashout.png',label:'Cashout'}],
+       images:[{src:'img/my-bets-cashout/ca1.png',label:'01 · Empty state'},{src:'img/my-bets-cashout/ca2.png',label:'02 · Open bets'},{src:'img/my-bets-cashout/ca3.png',label:'03 · Card opportunities'},{src:'img/my-bets-cashout/ca4.png',label:'04 · Card full'}],
        strengths:[
         {text:"The Cashout section sits in a logical position within the screen hierarchy."},
         {text:"The action happens directly on the page with fast response times."},
@@ -172,7 +172,7 @@ const topics = [
        ]},
       {flow:'Settled Bets',
        numbered:false,
-       images:[{src:'img/my-bets-cashout/mb3-settled.png',label:'My Settled Bets'}],
+       images:[{src:'img/my-bets-cashout/se1.png',label:'01 · Settled bets'},{src:'img/my-bets-cashout/se2.png',label:'02 · Won bets'},{src:'img/my-bets-cashout/se3.png',label:'03 · Single bet'},{src:'img/my-bets-cashout/se4.png',label:'04 · Multiple bet'},{src:'img/my-bets-cashout/se5.png',label:'05 · Won bet inside'},{src:'img/my-bets-cashout/se6.png',label:'06 · Sharing popup'}],
        strengths:[
         {text:"Differentiation looks well executed across the layout."},
         {text:"The internal card design is strong and distinguishes itself from a regular win (needs clearer explanations and UI refinement)."},
