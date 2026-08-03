@@ -169,7 +169,7 @@
             },
             {
               "src": "img/homepage-sports-discovery/a1-2.png",
-              "label": "02 · Promos & combos"
+              "label": "02 · Campaigns & combos"
             },
             {
               "src": "img/homepage-sports-discovery/a1-3.png",
@@ -182,7 +182,7 @@
           ],
           "strengths": [
             {
-              "text": "Clear top-to-bottom hierarchy — balance & nav, then promos, then combos, then match lists.",
+              "text": "Clear top-to-bottom hierarchy — balance & nav, then campaigns, then combos, then match lists.",
               "law": "Serial Position Effect"
             },
             {
@@ -213,17 +213,17 @@
               "law": "Hick's Law · Cognitive Load"
             },
             {
-              "text": "Casino Cashback is the first promo card on a sports home — casino cross-sell ahead of sport.",
+              "text": "Casino Cashback is the first campaign card on a sports home — casino cross-sell ahead of sport.",
               "severity": "MEDIUM",
               "law": "Serial Position Effect"
             },
             {
-              "text": "The three promo cards are visually near-identical (‘Read More’), so no single offer stands out.",
+              "text": "The three campaign cards are visually near-identical (‘Read More’), so no single offer stands out.",
               "severity": "LOW",
               "law": "Law of Similarity"
             },
             {
-              "text": "Every visit starts by scrolling past promos.",
+              "text": "Every visit starts by scrolling past campaigns.",
               "severity": "MEDIUM",
               "law": "Cognitive Load"
             }
@@ -287,7 +287,7 @@
           ]
         },
         {
-          "flow": "Homepage · Promotions discovery",
+          "flow": "Homepage · Campaigns discovery",
           "images": [
             {
               "src": "img/homepage-sports-discovery/a3-1.png",
@@ -304,15 +304,15 @@
           ],
           "strengths": [
             {
-              "text": "Each promo has a dedicated, well-explained page with a single clear CTA.",
+              "text": "Each campaign has a dedicated, well-explained page with a single clear CTA.",
               "law": "Hick's Law"
             },
             {
-              "text": "Each promo page leads with one bold value prop and a single BET NOW CTA — no decision overload.",
+              "text": "Each campaign page leads with one bold value prop and a single BET NOW CTA — no decision overload.",
               "law": "Von Restorff Effect"
             },
             {
-              "text": "Each promo page includes a plain-language ‘What makes it different / How it works’ breakdown.",
+              "text": "Each campaign page includes a plain-language ‘What makes it different / How it works’ breakdown.",
               "law": "Cognitive Load"
             },
             {
@@ -322,17 +322,17 @@
           ],
           "frictions": [
             {
-              "text": "Promo pages are separate destinations with no ‘back to bet’ shortcut — users can lose their place.",
+              "text": "Campaign pages are separate destinations with no ‘back to bet’ shortcut — users can lose their place.",
               "severity": "LOW",
               "law": "Mental Model"
             },
             {
-              "text": "Casino cashback is promoted on the homepage home — cross-sell competes with sports intent.",
+              "text": "Casino cashback is featured on the homepage home — cross-sell competes with sports intent.",
               "severity": "MEDIUM",
               "law": "Selective Attention"
             },
             {
-              "text": "Promo pages are long marketing scrolls — the actual terms and limits sit well below the fold.",
+              "text": "Campaign pages are long marketing scrolls — the actual terms and limits sit well below the fold.",
               "severity": "MEDIUM",
               "law": "Cognitive Load"
             },
@@ -2022,7 +2022,7 @@
               "law": "Cognitive Load"
             },
             {
-              "text": "Not much interactivity — no promotions, banners, etc. to engage the user.",
+              "text": "Not much interactivity — no campaigns, banners, etc. to engage the user.",
               "severity": "LOW",
               "law": "Goal-Gradient Effect"
             },
@@ -2185,7 +2185,7 @@
               "law": "Jakob's Law"
             },
             {
-              "text": "Notifications mix promos (casino cashback) with account-critical alerts (failed withdrawal) in one undifferentiated list.",
+              "text": "Notifications mix campaigns (casino cashback) with account-critical alerts (failed withdrawal) in one undifferentiated list.",
               "severity": "MEDIUM",
               "law": "Selective Attention"
             },

@@ -207,7 +207,7 @@ const topics = [
         {text:"Self-exclusion uses supportive, non-judgmental copy and links to specialist help — a hard moment handled with care.", law:"Peak-End Rule"},
        ], frictions:[
         {text:"Self-exclusion, change-password and notifications hide under a collapsed “Manage account” accordion — safety controls take extra taps.", severity:"MEDIUM", law:"Jakob's Law"},
-        {text:"Notifications mix promos (casino cashback) with account-critical alerts (failed withdrawal) in one undifferentiated list.", severity:"MEDIUM", law:"Selective Attention"},
+        {text:"Notifications mix campaigns (casino cashback) with account-critical alerts (failed withdrawal) in one undifferentiated list.", severity:"MEDIUM", law:"Selective Attention"},
         {text:"Password minimum is just “4 characters” — a weak security floor for a real-money wallet.", severity:"HIGH", law:"Jakob's Law"},
        ]},
       {flow:'A3 · Activity & history',
@@ -296,7 +296,7 @@ const topics = [
         {text:"The illustrations don’t catch the eye."},
         {text:"Multiple entries essentially lead to the same Virtuals game and take up a lot of space."},
         {text:"There aren’t many objects here — the layout could show everything to the user at once."},
-        {text:"Not much interactivity — no promotions, banners, etc. to engage the user."},
+        {text:"Not much interactivity — no campaigns, banners, etc. to engage the user."},
         {text:"Show some big recent wins to draw the user in."},
         {text:"A timer on the virtual thumbnail could show when the next match starts."},
         {text:"Show the league selection at the top."},
@@ -357,9 +357,9 @@ const topics = [
     name: 'Homepage & Sports Discovery', reviewer: '—', tag: 'severity',
     flows: [
       {flow:"Homepage · Landing & orientation",
-       images:[{src:"img/homepage-sports-discovery/a1-1.png",label:"01 · Above the fold"},{src:"img/homepage-sports-discovery/a1-2.png",label:"02 · Promos & combos"},{src:"img/homepage-sports-discovery/a1-3.png",label:"03 · More markets"},{src:"img/homepage-sports-discovery/a1-4.png",label:"04 · Bonus nudge"}],
+       images:[{src:"img/homepage-sports-discovery/a1-1.png",label:"01 · Above the fold"},{src:"img/homepage-sports-discovery/a1-2.png",label:"02 · Campaigns & combos"},{src:"img/homepage-sports-discovery/a1-3.png",label:"03 · More markets"},{src:"img/homepage-sports-discovery/a1-4.png",label:"04 · Bonus nudge"}],
        strengths:[
-        {text:"Clear top-to-bottom hierarchy — balance & nav, then promos, then combos, then match lists.",law:"Serial Position Effect"},
+        {text:"Clear top-to-bottom hierarchy — balance & nav, then campaigns, then combos, then match lists.",law:"Serial Position Effect"},
         {text:"Balance and a one-tap Deposit ‘+’ sit top-right on landing — funding is always one tap away.",law:"Fitts's Law"},
         {text:"The persistent ‘up to 1250% Win Bonus’ footer nudges accumulator building without blocking content.",law:"Goal-Gradient Effect"},
         {text:"Sticky bottom nav keeps Sports / Betslip / My bets / Account one tap away throughout the scroll.",law:"Jakob's Law"},
@@ -368,9 +368,9 @@ const topics = [
        ],
        frictions:[
         {text:"USPs push real match lists well below the fold.",severity:"HIGH",law:"Hick's Law · Cognitive Load"},
-        {text:"Casino Cashback is the first promo card on a sports home — casino cross-sell ahead of sport.",severity:"MEDIUM",law:""},
-        {text:"The three promo cards are visually near-identical (‘Read More’), so no single offer stands out.",severity:"LOW",law:"Law of Similarity"},
-        {text:"Every visit starts by scrolling past promos.",severity:"MEDIUM",law:"Cognitive Load"},
+        {text:"Casino Cashback is the first campaign card on a sports home — casino cross-sell ahead of sport.",severity:"MEDIUM",law:""},
+        {text:"The three campaign cards are visually near-identical (‘Read More’), so no single offer stands out.",severity:"LOW",law:"Law of Similarity"},
+        {text:"Every visit starts by scrolling past campaigns.",severity:"MEDIUM",law:"Cognitive Load"},
        ]},
       {flow:"Homepage · Quick-bet",
        images:[{src:"img/homepage-sports-discovery/a2-1.png",label:"01 · Combos"},{src:"img/homepage-sports-discovery/a2-2.png",label:"02 · One tap adds it"},{src:"img/homepage-sports-discovery/a2-3.png",label:"03 · Accumulator & bonus"}],
@@ -386,18 +386,18 @@ const topics = [
         {text:"Combos are fixed bundles — there’s no way to drop or swap a leg before adding it.",severity:"LOW",law:"Tesler's Law"},
         {text:"The betslip bar shows odds and bonus but not the number of selections — unclear what’s in the slip.",severity:"MEDIUM",law:"Cognitive Load"},
        ]},
-      {flow:"Homepage · Promotions discovery",
+      {flow:"Homepage · Campaigns discovery",
        images:[{src:"img/homepage-sports-discovery/a3-1.png",label:"01 · Win Bonus"},{src:"img/homepage-sports-discovery/a3-2.png",label:"02 · Early Wins"},{src:"img/homepage-sports-discovery/a3-3.png",label:"03 · Cashback"}],
        strengths:[
-        {text:"Each promo has a dedicated, well-explained page with a single clear CTA.",law:"Hick's Law"},
-        {text:"Each promo page leads with one bold value prop and a single BET NOW CTA — no decision overload.",law:"Von Restorff Effect"},
-        {text:"Each promo page includes a plain-language ‘What makes it different / How it works’ breakdown.",law:""},
+        {text:"Each campaign has a dedicated, well-explained page with a single clear CTA.",law:"Hick's Law"},
+        {text:"Each campaign page leads with one bold value prop and a single BET NOW CTA — no decision overload.",law:"Von Restorff Effect"},
+        {text:"Each campaign page includes a plain-language ‘What makes it different / How it works’ breakdown.",law:""},
         {text:"A single BET NOW / PLAY NOW CTA per page keeps the next step obvious.",law:"Hick's Law"},
        ],
        frictions:[
-        {text:"Promo pages are separate destinations with no ‘back to bet’ shortcut — users can lose their place.",severity:"LOW",law:"Mental Model"},
-        {text:"Casino cashback is promoted on the homepage home — cross-sell competes with sports intent.",severity:"MEDIUM",law:""},
-        {text:"Promo pages are long marketing scrolls — the actual terms and limits sit well below the fold.",severity:"MEDIUM",law:"Cognitive Load"},
+        {text:"Campaign pages are separate destinations with no ‘back to bet’ shortcut — users can lose their place.",severity:"LOW",law:"Mental Model"},
+        {text:"Casino cashback is featured on the homepage home — cross-sell competes with sports intent.",severity:"MEDIUM",law:""},
+        {text:"Campaign pages are long marketing scrolls — the actual terms and limits sit well below the fold.",severity:"MEDIUM",law:"Cognitive Load"},
         {text:"Three overlapping bonuses (Win Bonus, Early Wins, Cashback) with no comparison — unclear which applies when.",severity:"LOW",law:"Choice Overload"},
        ]},
       {flow:"Sports Discovery · Browse & filter a sport",
@@ -514,7 +514,7 @@ const LAW_ASSIGN=[
   // Help & Support
   ["play up the block titles","Von Restorff Effect"],["adding screenshots or videos","Cognitive Load"],["a search would make it easier","Hick's Law"],["add navigation within this page","Jakob's Law"],
   // Homepage & Sports Discovery (findings the reviewer left untagged)
-  ["casino cashback is the first promo","Serial Position Effect"],["each combo lists its legs","Cognitive Load"],["plain-language","Cognitive Load"],["cross-sell competes with sports intent","Selective Attention"],
+  ["casino cashback is the first campaign","Serial Position Effect"],["each combo lists its legs","Cognitive Load"],["plain-language","Cognitive Load"],["cross-sell competes with sports intent","Selective Attention"],
   ["no single view of all active filters","Cognitive Load"],["aren't summarised on the results list","Cognitive Load"],["event sub-tabs","Law of Common Region"],["in-play visualiser dominates","Serial Position Effect"],
   ["date picker only allows a single date","Mental Model"],["grouped into scannable tabs","Law of Common Region"],["market groups carry counts","Von Restorff Effect"],["statistics fill the whole first screen","Serial Position Effect"],
 ];
@@ -880,7 +880,8 @@ function renderTopic(){
   const hasSev=t.flows.some(f=>f.frictions.some(x=>x.severity));
   const head=el('div','topichead','<h1>'+esc(t.name)+'</h1>'+figLink(t.figma));
   m.append(head);
-  const frShownOf=f=> hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
+  const SEVR=s=>{const i=SEV.indexOf(s);return i<0?99:i;};
+  const frShownOf=f=> f.frictions.slice().sort((a,b)=>SEVR(a.severity)-SEVR(b.severity));
   const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && o.f.strengths.length===0 && frShownOf(o.f).length===0));
   if(flowIdx>=visFlows.length) flowIdx=0;
   const tabbed=visFlows.length>1;
