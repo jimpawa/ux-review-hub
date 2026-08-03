@@ -11,6 +11,7 @@ const topics = [
     name: 'Global Navigation', reviewer: 'Jim', tag: 'law',
     flows: [{
       flow: 'betPawa.ng — Global Navigation',
+      image: 'img/global-navigation/betpawa-global-navigation.png',
       strengths: [
         {text:"Persistent bottom bar keeps the betting loop (Sports · Betslip · My bets · Account) one tap away from anywhere.", law:"Fitts's Law"},
         {text:"Betslip is a self-contained sheet — Betslip↔My bets pill, an “accept odds change” toggle, and clear stake/odds/payout.", law:"Jakob's Law"},
@@ -440,6 +441,17 @@ main{padding:22px 0 80px}
 .tc-n{display:flex;gap:6px;margin-bottom:10px}
 .tc-sev{display:flex;gap:5px;flex-wrap:wrap}
 .tc-fig{margin-top:12px;padding:4px 10px !important;font-size:11px !important}
+.flowimg-wrap{margin:0 0 16px;position:relative}
+.flowimg{width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:zoom-in}
+.flowimg-cap{font-size:11px;color:var(--mut);margin-top:6px}
+.fnum{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:800;margin-right:8px;flex:0 0 auto;vertical-align:middle}
+.fnum.g{background:var(--green);color:#fff} .fnum.r{background:var(--red);color:#fff}
+.card.hasnum{display:flex;align-items:flex-start;gap:0}
+.card .fbody{flex:1;min-width:0}
+.lb{position:fixed;inset:0;background:rgba(3,6,12,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:92vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb .hint{position:fixed;top:16px;right:20px;color:#cbd3e0;font-size:12px}
 .crmeta{margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .crtopic{font-size:11.5px;color:var(--mut);font-weight:600}
 footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:18px 0;text-align:center}
@@ -453,6 +465,7 @@ footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:
 </div></header>
 <main class="wrap" id="main"></main>
 <footer class="wrap">Static snapshot · <span id="snap"></span> · Source: the reviewers' Figma "UX Findings" pages</footer>
+<div class="lb" id="lb" onclick="this.classList.remove('open')"><div class="hint">click anywhere to close</div><img id="lbimg" alt=""></div>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
@@ -460,6 +473,8 @@ let current = 'summary', sevFilter = 'ALL', critFilter = 'ALL';
 const SEV=['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+window._lb=function(src){const lb=document.getElementById('lb');document.getElementById('lbimg').src=src;lb.classList.add('open');};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lb').classList.remove('open');});
 
 // ---- theme: light by day, dark by night; manual toggle persists ----
 (function(){const KEY='uxhub-theme';const saved=localStorage.getItem(KEY);const h=new Date().getHours();const theme=saved||((h>=7&&h<19)?'light':'dark');document.documentElement.dataset.theme=theme;})();
@@ -553,18 +568,30 @@ function renderTopic(){
   t.flows.forEach(f=>{
     const frShown = hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
     if(t.flows.length>1 && f.strengths.length===0 && frShown.length===0) return;
+    const showNum = !!f.image;
     const flow=el('div','flow'); flow.append(el('h2',null,esc(f.flow)));
+    if(f.image){
+      const w=el('div','flowimg-wrap');
+      const img=el('img','flowimg'); img.src=f.image; img.alt=esc(f.flow); img.loading='lazy'; img.onclick=()=>_lb(f.image);
+      w.append(img); w.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click to zoom.'));
+      flow.append(w);
+    }
     const cols=el('div','cols');
     const good=el('div','col good'); good.append(el('h3',null,'<span class="dot"></span>Works well'));
     if(f.strengths.length===0) good.append(el('div','empty','—'));
-    f.strengths.forEach(s=>good.append(el('div','card good',esc(s.text)+(s.law?'<div class="meta"><span class="law">'+esc(s.law)+'</span></div>':''))));
+    f.strengths.forEach((s,i)=>{
+      const inner=esc(s.text)+(s.law?'<div class="meta"><span class="law">'+esc(s.law)+'</span></div>':'');
+      good.append(el('div','card good'+(showNum?' hasnum':''), showNum?'<span class="fnum g">'+(i+1)+'</span><div class="fbody">'+inner+'</div>':inner));
+    });
     const bad=el('div','col bad'); bad.append(el('h3',null,'<span class="dot"></span>Friction / ideas'));
     if(frShown.length===0) bad.append(el('div','empty','—'));
     frShown.forEach(x=>{
       let meta='';
       if(x.severity) meta+='<span class="sev '+x.severity+'">'+x.severity+'</span>';
       if(x.law) meta+='<span class="law">'+esc(x.law)+'</span>';
-      bad.append(el('div','card bad',esc(x.text)+(meta?'<div class="meta">'+meta+'</div>':'')));
+      const inner=esc(x.text)+(meta?'<div class="meta">'+meta+'</div>':'');
+      const n=f.frictions.indexOf(x)+1;
+      bad.append(el('div','card bad'+(showNum?' hasnum':''), showNum?'<span class="fnum r">'+n+'</span><div class="fbody">'+inner+'</div>':inner));
     });
     cols.append(good,bad); flow.append(cols); m.append(flow);
   });

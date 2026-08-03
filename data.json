@@ -8,6 +8,7 @@
       "flows": [
         {
           "flow": "betPawa.ng — Global Navigation",
+          "image": "img/global-navigation/betpawa-global-navigation.png",
           "strengths": [
             {
               "text": "Persistent bottom bar keeps the betting loop (Sports · Betslip · My bets · Account) one tap away from anywhere.",
