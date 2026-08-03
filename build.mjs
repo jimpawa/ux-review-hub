@@ -381,7 +381,29 @@ const FIGMA = {
   'Homepage & Sports Discovery':'https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-',
 };
 TODO.forEach(t=>{ if(FIGMA[t.name]) t.figma=FIGMA[t.name]; });
-const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals };
+// Law-of-UX descriptions (from the Global Nav "Laws of UX" Figma page; * = standard lawsofux.com definition, not on that page)
+const LAWS = {
+  "Hick's Law":"The time to make a decision increases with the number and complexity of choices available.",
+  "Miller's Law":"The average person can hold only about 7 (±2) items in working memory at once.",
+  "Jakob's Law":"Users spend most of their time on other sites, so they expect yours to work the way the sites they already know do.",
+  "Fitts's Law":"The time to acquire a target depends on its size and distance — bigger, closer, persistent targets are faster to hit.",
+  "Tesler's Law":"Every system has an inherent complexity that can't be removed, only shifted — ideally absorbed by the system, not the user.",
+  "Von Restorff Effect":"When several similar items are shown, the one that differs is the most likely to be noticed and remembered (e.g. an active tab).",
+  "Choice Overload":"Presenting too many options at once overwhelms people and makes deciding harder.",
+  "Zeigarnik Effect":"People remember uncompleted or interrupted tasks better than completed ones — a persistent reminder keeps the task alive.",
+  "Occam's Razor":"Among options that perform equally well, the simplest — with the fewest elements and redundant paths — is best.",
+  "Selective Attention":"We focus on a subset of stimuli (usually goal-related) and filter out the rest — the cause of ‘banner-blindness’.",
+  "Cognitive Load":"The mental effort needed to understand and use an interface; excess load slows comprehension and completion.",
+  "Mental Model":"People carry a model of how things should work from past experience; interfaces that match it feel intuitive.",
+  "Law of Common Region":"Elements are perceived as a group when they share an area with a clearly defined boundary (e.g. cards/tiles).",
+  "Peak-End Rule":"People judge an experience largely on how they felt at its peak and at its end — not the average of every moment.",
+  "Serial Position Effect":"Users best remember the first and last items in a series; the middle tends to blur together.",
+  "Goal-Gradient Effect":"Motivation to reach a goal increases the closer you get to it — visible progress pulls people forward.",
+  "Doherty Threshold":"Productivity soars when a system responds fast enough (under ~400 ms) that neither the user nor the system waits.",
+  "Law of Similarity":"The eye groups elements that look alike, perceiving them as a set even when they are apart.",
+  "Flow":"The state of being fully immersed and focused in an activity, with a good balance of challenge and skill.",
+};
+const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
 fs.writeFileSync(new URL('./data.json', import.meta.url), JSON.stringify(payload,null,2));
 
 // ---- HTML ----
@@ -442,10 +464,22 @@ main{padding:22px 0 80px}
 .sev{font-size:10.5px;font-weight:800;letter-spacing:.5px;border-radius:6px;padding:2px 8px;color:#0d0f14}
 .sev.CRITICAL{background:var(--crit);color:#fff} .sev.HIGH{background:var(--high);color:#fff} .sev.MEDIUM{background:var(--med)} .sev.LOW{background:var(--low);color:#fff} .sev.NIT{background:var(--nit);color:#fff}
 .law{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;color:#cbb3ec;background:rgba(154,99,214,.14);border:1px solid rgba(154,99,214,.35)}
+.law[data-law]{cursor:help}
+.lawtip{position:fixed;z-index:120;max-width:300px;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.5;box-shadow:0 12px 34px rgba(0,0,0,.4);display:none}
+.lawtip b{display:block;margin-bottom:4px;color:var(--green2);font-size:12px}
 .empty{color:var(--mut);font-size:13px;font-style:italic;padding:6px 0}
 .todo-note{color:var(--mut);font-size:14px;background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:20px}
 .sumblock{margin:0 0 28px}
 .sumblock h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px}
+.about-card h4{margin:0 0 10px;font-size:13px;display:flex;align-items:center;gap:8px}
+.about-card h4 .step{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:800;flex:0 0 auto}
+.about-card p{margin:0;font-size:13px;color:var(--ink);opacity:.85;line-height:1.55}
+.about-card p b{opacity:1}
+.sevdef{display:flex;gap:8px;align-items:flex-start;margin:7px 0;font-size:12.5px;color:var(--ink);opacity:.9}
+.sevdef .sev{flex:0 0 auto;min-width:62px;text-align:center}
 .sevbar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
 .sevbar .seg{height:100%}
 .seg.CRITICAL{background:var(--crit)} .seg.HIGH{background:var(--high)} .seg.MEDIUM{background:var(--med)} .seg.LOW{background:var(--low)} .seg.NIT{background:var(--nit)}
@@ -474,10 +508,21 @@ main{padding:22px 0 80px}
 .fnum.g{background:var(--green);color:#fff} .fnum.r{background:var(--red);color:#fff}
 .card.hasnum{display:flex;align-items:flex-start;gap:0}
 .card .fbody{flex:1;min-width:0}
-.lb{position:fixed;inset:0;background:rgba(3,6,12,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb{position:fixed;inset:0;background:rgba(3,6,12,.92);z-index:140;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
 .lb.open{display:flex}
 .lb img{max-width:100%;max-height:92vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .lb .hint{position:fixed;top:16px;right:20px;color:#cbd3e0;font-size:12px}
+.prio-row{display:flex;gap:14px;align-items:flex-start}
+.prio-thumb{width:66px;height:120px;object-fit:cover;object-position:top center;border-radius:8px;border:1px solid var(--line);background:var(--panel);flex:0 0 auto}
+.prio-main{flex:1;min-width:0}
+.prio-clickable{cursor:pointer;transition:border-color .15s,transform .1s}
+.prio-clickable:hover{border-color:var(--red)}
+.prio-hint{margin-top:8px;font-size:11px;font-weight:700;color:var(--mut)}
+.dlg{position:fixed;inset:0;background:rgba(3,6,12,.9);z-index:110;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow:auto}
+.dlg.open{display:flex}
+.dlg-box{background:var(--bg);border:1px solid var(--line);border-radius:16px;max-width:980px;width:100%;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.dlg-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.dlg-text{font-size:15px;line-height:1.6;margin:0 0 20px;color:var(--ink)}
 .crmeta{margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .crtopic{font-size:11.5px;color:var(--mut);font-weight:600}
 footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:18px 0;text-align:center}
@@ -492,6 +537,8 @@ footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:
 <main class="wrap" id="main"></main>
 <footer class="wrap">Static snapshot · <span id="snap"></span> · Source: the reviewers' Figma "UX Findings" pages</footer>
 <div class="lb" id="lb" onclick="this.classList.remove('open')"><div class="hint">click anywhere to close</div><img id="lbimg" alt=""></div>
+<div id="lawtip" class="lawtip"></div>
+<div class="dlg" id="dlg" onclick="if(event.target===this)_closeDlg()"><div class="dlg-box" id="dlgbox"></div></div>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
@@ -500,7 +547,24 @@ const SEV=['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 window._lb=function(src){const lb=document.getElementById('lb');document.getElementById('lbimg').src=src;lb.classList.add('open');};
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lb').classList.remove('open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.getElementById('dlg').classList.remove('open');}});
+function openPrio(it){var box=document.getElementById('dlgbox');box.innerHTML='<div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span><span class="crtopic">'+esc(it.topic)+' · '+esc(it.flow)+'</span></div><p class="dlg-text">'+esc(it.text)+'</p><div class="shots" id="dlgshots"></div>';var sh=document.getElementById('dlgshots');(it.images||[]).forEach(function(im){var fig=el('figure','shot');var img=el('img','shotimg');img.src=im.src;img.loading='lazy';img.onclick=function(){_lb(im.src);};fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));sh.append(fig);});document.getElementById('dlg').classList.add('open');}
+window._closeDlg=function(){document.getElementById('dlg').classList.remove('open');};
+function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function hashSlug(){let h=location.hash||'';if(h[0]==='#')h=h.slice(1);if(h[0]==='/')h=h.slice(1);return h.trim();}
+function applyHash(){const h=hashSlug();if(!h||h==='summary'){current='summary';return;}const i=DATA.topics.findIndex(t=>slugify(t.name)===h);current=i>=0?i:'summary';}
+function nav(slug){if(hashSlug()===slug){route();}else{location.hash='/'+slug;}}
+function route(){applyHash();sevFilter='ALL';render();window.scrollTo(0,0);}
+(function(){
+  function tipEl(){return document.getElementById('lawtip');}
+  function descFor(name){var d=DATA.laws[name];if(!d){var f=(name.split('·')[0]||'').trim();d=DATA.laws[f];}return d;}
+  function show(el){var t=tipEl();if(!t)return;var name=el.getAttribute('data-law');var d=descFor(name);if(!d){return;}t.innerHTML='<b>'+esc(name)+'</b>'+esc(d);t.style.display='block';var tw=Math.min(300,window.innerWidth-24);t.style.maxWidth=tw+'px';var r=el.getBoundingClientRect();var left=r.left;if(left+tw>window.innerWidth-12)left=window.innerWidth-12-tw;if(left<12)left=12;var th=t.offsetHeight;var top=r.bottom+8;if(top+th>window.innerHeight-12)top=r.top-8-th;t.style.left=left+'px';t.style.top=Math.max(8,top)+'px';t._for=el;}
+  function hide(){var t=tipEl();if(t){t.style.display='none';t._for=null;}}
+  document.addEventListener('mouseover',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;if(el)show(el);});
+  document.addEventListener('mouseout',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;if(el)hide();});
+  document.addEventListener('click',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;var t=tipEl();if(el){e.preventDefault();if(t&&t.style.display==='block'&&t._for===el){hide();}else{show(el);}}else if(!(e.target.closest&&e.target.closest('#lawtip'))){hide();}});
+  window.addEventListener('scroll',hide,true);
+})();
 
 // ---- theme: light by day, dark by night; manual toggle persists ----
 (function(){const KEY='uxhub-theme';const saved=localStorage.getItem(KEY);const h=new Date().getHours();const theme=saved||((h>=7&&h<19)?'light':'dark');document.documentElement.dataset.theme=theme;})();
@@ -521,11 +585,11 @@ function renderStats(){
 function renderTabs(){
   const tabs=document.getElementById('tabs'); tabs.innerHTML='';
   const sum=el('div','tab'+(current==='summary'?' active':''),'★ Summary');
-  sum.onclick=()=>{current='summary';render();window.scrollTo(0,0);};
+  sum.onclick=()=>nav('summary');
   tabs.append(sum);
   DATA.topics.forEach((t,i)=>{
     const b=el('div','tab'+(i===current?' active':''),esc(t.name)+' <span class="c">'+(t.counts.s+t.counts.f)+'</span>');
-    b.onclick=()=>{current=i;sevFilter='ALL';render();window.scrollTo(0,0);};
+    b.onclick=()=>nav(slugify(t.name));
     tabs.append(b);
   });
   DATA.todo.forEach(t=>{ tabs.append(el('div','tab todo',esc(t.name)+' <span class="c">TODO</span>')); });
@@ -535,6 +599,14 @@ function renderSummary(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.totals;
   m.append(el('div','topichead','<h1>Summary</h1><span class="by">all topics at a glance · snapshot '+esc(DATA.snapshot)+'</span>'));
+  // how this review was done
+  const about=el('div','sumblock'); about.append(el('h2',null,'How this review was done'));
+  const ag=el('div','about-grid');
+  ag.append(el('div','about-card','<h4><span class="step">1</span>Reviewing the flows</h4><p>Each reviewer took one journey and walked it on betPawa Nigeria (mobile) <b>flow by flow</b> — capturing the key screens in order, dropping numbered badges on the UI, and logging every observation as a <b>🟢 strength</b> (works well) or a <b>🔴 friction / idea</b>. Every finding traces back to a real screen.</p>'));
+  const sevDefs=[['CRITICAL','blocks or breaks the task, or misleads the user / loses their action'],['HIGH','significant friction — costs time or trust, but has a workaround'],['MEDIUM','a noticeable issue or inconsistency worth fixing'],['LOW','minor polish — small clarity or consistency gains'],['NIT','cosmetic, nice-to-have']];
+  ag.append(el('div','about-card','<h4><span class="step">2</span>Rating severity</h4>'+sevDefs.map(d=>'<div class="sevdef"><span class="sev '+d[0]+'">'+d[0]+'</span><span>'+d[1]+'</span></div>').join('')));
+  ag.append(el('div','about-card','<h4><span class="step">3</span>Assigning a Law of UX</h4><p>Every finding is tagged with the usability heuristic it relates to (from <b>lawsofux.com</b>) — e.g. Fitts’s Law, Jakob’s Law, Hick’s Law, Mental Model. The tag grounds the <b>“why”</b> in a known principle rather than opinion, and links to a short explainer.</p>'));
+  about.append(ag); m.append(about);
   // severity distribution bar
   const tot=SEV.reduce((a,k)=>a+t.sev[k],0)||1;
   let bar='<div class="sevbar">';
@@ -552,7 +624,7 @@ function renderSummary(){
     const card=el('div','tcard','<div class="tc-h"><b>'+esc(tp.name)+'</b><span class="by">'+esc(tp.reviewer)+'</span></div>'+
       '<div class="tc-n"><span class="pill g">'+c.s+' strengths</span><span class="pill r">'+c.f+' friction</span></div>'+
       '<div class="tc-sev">'+(sev||'<span class="by" style="font-size:12px">— no severity —</span>')+'</div>');
-    card.onclick=()=>{current=i;sevFilter='ALL';render();window.scrollTo(0,0);};
+    card.onclick=()=>nav(slugify(tp.name));
     addFig(card,tp.figma);
     grid.append(card);
   });
@@ -560,7 +632,7 @@ function renderSummary(){
   const gw=el('div','sumblock'); gw.append(el('h2',null,'Topics')); gw.append(grid); m.append(gw);
   // top critical across all topics
   const prio=[];
-  DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity}); })));
+  DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,images:f.images||[]}); })));
   prio.sort((a,b)=>(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1));
   if(prio.length){
     const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — Critical & High ('+prio.length+')'));
@@ -568,7 +640,11 @@ function renderSummary(){
     const ct=el('div','sevf');
     const list=el('div');
     function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paint();};return c;}
-    function paint(){ list.innerHTML=''; const shown=critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter); shown.forEach(c=>list.append(el('div','card bad','<div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)))); }
+    function paint(){ list.innerHTML=''; const shown=critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter);
+      shown.forEach(function(c){ const hasImg=c.images&&c.images.length; const card=el('div','card bad'+(hasImg?' prio-clickable':''));
+        card.innerHTML='<div class="prio-row">'+(hasImg?'<img class="prio-thumb" loading="lazy" src="'+c.images[0].src+'" alt="">':'')+'<div class="prio-main"><div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)+(hasImg?'<div class="prio-hint">Click to view the screen(s) →</div>':'')+'</div></div>';
+        if(hasImg) card.onclick=function(){openPrio(c);};
+        list.append(card); }); }
     ct.append(chipEl('All','ALL',prio.length));
     withPrio.forEach(tn=>ct.append(chipEl(tn,tn,prio.filter(c=>c.topic===tn).length)));
     cb.append(ct); cb.append(list); paint();
@@ -611,7 +687,7 @@ function renderTopic(){
     const good=el('div','col good'); good.append(el('h3',null,'<span class="dot"></span>Works well'));
     if(f.strengths.length===0) good.append(el('div','empty','—'));
     f.strengths.forEach((s,i)=>{
-      const inner=esc(s.text)+(s.law?'<div class="meta"><span class="law">'+esc(s.law)+'</span></div>':'');
+      const inner=esc(s.text)+(s.law?'<div class="meta"><span class="law" data-law="'+esc(s.law)+'">'+esc(s.law)+'</span></div>':'');
       good.append(el('div','card good'+(showNum?' hasnum':''), showNum?'<span class="fnum g">'+(s.n||(i+1))+'</span><div class="fbody">'+inner+'</div>':inner));
     });
     const bad=el('div','col bad'); bad.append(el('h3',null,'<span class="dot"></span>Friction / ideas'));
@@ -619,7 +695,7 @@ function renderTopic(){
     frShown.forEach(x=>{
       let meta='';
       if(x.severity) meta+='<span class="sev '+x.severity+'">'+x.severity+'</span>';
-      if(x.law) meta+='<span class="law">'+esc(x.law)+'</span>';
+      if(x.law) meta+='<span class="law" data-law="'+esc(x.law)+'">'+esc(x.law)+'</span>';
       const inner=esc(x.text)+(meta?'<div class="meta">'+meta+'</div>':'');
       const n=x.n||(f.frictions.indexOf(x)+1);
       bad.append(el('div','card bad'+(showNum?' hasnum':''), showNum?'<span class="fnum r">'+n+'</span><div class="fbody">'+inner+'</div>':inner));
@@ -628,7 +704,7 @@ function renderTopic(){
   });
 }
 function render(){renderTabs(); if(current==='summary') renderSummary(); else renderTopic(); paintThemeBtn();}
-renderStats();render();
+renderStats();window.addEventListener('hashchange',route);route();
 </script>
 </body></html>`;
 

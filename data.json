@@ -1238,5 +1238,26 @@
       "LOW": 32,
       "NIT": 10
     }
+  },
+  "laws": {
+    "Hick's Law": "The time to make a decision increases with the number and complexity of choices available.",
+    "Miller's Law": "The average person can hold only about 7 (±2) items in working memory at once.",
+    "Jakob's Law": "Users spend most of their time on other sites, so they expect yours to work the way the sites they already know do.",
+    "Fitts's Law": "The time to acquire a target depends on its size and distance — bigger, closer, persistent targets are faster to hit.",
+    "Tesler's Law": "Every system has an inherent complexity that can't be removed, only shifted — ideally absorbed by the system, not the user.",
+    "Von Restorff Effect": "When several similar items are shown, the one that differs is the most likely to be noticed and remembered (e.g. an active tab).",
+    "Choice Overload": "Presenting too many options at once overwhelms people and makes deciding harder.",
+    "Zeigarnik Effect": "People remember uncompleted or interrupted tasks better than completed ones — a persistent reminder keeps the task alive.",
+    "Occam's Razor": "Among options that perform equally well, the simplest — with the fewest elements and redundant paths — is best.",
+    "Selective Attention": "We focus on a subset of stimuli (usually goal-related) and filter out the rest — the cause of ‘banner-blindness’.",
+    "Cognitive Load": "The mental effort needed to understand and use an interface; excess load slows comprehension and completion.",
+    "Mental Model": "People carry a model of how things should work from past experience; interfaces that match it feel intuitive.",
+    "Law of Common Region": "Elements are perceived as a group when they share an area with a clearly defined boundary (e.g. cards/tiles).",
+    "Peak-End Rule": "People judge an experience largely on how they felt at its peak and at its end — not the average of every moment.",
+    "Serial Position Effect": "Users best remember the first and last items in a series; the middle tends to blur together.",
+    "Goal-Gradient Effect": "Motivation to reach a goal increases the closer you get to it — visible progress pulls people forward.",
+    "Doherty Threshold": "Productivity soars when a system responds fast enough (under ~400 ms) that neither the user nor the system waits.",
+    "Law of Similarity": "The eye groups elements that look alike, perceiving them as a set even when they are apart.",
+    "Flow": "The state of being fully immersed and focused in an activity, with a good balance of challenge and skill."
   }
 }
