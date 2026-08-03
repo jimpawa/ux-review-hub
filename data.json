@@ -8,6 +8,7 @@
       "flows": [
         {
           "flow": "betPawa.ng — Global Navigation",
+          "numbered": true,
           "images": [
             {
               "src": "img/global-navigation/01-home.png",
@@ -142,6 +143,24 @@
       "flows": [
         {
           "flow": "Homepage · Landing & orientation",
+          "images": [
+            {
+              "src": "img/homepage-sports-discovery/a1-1.png",
+              "label": "01 · Above the fold"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a1-2.png",
+              "label": "02 · Promos & combos"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a1-3.png",
+              "label": "03 · More markets"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a1-4.png",
+              "label": "04 · Bonus nudge"
+            }
+          ],
           "strengths": [
             {
               "text": "Clear top-to-bottom hierarchy — balance & nav, then promos, then combos, then match lists.",
@@ -193,6 +212,20 @@
         },
         {
           "flow": "Homepage · Quick-bet",
+          "images": [
+            {
+              "src": "img/homepage-sports-discovery/a2-1.png",
+              "label": "01 · Combos"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a2-2.png",
+              "label": "02 · One tap adds it"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a2-3.png",
+              "label": "03 · Accumulator & bonus"
+            }
+          ],
           "strengths": [
             {
               "text": "One tap adds a full pre-built combo and the win-bonus updates instantly — very low friction.",
@@ -236,6 +269,20 @@
         },
         {
           "flow": "Homepage · Promotions discovery",
+          "images": [
+            {
+              "src": "img/homepage-sports-discovery/a3-1.png",
+              "label": "01 · Win Bonus"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a3-2.png",
+              "label": "02 · Early Wins"
+            },
+            {
+              "src": "img/homepage-sports-discovery/a3-3.png",
+              "label": "03 · Cashback"
+            }
+          ],
           "strengths": [
             {
               "text": "Each promo has a dedicated, well-explained page with a single clear CTA.",
@@ -279,6 +326,20 @@
         },
         {
           "flow": "Sports Discovery · Browse & filter a sport",
+          "images": [
+            {
+              "src": "img/homepage-sports-discovery/b1-1.png",
+              "label": "01 · Football list"
+            },
+            {
+              "src": "img/homepage-sports-discovery/b1-2.png",
+              "label": "02 · Leagues filter"
+            },
+            {
+              "src": "img/homepage-sports-discovery/b1-3.png",
+              "label": "03 · Markets filter"
+            }
+          ],
           "strengths": [
             {
               "text": "Layered filters — Leagues + Markets + Date — with live event counts give precise control.",
@@ -314,7 +375,7 @@
             },
             {
               "text": "The market filter is a long radio list with no search — finding a specific market is slow.",
-              "severity": "MEDIUM",
+              "severity": "LOW",
               "law": "Hick's Law"
             },
             {
@@ -326,6 +387,20 @@
         },
         {
           "flow": "Sports Discovery · Live → in-play",
+          "images": [
+            {
+              "src": "img/homepage-sports-discovery/b2-1.png",
+              "label": "01 · Live list"
+            },
+            {
+              "src": "img/homepage-sports-discovery/b2-2.png",
+              "label": "02 · In-play event"
+            },
+            {
+              "src": "img/homepage-sports-discovery/b2-3.png",
+              "label": "03 · In-play markets"
+            }
+          ],
           "strengths": [
             {
               "text": "Rich in-play: a live match visualiser with continuously updating stats and markets.",
@@ -361,7 +436,7 @@
               "law": "Mental Model"
             },
             {
-              "text": "No way to filter out finished or one-market live events — the list carries dead rows.",
+              "text": "The date picker only allows a single date selection — selecting multiple dates is not supported.",
               "severity": "LOW",
               "law": ""
             }
@@ -369,6 +444,20 @@
         },
         {
           "flow": "Sports Discovery · Event deep-dive",
+          "images": [
+            {
+              "src": "img/homepage-sports-discovery/b3-1.png",
+              "label": "01 · Event & stats"
+            },
+            {
+              "src": "img/homepage-sports-discovery/b3-2.png",
+              "label": "02 · Statistics"
+            },
+            {
+              "src": "img/homepage-sports-discovery/b3-3.png",
+              "label": "03 · Markets"
+            }
+          ],
           "strengths": [
             {
               "text": "Built-in statistics (H2H, form, win probability) support the bet decision in-context.",
@@ -402,11 +491,6 @@
               "text": "Every market row has an unlabeled info (i) icon — its purpose isn’t clear.",
               "severity": "LOW",
               "law": "Mental Model"
-            },
-            {
-              "text": "Stats sections expand / collapse via small carets — the extra data is easy to miss.",
-              "severity": "LOW",
-              "law": "Fitts's Law"
             }
           ]
         }
@@ -414,11 +498,11 @@
       "figma": "https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-",
       "counts": {
         "s": 27,
-        "f": 24,
+        "f": 23,
         "sev": {
           "CRITICAL": 0,
           "HIGH": 4,
-          "MEDIUM": 10,
+          "MEDIUM": 9,
           "LOW": 10,
           "NIT": 0
         }
@@ -1008,11 +1092,11 @@
   ],
   "totals": {
     "s": 57,
-    "f": 119,
+    "f": 118,
     "sev": {
       "CRITICAL": 17,
       "HIGH": 20,
-      "MEDIUM": 33,
+      "MEDIUM": 32,
       "LOW": 33,
       "NIT": 10
     }

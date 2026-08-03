@@ -11,6 +11,7 @@ const topics = [
     name: 'Global Navigation', reviewer: 'Jim', tag: 'law',
     flows: [{
       flow: 'betPawa.ng — Global Navigation',
+      numbered: true,
       images: [
         {src:'img/global-navigation/01-home.png',label:'01 · Home'},
         {src:'img/global-navigation/02-sports.png',label:'02 · Sports'},
@@ -230,6 +231,7 @@ const topics = [
     name: 'Homepage & Sports Discovery', reviewer: '—', tag: 'severity',
     flows: [
       {flow:"Homepage · Landing & orientation",
+       images:[{src:"img/homepage-sports-discovery/a1-1.png",label:"01 · Above the fold"},{src:"img/homepage-sports-discovery/a1-2.png",label:"02 · Promos & combos"},{src:"img/homepage-sports-discovery/a1-3.png",label:"03 · More markets"},{src:"img/homepage-sports-discovery/a1-4.png",label:"04 · Bonus nudge"}],
        strengths:[
         {text:"Clear top-to-bottom hierarchy — balance & nav, then promos, then combos, then match lists.",law:"Serial Position Effect"},
         {text:"Balance and a one-tap Deposit ‘+’ sit top-right on landing — funding is always one tap away.",law:"Fitts's Law"},
@@ -245,6 +247,7 @@ const topics = [
         {text:"Every visit starts by scrolling past promos.",severity:"MEDIUM",law:"Cognitive Load"},
        ]},
       {flow:"Homepage · Quick-bet",
+       images:[{src:"img/homepage-sports-discovery/a2-1.png",label:"01 · Combos"},{src:"img/homepage-sports-discovery/a2-2.png",label:"02 · One tap adds it"},{src:"img/homepage-sports-discovery/a2-3.png",label:"03 · Accumulator & bonus"}],
        strengths:[
         {text:"One tap adds a full pre-built combo and the win-bonus updates instantly — very low friction.",law:"Doherty Threshold"},
         {text:"Combos surface pre-built multi-leg bets right on the homepage — accelerates the core action.",law:"Goal-Gradient Effect"},
@@ -258,6 +261,7 @@ const topics = [
         {text:"The betslip bar shows odds and bonus but not the number of selections — unclear what’s in the slip.",severity:"MEDIUM",law:"Cognitive Load"},
        ]},
       {flow:"Homepage · Promotions discovery",
+       images:[{src:"img/homepage-sports-discovery/a3-1.png",label:"01 · Win Bonus"},{src:"img/homepage-sports-discovery/a3-2.png",label:"02 · Early Wins"},{src:"img/homepage-sports-discovery/a3-3.png",label:"03 · Cashback"}],
        strengths:[
         {text:"Each promo has a dedicated, well-explained page with a single clear CTA.",law:"Hick's Law"},
         {text:"Each promo page leads with one bold value prop and a single BET NOW CTA — no decision overload.",law:"Von Restorff Effect"},
@@ -271,6 +275,7 @@ const topics = [
         {text:"Three overlapping bonuses (Win Bonus, Early Wins, Cashback) with no comparison — unclear which applies when.",severity:"LOW",law:"Choice Overload"},
        ]},
       {flow:"Sports Discovery · Browse & filter a sport",
+       images:[{src:"img/homepage-sports-discovery/b1-1.png",label:"01 · Football list"},{src:"img/homepage-sports-discovery/b1-2.png",label:"02 · Leagues filter"},{src:"img/homepage-sports-discovery/b1-3.png",label:"03 · Markets filter"}],
        strengths:[
         {text:"Layered filters — Leagues + Markets + Date — with live event counts give precise control.",law:"Hick's Law"},
         {text:"Filter overlays show a live event count per league, so users pick populated markets.",law:"Von Restorff Effect"},
@@ -281,10 +286,11 @@ const topics = [
        frictions:[
         {text:"Filters open as separate overlays; there's no single view of all active filters at once.",severity:"MEDIUM",law:""},
         {text:"Applied filters aren't summarised on the results list — easy to forget what's active.",severity:"LOW",law:""},
-        {text:"The market filter is a long radio list with no search — finding a specific market is slow.",severity:"MEDIUM",law:"Hick's Law"},
+        {text:"The market filter is a long radio list with no search — finding a specific market is slow.",severity:"LOW",law:"Hick's Law"},
         {text:"Date sits in a separate dropdown from the day tabs — two ways to pick a day is confusing.",severity:"LOW",law:"Jakob's Law"},
        ]},
       {flow:"Sports Discovery · Live → in-play",
+       images:[{src:"img/homepage-sports-discovery/b2-1.png",label:"01 · Live list"},{src:"img/homepage-sports-discovery/b2-2.png",label:"02 · In-play event"},{src:"img/homepage-sports-discovery/b2-3.png",label:"03 · In-play markets"}],
        strengths:[
         {text:"Rich in-play: a live match visualiser with continuously updating stats and markets.",law:"Flow"},
         {text:"Live minute and score sit on every in-play row — instant context before opening a match.",law:"Von Restorff Effect"},
@@ -295,9 +301,10 @@ const topics = [
         {text:"Many live markets show as locked with no ETA — dead affordances mid-match.",severity:"HIGH",law:"Mental Model"},
         {text:"The in-play visualiser dominates the first screen, pushing the actual markets down.",severity:"MEDIUM",law:""},
         {text:"The ‘Show 1UP & 2UP’ toggle tops the live list with no hint of what 1UP / 2UP actually does.",severity:"MEDIUM",law:"Mental Model"},
-        {text:"No way to filter out finished or one-market live events — the list carries dead rows.",severity:"LOW",law:""},
+        {text:"The date picker only allows a single date selection — selecting multiple dates is not supported.",severity:"LOW",law:""},
        ]},
       {flow:"Sports Discovery · Event deep-dive",
+       images:[{src:"img/homepage-sports-discovery/b3-1.png",label:"01 · Event & stats"},{src:"img/homepage-sports-discovery/b3-2.png",label:"02 · Statistics"},{src:"img/homepage-sports-discovery/b3-3.png",label:"03 · Markets"}],
        strengths:[
         {text:"Built-in statistics (H2H, form, win probability) support the bet decision in-context.",law:"Cognitive Load"},
         {text:"Markets are grouped into scannable tabs (All/Popular/Goals/Halves) with counts.",law:""},
@@ -308,7 +315,6 @@ const topics = [
         {text:"Statistics fill the whole first screen; the actual markets sit far below the fold.",severity:"HIGH",law:""},
         {text:"Market-group tabs scroll horizontally and can hide options off-screen.",severity:"LOW",law:"Von Restorff Effect"},
         {text:"Every market row has an unlabeled info (i) icon — its purpose isn’t clear.",severity:"LOW",law:"Mental Model"},
-        {text:"Stats sections expand / collapse via small carets — the extra data is easy to miss.",severity:"LOW",law:"Fitts's Law"},
        ]},
     ],
   },
@@ -584,7 +590,7 @@ function renderTopic(){
   t.flows.forEach(f=>{
     const frShown = hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
     if(t.flows.length>1 && f.strengths.length===0 && frShown.length===0) return;
-    const showNum = !!(f.images && f.images.length) || !!f.image;
+    const showNum = !!(f.images && f.images.length);
     const flow=el('div','flow'); flow.append(el('h2',null,esc(f.flow)));
     if(f.images && f.images.length){
       flow.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click any to zoom.'));
