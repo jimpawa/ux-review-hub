@@ -528,6 +528,263 @@
       }
     },
     {
+      "name": "Pre-Event Betting",
+      "reviewer": "—",
+      "tag": "severity",
+      "flows": [
+        {
+          "flow": "Discovery → event card → event page",
+          "images": [
+            {
+              "src": "img/pre-match/pm1-1.png",
+              "label": "01 · Homepage / discovery",
+              "nums": [
+                "g1",
+                "g2",
+                "r3",
+                "r4"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm1-2.png",
+              "label": "02 · Event card (1X2)",
+              "nums": [
+                "r5",
+                "r6",
+                "g7",
+                "r8",
+                "r9"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm1-3.png",
+              "label": "03 · Event page · H2H",
+              "nums": [
+                "r10",
+                "g11",
+                "r12"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm1-4.png",
+              "label": "04 · Event page · markets",
+              "nums": [
+                "r13",
+                "g14"
+              ]
+            }
+          ],
+          "strengths": [
+            {
+              "text": "Quick access to Sports from the top nav.",
+              "n": 1,
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "Quick filters are available for event search.",
+              "n": 2,
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "1X2 market buttons are available at the event-card level, so users can bet without opening the event.",
+              "n": 7,
+              "law": "Fitts's Law"
+            },
+            {
+              "text": "The H2H analytics block provides useful insight on the event.",
+              "n": 11,
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "Markets can be collapsed / expanded all at once.",
+              "n": 14,
+              "law": "Tesler's Law"
+            }
+          ],
+          "frictions": [
+            {
+              "text": "No advanced filters or advanced search on the homepage or in the header.",
+              "n": 3,
+              "severity": "MEDIUM",
+              "law": "Hick's Law"
+            },
+            {
+              "text": "Combo bets show on the first screen, but no event cards are visible without scrolling.",
+              "n": 4,
+              "severity": "MEDIUM",
+              "law": "Serial Position Effect"
+            },
+            {
+              "text": "The stat icon is hard to understand and too small — it needs to be bigger and clearer.",
+              "n": 5,
+              "severity": "LOW",
+              "law": "Fitts's Law"
+            },
+            {
+              "text": "At the card level it isn’t clear how many markets or bet options an event offers.",
+              "n": 8,
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "The “＞” arrow icon buttons look redundant — they do the same thing as tapping the card.",
+              "n": 9,
+              "severity": "LOW",
+              "law": "Tesler's Law"
+            },
+            {
+              "text": "The card header could be more engaging with visuals (team crests, form, etc.).",
+              "n": 10,
+              "severity": "LOW",
+              "law": "Aesthetic-Usability Effect"
+            },
+            {
+              "text": "On opening the event page, the H2H analytics block fills most of the screen by default, pushing the markets below the fold.",
+              "n": 12,
+              "severity": "HIGH",
+              "law": "Serial Position Effect"
+            },
+            {
+              "text": "The market tabs don’t guide the user — they just present a long list of markets; pin functionality exists only in TZ.",
+              "n": 13,
+              "severity": "HIGH",
+              "law": "Hick's Law"
+            }
+          ]
+        },
+        {
+          "flow": "Exploring markets within an event",
+          "images": [
+            {
+              "src": "img/pre-match/pm2-1.png",
+              "label": "01 · Market search",
+              "nums": [
+                "g2",
+                "r1"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm2-2.png",
+              "label": "02 · Switching market tabs",
+              "nums": [
+                "g3"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm2-3.png",
+              "label": "03 · Making a selection",
+              "nums": [
+                "g5",
+                "r4"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm2-4.png",
+              "label": "04 · Exploring the event",
+              "nums": [
+                "r6"
+              ]
+            },
+            {
+              "src": "img/pre-match/pm2-5.png",
+              "label": "05 · Exploring the event"
+            }
+          ],
+          "strengths": [
+            {
+              "text": "Users can search for markets by name.",
+              "n": 2,
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "Tabs act as market filters.",
+              "n": 3,
+              "law": "Law of Common Region"
+            },
+            {
+              "text": "Info icons and tooltips help users understand what each market means.",
+              "n": 5,
+              "law": "Cognitive Load"
+            }
+          ],
+          "frictions": [
+            {
+              "text": "The in-event “Market” search looks like the header “Event” search but behaves differently — creating inconsistency and cognitive dissonance.",
+              "n": 1,
+              "severity": "HIGH",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "No access to stats while navigating the markets.",
+              "n": 4,
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "Once a selection is made there’s no confirmation — the only way to check is to find it manually in the market list.",
+              "n": 6,
+              "severity": "HIGH",
+              "law": "Doherty Threshold"
+            }
+          ]
+        },
+        {
+          "flow": "Additional heuristic suggestions (review team)",
+          "numbered": false,
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "Pre-match cards give no kickoff countdown or clear time-to-start — a countdown as kickoff nears sets expectations and adds urgency (builds on the discovery-scanning findings).",
+              "severity": "LOW",
+              "law": "Goal-Gradient Effect"
+            },
+            {
+              "text": "There’s no odds-movement indicator on pre-match markets (up / down since last view) — showing drift helps users decide when to place, and complements the “how many markets” friction.",
+              "severity": "LOW",
+              "law": "Von Restorff Effect"
+            },
+            {
+              "text": "Suspended or unavailable selections need a clear locked state before kickoff, so users aren’t surprised when a bet can’t be placed.",
+              "severity": "MEDIUM",
+              "law": "Von Restorff Effect"
+            },
+            {
+              "text": "The long, ungrouped market list (finding 13) would benefit from a sticky category index or grouped sections with counts — not just tabs — to cut scanning cost.",
+              "severity": "HIGH",
+              "law": "Law of Common Region"
+            },
+            {
+              "text": "Add persistent selection feedback in the betslip mini-bar (relates to finding 6): a running count / confirmation as selections are added avoids the “find it manually” problem.",
+              "severity": "MEDIUM",
+              "law": "Doherty Threshold"
+            },
+            {
+              "text": "Make the two searches — event (header) vs market (in-event, finding 1) — visually and behaviourally distinct (different placeholder copy, icon, scope label) so users build one correct mental model.",
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "Give the stats / H2H entry (findings 5, 11, 12) a collapsed-by-default summary with a clear expand, so insight stays available without burying the markets.",
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
+            }
+          ]
+        }
+      ],
+      "figma": "https://www.figma.com/design/PoVIhpxPmpC2MtxrIhRHNs/Pre-match-Betting-%7C-UX-Review-%7C-Aleida---Konsta",
+      "counts": {
+        "s": 8,
+        "f": 18,
+        "sev": {
+          "CRITICAL": 0,
+          "HIGH": 5,
+          "MEDIUM": 8,
+          "LOW": 5,
+          "NIT": 0
+        }
+      }
+    },
+    {
       "name": "Live Betting",
       "reviewer": "Henry",
       "tag": "severity",
@@ -1838,21 +2095,15 @@
       }
     }
   ],
-  "todo": [
-    {
-      "name": "PreMatch",
-      "reviewer": "—",
-      "note": "Not ready yet — will be added once complete."
-    }
-  ],
+  "todo": [],
   "totals": {
-    "s": 72,
-    "f": 115,
+    "s": 80,
+    "f": 133,
     "sev": {
       "CRITICAL": 17,
-      "HIGH": 20,
-      "MEDIUM": 30,
-      "LOW": 32,
+      "HIGH": 25,
+      "MEDIUM": 38,
+      "LOW": 37,
       "NIT": 10
     }
   },

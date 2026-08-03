@@ -255,6 +255,50 @@ const topics = [
     ],
   },
   {
+    name: 'Pre-Event Betting', reviewer: '—', tag: 'severity',
+    flows: [
+      {flow:'Discovery → event card → event page',
+       images:[{src:'img/pre-match/pm1-1.png',label:'01 · Homepage / discovery'},{src:'img/pre-match/pm1-2.png',label:'02 · Event card (1X2)'},{src:'img/pre-match/pm1-3.png',label:'03 · Event page · H2H'},{src:'img/pre-match/pm1-4.png',label:'04 · Event page · markets'}],
+       strengths:[
+        {text:"Quick access to Sports from the top nav.", n:1, law:"Jakob's Law"},
+        {text:"Quick filters are available for event search.", n:2, law:"Jakob's Law"},
+        {text:"1X2 market buttons are available at the event-card level, so users can bet without opening the event.", n:7, law:"Fitts's Law"},
+        {text:"The H2H analytics block provides useful insight on the event.", n:11, law:"Cognitive Load"},
+        {text:"Markets can be collapsed / expanded all at once.", n:14, law:"Tesler's Law"},
+       ], frictions:[
+        {text:"No advanced filters or advanced search on the homepage or in the header.", n:3, severity:"MEDIUM", law:"Hick's Law"},
+        {text:"Combo bets show on the first screen, but no event cards are visible without scrolling.", n:4, severity:"MEDIUM", law:"Serial Position Effect"},
+        {text:"The stat icon is hard to understand and too small — it needs to be bigger and clearer.", n:5, severity:"LOW", law:"Fitts's Law"},
+        {text:"At the card level it isn’t clear how many markets or bet options an event offers.", n:8, severity:"MEDIUM", law:"Cognitive Load"},
+        {text:"The “＞” arrow icon buttons look redundant — they do the same thing as tapping the card.", n:9, severity:"LOW", law:"Tesler's Law"},
+        {text:"The card header could be more engaging with visuals (team crests, form, etc.).", n:10, severity:"LOW", law:"Aesthetic-Usability Effect"},
+        {text:"On opening the event page, the H2H analytics block fills most of the screen by default, pushing the markets below the fold.", n:12, severity:"HIGH", law:"Serial Position Effect"},
+        {text:"The market tabs don’t guide the user — they just present a long list of markets; pin functionality exists only in TZ.", n:13, severity:"HIGH", law:"Hick's Law"},
+       ]},
+      {flow:'Exploring markets within an event',
+       images:[{src:'img/pre-match/pm2-1.png',label:'01 · Market search'},{src:'img/pre-match/pm2-2.png',label:'02 · Switching market tabs'},{src:'img/pre-match/pm2-3.png',label:'03 · Making a selection'},{src:'img/pre-match/pm2-4.png',label:'04 · Exploring the event'},{src:'img/pre-match/pm2-5.png',label:'05 · Exploring the event'}],
+       strengths:[
+        {text:"Users can search for markets by name.", n:2, law:"Jakob's Law"},
+        {text:"Tabs act as market filters.", n:3, law:"Law of Common Region"},
+        {text:"Info icons and tooltips help users understand what each market means.", n:5, law:"Cognitive Load"},
+       ], frictions:[
+        {text:"The in-event “Market” search looks like the header “Event” search but behaves differently — creating inconsistency and cognitive dissonance.", n:1, severity:"HIGH", law:"Jakob's Law"},
+        {text:"No access to stats while navigating the markets.", n:4, severity:"MEDIUM", law:"Cognitive Load"},
+        {text:"Once a selection is made there’s no confirmation — the only way to check is to find it manually in the market list.", n:6, severity:"HIGH", law:"Doherty Threshold"},
+       ]},
+      {flow:'Additional heuristic suggestions (review team)',
+       numbered:false, strengths:[], frictions:[
+        {text:"Pre-match cards give no kickoff countdown or clear time-to-start — a countdown as kickoff nears sets expectations and adds urgency (builds on the discovery-scanning findings).", severity:"LOW", law:"Goal-Gradient Effect"},
+        {text:"There’s no odds-movement indicator on pre-match markets (up / down since last view) — showing drift helps users decide when to place, and complements the “how many markets” friction.", severity:"LOW", law:"Von Restorff Effect"},
+        {text:"Suspended or unavailable selections need a clear locked state before kickoff, so users aren’t surprised when a bet can’t be placed.", severity:"MEDIUM", law:"Von Restorff Effect"},
+        {text:"The long, ungrouped market list (finding 13) would benefit from a sticky category index or grouped sections with counts — not just tabs — to cut scanning cost.", severity:"HIGH", law:"Law of Common Region"},
+        {text:"Add persistent selection feedback in the betslip mini-bar (relates to finding 6): a running count / confirmation as selections are added avoids the “find it manually” problem.", severity:"MEDIUM", law:"Doherty Threshold"},
+        {text:"Make the two searches — event (header) vs market (in-event, finding 1) — visually and behaviourally distinct (different placeholder copy, icon, scope label) so users build one correct mental model.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"Give the stats / H2H entry (findings 5, 11, 12) a collapsed-by-default summary with a clear expand, so insight stays available without burying the markets.", severity:"MEDIUM", law:"Cognitive Load"},
+       ]},
+    ],
+  },
+  {
     name: 'Homepage & Sports Discovery', reviewer: '—', tag: 'severity',
     flows: [
       {flow:"Homepage · Landing & orientation",
@@ -348,7 +392,7 @@ const topics = [
 ];
 
 const TODO = [
-  {name:'PreMatch', reviewer:'—', note:'Not ready yet — will be added once complete.'},
+
 ];
 
 // ---- clean: drop placeholders + dedupe within a flow ----
@@ -431,7 +475,7 @@ function topicCounts(t){
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
 // ---- tab display order (Summary is always first, PreMatch/TODO always last) ----
-const ORDER=['Global Navigation','Homepage & Sports Discovery','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support'];
+const ORDER=['Global Navigation','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support'];
 topics.sort((a,b)=>{const ia=ORDER.indexOf(a.name),ib=ORDER.indexOf(b.name);return (ia<0?99:ia)-(ib<0?99:ib);});
 
 const FIGMA = {
@@ -441,6 +485,7 @@ const FIGMA = {
   'Help & Support':'https://www.figma.com/design/7RmAoEilfNK5YhK8yAPPNr/Help---Support-%7C-UX-Review-%7C-Ishkhan---Aleida',
   'Casino & Virtuals & Other Products':'https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan',
   'Homepage & Sports Discovery':'https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-',
+  'Pre-Event Betting':'https://www.figma.com/design/PoVIhpxPmpC2MtxrIhRHNs/Pre-match-Betting-%7C-UX-Review-%7C-Aleida---Konsta',
 };
 TODO.forEach(t=>{ if(FIGMA[t.name]) t.figma=FIGMA[t.name]; });
 // Law-of-UX descriptions (from the Global Nav "Laws of UX" Figma page; * = standard lawsofux.com definition, not on that page)
@@ -479,6 +524,8 @@ const IMG_NUMS = {
   'img/my-bets-cashout/se1.png':['r1','r2','r3'],'img/my-bets-cashout/se2.png':['g1','r4'],'img/my-bets-cashout/se3.png':['g4','r5'],'img/my-bets-cashout/se4.png':['g5','r6'],'img/my-bets-cashout/se5.png':['g2','g3','g6'],'img/my-bets-cashout/se6.png':['r7'],
   'img/casino-virtuals/c2.png':['r1','r3','r4','g2','g3','g4','g5','g6'],'img/casino-virtuals/c3.png':['r5'],'img/casino-virtuals/c4.png':['r6','g7'],'img/casino-virtuals/c5.png':['r7','r8','g1','g2'],'img/casino-virtuals/c7.png':['r9','r12'],'img/casino-virtuals/c8.png':['r10','r11'],'img/casino-virtuals/c9.png':['r13'],
   'img/casino-virtuals/v2.png':['r1','r2','r3','r4','r5','r6','g2'],'img/casino-virtuals/v4.png':['r7','g1'],'img/casino-virtuals/v6.png':['r8','g6'],'img/casino-virtuals/v7.png':['r9','g5'],'img/casino-virtuals/v9.png':['g4'],'img/casino-virtuals/v10.png':['r10'],'img/casino-virtuals/v11.png':['r11'],'img/casino-virtuals/v12.png':['g3'],'img/casino-virtuals/v13.png':['g7'],
+  'img/pre-match/pm1-1.png':['g1','g2','r3','r4'],'img/pre-match/pm1-2.png':['r5','r6','g7','r8','r9'],'img/pre-match/pm1-3.png':['r10','g11','r12'],'img/pre-match/pm1-4.png':['r13','g14'],
+  'img/pre-match/pm2-1.png':['g2','r1'],'img/pre-match/pm2-2.png':['g3'],'img/pre-match/pm2-3.png':['g5','r4'],'img/pre-match/pm2-4.png':['r6'],
 };
 for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
@@ -678,7 +725,7 @@ function renderStats(){
 }
 function renderTabs(){
   const tabs=document.getElementById('tabs'); tabs.innerHTML='';
-  const sum=el('div','tab'+(current==='summary'?' active':''),'★ Summary');
+  const sum=el('div','tab'+(current==='summary'?' active':''),'★ Overview');
   sum.onclick=()=>nav('summary');
   tabs.append(sum);
   DATA.topics.forEach((t,i)=>{
@@ -692,9 +739,9 @@ function figLink(url){ return url?'<a class="figlink" href="'+url+'" target="_bl
 function renderSummary(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.totals;
-  m.append(el('div','topichead','<h1>Summary</h1><span class="by">all topics at a glance · snapshot '+esc(DATA.snapshot)+'</span>'));
+  m.append(el('div','topichead','<h1>Overview</h1>'));
   // how this review was done
-  const about=el('div','sumblock'); about.append(el('h2',null,'How this review was done'));
+  const about=el('div','sumblock');
   about.append(el('p','about-intro','This is a <b>heuristic evaluation</b> — an expert walkthrough of each journey measured against the <b>Laws of UX</b> (established usability principles), rather than live user testing. It is a fast, low-cost way to surface usability issues, inconsistencies, and ideas worth discussing and prioritising across the product as it is live today. Every finding is tied to a real screen, rated by severity, and grounded in a named principle — so the result is a prioritised, evidence-based list the team can act on, not a matter of opinion.'));
   const ag=el('div','about-grid');
   ag.append(el('div','about-card','<h4><span class="step">1</span>Reviewing the flows</h4><ul class="about-list"><li>Each topic is a journey on betPawa Nigeria (mobile), walked <b>flow by flow</b>.</li><li>Key screens are captured in order, with numbered badges dropped on the UI.</li><li>Every observation is logged as a <b>🟢 strength</b> (works well) or a <b>🔴 friction / idea</b>.</li><li>Every finding traces back to a real screen.</li></ul>'));
@@ -730,8 +777,17 @@ function renderSummary(){
   DATA.topics.forEach(function(tp){tp.flows.forEach(function(f){f.frictions.forEach(function(x,fi){ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,law:x.law||'',images:f.images||[],tok:'r'+(x.n||(fi+1))}); });});});
   prio.sort((a,b)=>(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1));
   if(prio.length){
+    const ex=el('div','sumblock'); ex.append(el('h2',null,'Executive summary — start here'));
+    const T=DATA.totals;
+    ex.append(el('p','about-intro','Across <b>'+DATA.topics.length+'</b> journeys the review logged <b>'+T.f+'</b> friction points — <b>'+T.sev.CRITICAL+' critical</b> and <b>'+T.sev.HIGH+' high-priority</b>. Critical issues block or mislead users and should be tackled first:'));
+    const crit=prio.filter(c=>c.severity==='CRITICAL').slice().sort((a,b)=>DATA.topics.findIndex(t=>t.name===a.topic)-DATA.topics.findIndex(t=>t.name===b.topic));
+    const ul=el('ul','about-list');
+    crit.forEach(c=>ul.append(el('li',null,'<b>'+esc(c.topic)+':</b> '+esc(c.text))));
+    ex.append(ul); m.append(ex);
+  }
+  if(prio.length){
     const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — Critical & High ('+prio.length+')'));
-    const withPrio=[...new Set(prio.map(c=>c.topic))].sort((a,b)=>prio.filter(c=>c.topic===b).length-prio.filter(c=>c.topic===a).length);
+    const withPrio=DATA.topics.map(t=>t.name).filter(n=>prio.some(c=>c.topic===n));
     const ct=el('div','sevf');
     const list=el('div');
     function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paint();};return c;}
