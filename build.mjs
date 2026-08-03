@@ -243,7 +243,16 @@ function topicCounts(t){
 }
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
-const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, counts:topicCounts(t)})), todo: TODO, totals };
+const FIGMA = {
+  'Global Navigation':'https://www.figma.com/design/1H2KzGBaKHKuv9TirkutUM/Global-Navigation-%7C-UX-Review-%7C-Jim',
+  'Live Betting':'https://www.figma.com/design/Tfv3EKofMYn6cRzjHR4VLu/Live-Betting-%7C-UX-Review-%7C-Henry',
+  'My Bets & Cashout':'https://www.figma.com/design/o0JS6yvcoXhMiRcvzUjawC/My-Bets---Cashout-%7C-UX-Review-%7C-Ajay',
+  'Help & Support':'https://www.figma.com/design/7RmAoEilfNK5YhK8yAPPNr/Help---Support-%7C-UX-Review-%7C-Ishkhan---Aleida',
+  'Casino & Virtuals & Other Products':'https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan',
+  'Homepage & Sports Discovery':'https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-',
+};
+TODO.forEach(t=>{ if(FIGMA[t.name]) t.figma=FIGMA[t.name]; });
+const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals };
 fs.writeFileSync(new URL('./data.json', import.meta.url), JSON.stringify(payload,null,2));
 
 // ---- HTML ----
@@ -252,7 +261,14 @@ const html = `<!doctype html><html lang="en"><head>
 <title>betPawa · UX Review Week — Findings</title>
 <style>
 :root{--bg:#0d0f14;--panel:#141821;--panel2:#1a1f2b;--line:#242b39;--ink:#eef1f6;--mut:#95a0b3;--green:#12a150;--green2:#1ec46a;--red:#e2483d;--crit:#e23744;--high:#f0663b;--med:#e0a020;--low:#3e7bfa;--nit:#8892a0;--law:#9a63d6;--radius:14px;}
+:root[data-theme="light"]{--bg:#f5f7fb;--panel:#ffffff;--panel2:#eceff5;--line:#e0e5ee;--ink:#18202c;--mut:#5f6b7e;--green2:#12a150;}
+:root[data-theme="light"] header.top{background:linear-gradient(180deg,#ffffff,#f5f7fb)}
+:root[data-theme="light"] .tab .c{background:#eef1f6}
+:root[data-theme="light"] .card{box-shadow:0 1px 3px rgba(20,30,50,.06)}
+:root[data-theme="light"] .law{color:#6a3fb0;background:rgba(124,79,192,.10);border-color:rgba(124,79,192,.30)}
+.themebtn{margin-left:auto;background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:999px;width:36px;height:36px;cursor:pointer;font-size:15px;line-height:1;flex:0 0 auto}
 *{box-sizing:border-box}
+html{transition:background .2s,color .2s}
 body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
@@ -272,6 +288,9 @@ main{padding:22px 0 80px}
 .topichead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:4px 0 4px}
 .topichead h1{font-size:22px;margin:0;letter-spacing:-.3px}
 .by{color:var(--mut);font-size:13px}
+.figlink{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px}
+.figlink:hover{border-color:var(--green)}
+.figlink .fi{width:11px;height:11px;border-radius:3px;background:var(--green2);display:inline-block}
 .mini{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 18px}
 .pill{font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--line);color:var(--mut)}
 .pill.g{color:var(--green2);border-color:rgba(30,196,106,.4);background:rgba(18,161,80,.10)}
@@ -294,11 +313,30 @@ main{padding:22px 0 80px}
 .law{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;color:#cbb3ec;background:rgba(154,99,214,.14);border:1px solid rgba(154,99,214,.35)}
 .empty{color:var(--mut);font-size:13px;font-style:italic;padding:6px 0}
 .todo-note{color:var(--mut);font-size:14px;background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:20px}
+.sumblock{margin:0 0 28px}
+.sumblock h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sevbar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.sevbar .seg{height:100%}
+.seg.CRITICAL{background:var(--crit)} .seg.HIGH{background:var(--high)} .seg.MEDIUM{background:var(--med)} .seg.LOW{background:var(--low)} .seg.NIT{background:var(--nit)}
+.ldot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:2px;vertical-align:middle}
+.ldot.CRITICAL{background:var(--crit)} .ldot.HIGH{background:var(--high)} .ldot.MEDIUM{background:var(--med)} .ldot.LOW{background:var(--low)} .ldot.NIT{background:var(--nit)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.tgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.tgrid{grid-template-columns:1fr}}
+.tcard{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px;cursor:pointer;transition:border-color .15s,transform .15s}
+.tcard:hover{border-color:var(--green);transform:translateY(-2px)}
+.tcard.todo{opacity:.55;cursor:default} .tcard.todo:hover{border-color:var(--line);transform:none}
+.tc-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.tc-h b{font-size:14.5px;letter-spacing:-.2px}
+.tc-n{display:flex;gap:6px;margin-bottom:10px}
+.tc-sev{display:flex;gap:5px;flex-wrap:wrap}
+.crmeta{margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.crtopic{font-size:11.5px;color:var(--mut);font-weight:600}
 footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:18px 0;text-align:center}
 </style></head>
 <body>
 <header class="top"><div class="wrap">
-  <div class="brand"><div class="logo">bet<b>Pawa</b> · UX Review Week</div></div>
+  <div class="brand"><div class="logo">bet<b>Pawa</b> · UX Review Week</div><button id="themeBtn" class="themebtn" onclick="_toggleTheme()" title="Εναλλαγή light/dark">☀️</button></div>
   <div class="sub">Ενιαία εικόνα των UX Findings ανά topic — στιγμιότυπο από κάθε αντίστοιχο Figma «UX Findings» page.</div>
   <div class="stats" id="stats"></div>
   <div class="tabs" id="tabs"></div>
@@ -308,10 +346,15 @@ footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
-let current = 0, sevFilter = 'ALL';
+let current = 'summary', sevFilter = 'ALL';
 const SEV=['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ---- theme: light by day, dark by night; manual toggle persists ----
+(function(){const KEY='uxhub-theme';const saved=localStorage.getItem(KEY);const h=new Date().getHours();const theme=saved||((h>=7&&h<19)?'light':'dark');document.documentElement.dataset.theme=theme;})();
+function paintThemeBtn(){const b=document.getElementById('themeBtn');if(b)b.textContent=document.documentElement.dataset.theme==='light'?'🌙':'☀️';}
+window._toggleTheme=function(){const cur=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=cur;localStorage.setItem('uxhub-theme',cur);paintThemeBtn();};
 
 function renderStats(){
   const s=document.getElementById('stats');
@@ -326,17 +369,55 @@ function renderStats(){
 }
 function renderTabs(){
   const tabs=document.getElementById('tabs'); tabs.innerHTML='';
+  const sum=el('div','tab'+(current==='summary'?' active':''),'★ Summary');
+  sum.onclick=()=>{current='summary';render();window.scrollTo(0,0);};
+  tabs.append(sum);
   DATA.topics.forEach((t,i)=>{
     const b=el('div','tab'+(i===current?' active':''),esc(t.name)+' <span class="c">'+(t.counts.s+t.counts.f)+'</span>');
-    b.onclick=()=>{current=i;sevFilter='ALL';render();};
+    b.onclick=()=>{current=i;sevFilter='ALL';render();window.scrollTo(0,0);};
     tabs.append(b);
   });
   DATA.todo.forEach(t=>{ tabs.append(el('div','tab todo',esc(t.name)+' <span class="c">TODO</span>')); });
 }
+function figLink(url){ return url?'<a class="figlink" href="'+url+'" target="_blank" rel="noopener"><span class="fi"></span>Άνοιγμα στο Figma</a>':''; }
+function renderSummary(){
+  const m=document.getElementById('main'); m.innerHTML='';
+  const t=DATA.totals;
+  m.append(el('div','topichead','<h1>Summary</h1><span class="by">όλα τα topics με μια ματιά · snapshot '+esc(DATA.snapshot)+'</span>'));
+  // severity distribution bar
+  const tot=SEV.reduce((a,k)=>a+t.sev[k],0)||1;
+  let bar='<div class="sevbar">';
+  SEV.forEach(k=>{ if(t.sev[k]) bar+='<span class="seg '+k+'" style="width:'+(t.sev[k]/tot*100).toFixed(1)+'%" title="'+k+' '+t.sev[k]+'"></span>'; });
+  bar+='</div>';
+  const legend='<div class="mini" style="margin-top:12px">'+SEV.map(k=>'<span class="pill"><span class="ldot '+k+'"></span>'+k+' '+t.sev[k]+'</span>').join('')+'</div>';
+  const sb=el('div','sumblock','<h2>Friction ανά severity — '+t.f+' σύνολο ('+t.s+' strengths)</h2>'+bar+legend);
+  m.append(sb);
+  // per-topic cards
+  const grid=el('div','tgrid');
+  DATA.topics.forEach((tp,i)=>{
+    const c=tp.counts;
+    const sev=SEV.filter(k=>c.sev[k]).map(k=>'<span class="sev '+k+'">'+k+' '+c.sev[k]+'</span>').join(' ');
+    const card=el('div','tcard','<div class="tc-h"><b>'+esc(tp.name)+'</b><span class="by">'+esc(tp.reviewer)+'</span></div>'+
+      '<div class="tc-n"><span class="pill g">'+c.s+' strengths</span><span class="pill r">'+c.f+' friction</span></div>'+
+      '<div class="tc-sev">'+(sev||'<span class="by" style="font-size:12px">— χωρίς severity —</span>')+'</div>');
+    card.onclick=()=>{current=i;sevFilter='ALL';render();window.scrollTo(0,0);};
+    grid.append(card);
+  });
+  DATA.todo.forEach(td=>{ grid.append(el('div','tcard todo','<div class="tc-h"><b>'+esc(td.name)+'</b><span class="by">TODO</span></div><div class="by" style="font-size:12px">'+esc(td.note)+'</div>')); });
+  const gw=el('div','sumblock'); gw.append(el('h2',null,'Topics')); gw.append(grid); m.append(gw);
+  // top critical across all topics
+  const crits=[];
+  DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL') crits.push({topic:tp.name,flow:f.flow,text:x.text}); })));
+  if(crits.length){
+    const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — CRITICAL ('+crits.length+')'));
+    crits.forEach(c=>cb.append(el('div','card bad','<div class="crmeta"><span class="sev CRITICAL">CRITICAL</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text))));
+    m.append(cb);
+  }
+}
 function renderTopic(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.topics[current];
-  const head=el('div','topichead','<h1>'+esc(t.name)+'</h1><span class="by">reviewer · '+esc(t.reviewer)+'</span>');
+  const head=el('div','topichead','<h1>'+esc(t.name)+'</h1><span class="by">reviewer · '+esc(t.reviewer)+'</span>'+figLink(t.figma));
   m.append(head);
   const mini=el('div','mini');
   mini.append(el('span','pill g',t.counts.s+' strengths'));
@@ -368,7 +449,7 @@ function renderTopic(){
     cols.append(good,bad); flow.append(cols); m.append(flow);
   });
 }
-function render(){renderTabs();renderTopic();}
+function render(){renderTabs(); if(current==='summary') renderSummary(); else renderTopic(); paintThemeBtn();}
 renderStats();render();
 </script>
 </body></html>`;

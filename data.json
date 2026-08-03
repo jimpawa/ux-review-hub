@@ -70,6 +70,7 @@
           ]
         }
       ],
+      "figma": "https://www.figma.com/design/1H2KzGBaKHKuv9TirkutUM/Global-Navigation-%7C-UX-Review-%7C-Jim",
       "counts": {
         "s": 4,
         "f": 10,
@@ -293,6 +294,7 @@
           ]
         }
       ],
+      "figma": "https://www.figma.com/design/Tfv3EKofMYn6cRzjHR4VLu/Live-Betting-%7C-UX-Review-%7C-Henry",
       "counts": {
         "s": 12,
         "f": 32,
@@ -466,6 +468,7 @@
           ]
         }
       ],
+      "figma": "https://www.figma.com/design/o0JS6yvcoXhMiRcvzUjawC/My-Bets---Cashout-%7C-UX-Review-%7C-Ajay",
       "counts": {
         "s": 14,
         "f": 23,
@@ -514,6 +517,7 @@
           ]
         }
       ],
+      "figma": "https://www.figma.com/design/7RmAoEilfNK5YhK8yAPPNr/Help---Support-%7C-UX-Review-%7C-Ishkhan---Aleida",
       "counts": {
         "s": 0,
         "f": 6,
@@ -616,6 +620,7 @@
           ]
         }
       ],
+      "figma": "https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan",
       "counts": {
         "s": 0,
         "f": 24,
@@ -638,7 +643,8 @@
     {
       "name": "Homepage & Sports Discovery",
       "reviewer": "—",
-      "note": "Δεν είναι έτοιμο ακόμη — θα προστεθεί όταν ολοκληρωθεί."
+      "note": "Δεν είναι έτοιμο ακόμη — θα προστεθεί όταν ολοκληρωθεί.",
+      "figma": "https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-"
     }
   ],
   "totals": {
