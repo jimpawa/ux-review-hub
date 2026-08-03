@@ -279,11 +279,6 @@ function renderTopic(){
   const hasSev=t.flows.some(f=>f.frictions.some(x=>x.severity));
   const head=el('div','topichead','<h1>'+esc(t.name)+'</h1>'+figLink(t.figma));
   m.append(head);
-  if(hasSev){
-    const sf=el('div','sevf');
-    ['ALL',...SEV].forEach(k=>{const c=el('span','chip'+(sevFilter===k?' active':''),k);c.onclick=()=>{sevFilter=k;render();};sf.append(c);});
-    m.append(sf);
-  }
   const frShownOf=f=> hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
   const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && o.f.strengths.length===0 && frShownOf(o.f).length===0));
   if(flowIdx>=visFlows.length) flowIdx=0;
