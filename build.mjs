@@ -303,7 +303,7 @@ const topics = [
 ];
 
 const TODO = [
-  {name:'PreMatch', reviewer:'—', note:'Δεν είναι έτοιμο ακόμη — θα προστεθεί όταν ολοκληρωθεί.'},
+  {name:'PreMatch', reviewer:'—', note:'Not ready yet — will be added once complete.'},
 ];
 
 // ---- clean: drop placeholders + dedupe within a flow ----
@@ -446,13 +446,13 @@ footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:
 </style></head>
 <body>
 <header class="top"><div class="wrap">
-  <div class="brand"><div class="logo">bet<b>Pawa</b> · UX Review Week</div><button id="themeBtn" class="themebtn" onclick="_toggleTheme()" title="Εναλλαγή light/dark">☀️</button></div>
-  <div class="sub">Ενιαία εικόνα των UX Findings ανά topic — στιγμιότυπο από κάθε αντίστοιχο Figma «UX Findings» page.</div>
+  <div class="brand"><div class="logo">bet<b>Pawa</b> · UX Review Week</div><button id="themeBtn" class="themebtn" onclick="_toggleTheme()" title="Toggle light/dark">☀️</button></div>
+  <div class="sub">A single view of the UX Findings per topic — a snapshot from each reviewer's Figma "UX Findings" page.</div>
   <div class="stats" id="stats"></div>
   <div class="tabs" id="tabs"></div>
 </div></header>
 <main class="wrap" id="main"></main>
-<footer class="wrap">Στατικό snapshot · <span id="snap"></span> · Πηγή: τα Figma «UX Findings» pages των reviewers</footer>
+<footer class="wrap">Static snapshot · <span id="snap"></span> · Source: the reviewers' Figma "UX Findings" pages</footer>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
@@ -470,7 +470,7 @@ function renderStats(){
   const s=document.getElementById('stats');
   const t=DATA.totals;
   s.innerHTML='';
-  s.append(el('span','stat','<b>'+DATA.topics.length+'</b> topics έτοιμα'));
+  s.append(el('span','stat','<b>'+DATA.topics.length+'</b> topics ready'));
   s.append(el('span','stat','<b>'+t.s+'</b> strengths'));
   s.append(el('span','stat','<b>'+t.f+'</b> friction points'));
   s.append(el('span','stat','<b style="color:var(--crit)">'+t.sev.CRITICAL+'</b> critical'));
@@ -489,28 +489,28 @@ function renderTabs(){
   });
   DATA.todo.forEach(t=>{ tabs.append(el('div','tab todo',esc(t.name)+' <span class="c">TODO</span>')); });
 }
-function figLink(url){ return url?'<a class="figlink" href="'+url+'" target="_blank" rel="noopener"><span class="fi"></span>Άνοιγμα στο Figma</a>':''; }
+function figLink(url){ return url?'<a class="figlink" href="'+url+'" target="_blank" rel="noopener"><span class="fi"></span>Open in Figma</a>':''; }
 function renderSummary(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.totals;
-  m.append(el('div','topichead','<h1>Summary</h1><span class="by">όλα τα topics με μια ματιά · snapshot '+esc(DATA.snapshot)+'</span>'));
+  m.append(el('div','topichead','<h1>Summary</h1><span class="by">all topics at a glance · snapshot '+esc(DATA.snapshot)+'</span>'));
   // severity distribution bar
   const tot=SEV.reduce((a,k)=>a+t.sev[k],0)||1;
   let bar='<div class="sevbar">';
   SEV.forEach(k=>{ if(t.sev[k]) bar+='<span class="seg '+k+'" style="width:'+(t.sev[k]/tot*100).toFixed(1)+'%" title="'+k+' '+t.sev[k]+'"></span>'; });
   bar+='</div>';
   const legend='<div class="mini" style="margin-top:12px">'+SEV.map(k=>'<span class="pill"><span class="ldot '+k+'"></span>'+k+' '+t.sev[k]+'</span>').join('')+'</div>';
-  const sb=el('div','sumblock','<h2>Friction ανά severity — '+t.f+' σύνολο ('+t.s+' strengths)</h2>'+bar+legend);
+  const sb=el('div','sumblock','<h2>Friction by severity — '+t.f+' total ('+t.s+' strengths)</h2>'+bar+legend);
   m.append(sb);
   // per-topic cards
   const grid=el('div','tgrid');
-  function addFig(card,url){ if(!url)return; const fl=el('a','figlink tc-fig','<span class="fi"></span>Άνοιγμα στο Figma'); fl.href=url; fl.target='_blank'; fl.rel='noopener'; fl.onclick=(e)=>e.stopPropagation(); card.append(fl); }
+  function addFig(card,url){ if(!url)return; const fl=el('a','figlink tc-fig','<span class="fi"></span>Open in Figma'); fl.href=url; fl.target='_blank'; fl.rel='noopener'; fl.onclick=(e)=>e.stopPropagation(); card.append(fl); }
   DATA.topics.forEach((tp,i)=>{
     const c=tp.counts;
     const sev=SEV.filter(k=>c.sev[k]).map(k=>'<span class="sev '+k+'">'+k+' '+c.sev[k]+'</span>').join(' ');
     const card=el('div','tcard','<div class="tc-h"><b>'+esc(tp.name)+'</b><span class="by">'+esc(tp.reviewer)+'</span></div>'+
       '<div class="tc-n"><span class="pill g">'+c.s+' strengths</span><span class="pill r">'+c.f+' friction</span></div>'+
-      '<div class="tc-sev">'+(sev||'<span class="by" style="font-size:12px">— χωρίς severity —</span>')+'</div>');
+      '<div class="tc-sev">'+(sev||'<span class="by" style="font-size:12px">— no severity —</span>')+'</div>');
     card.onclick=()=>{current=i;sevFilter='ALL';render();window.scrollTo(0,0);};
     addFig(card,tp.figma);
     grid.append(card);
