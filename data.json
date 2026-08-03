@@ -1,5 +1,5 @@
 {
-  "snapshot": "2026-08-03",
+  "snapshot": "snapshot",
   "topics": [
     {
       "name": "Global Navigation",
@@ -1047,23 +1047,49 @@
       "flows": [
         {
           "flow": "Open Bets",
-          "numbered": false,
           "images": [
             {
               "src": "img/my-bets-cashout/ob1.png",
-              "label": "01 · My Open Bets"
+              "label": "01 · My Open Bets",
+              "nums": [
+                "g1",
+                "g2",
+                "g3",
+                "g4",
+                "r1",
+                "r2",
+                "r3",
+                "r4",
+                "r5",
+                "r6"
+              ]
             },
             {
               "src": "img/my-bets-cashout/ob2.png",
-              "label": "02 · Scroll"
+              "label": "02 · Scroll",
+              "nums": [
+                "g5"
+              ]
             },
             {
               "src": "img/my-bets-cashout/ob3.png",
-              "label": "03 · Open bet (single)"
+              "label": "03 · Open bet (single)",
+              "nums": [
+                "g6",
+                "g7",
+                "g8",
+                "r7"
+              ]
             },
             {
               "src": "img/my-bets-cashout/ob4.png",
-              "label": "04 · Open bet (multiple)"
+              "label": "04 · Open bet (multiple)",
+              "nums": [
+                "r8",
+                "r9",
+                "r10",
+                "r11"
+              ]
             }
           ],
           "strengths": [
@@ -1160,23 +1186,38 @@
         },
         {
           "flow": "Cashout",
-          "numbered": false,
           "images": [
             {
               "src": "img/my-bets-cashout/ca1.png",
-              "label": "01 · Empty state"
+              "label": "01 · Empty state",
+              "nums": [
+                "r1"
+              ]
             },
             {
               "src": "img/my-bets-cashout/ca2.png",
-              "label": "02 · Open bets"
+              "label": "02 · Open bets",
+              "nums": [
+                "g1",
+                "r2"
+              ]
             },
             {
               "src": "img/my-bets-cashout/ca3.png",
-              "label": "03 · Card opportunities"
+              "label": "03 · Card opportunities",
+              "nums": [
+                "g2",
+                "r3"
+              ]
             },
             {
               "src": "img/my-bets-cashout/ca4.png",
-              "label": "04 · Card full"
+              "label": "04 · Card full",
+              "nums": [
+                "g3",
+                "r4",
+                "r5"
+              ]
             }
           ],
           "strengths": [
@@ -1223,31 +1264,55 @@
         },
         {
           "flow": "Settled Bets",
-          "numbered": false,
           "images": [
             {
               "src": "img/my-bets-cashout/se1.png",
-              "label": "01 · Settled bets"
+              "label": "01 · Settled bets",
+              "nums": [
+                "r1",
+                "r2",
+                "r3"
+              ]
             },
             {
               "src": "img/my-bets-cashout/se2.png",
-              "label": "02 · Won bets"
+              "label": "02 · Won bets",
+              "nums": [
+                "g1",
+                "r4"
+              ]
             },
             {
               "src": "img/my-bets-cashout/se3.png",
-              "label": "03 · Single bet"
+              "label": "03 · Single bet",
+              "nums": [
+                "g4",
+                "r5"
+              ]
             },
             {
               "src": "img/my-bets-cashout/se4.png",
-              "label": "04 · Multiple bet"
+              "label": "04 · Multiple bet",
+              "nums": [
+                "g5",
+                "r6"
+              ]
             },
             {
               "src": "img/my-bets-cashout/se5.png",
-              "label": "05 · Won bet inside"
+              "label": "05 · Won bet inside",
+              "nums": [
+                "g2",
+                "g3",
+                "g6"
+              ]
             },
             {
               "src": "img/my-bets-cashout/se6.png",
-              "label": "06 · Sharing popup"
+              "label": "06 · Sharing popup",
+              "nums": [
+                "r7"
+              ]
             }
           ],
           "strengths": [

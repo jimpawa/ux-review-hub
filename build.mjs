@@ -130,7 +130,6 @@ const topics = [
     name: 'My Bets & Cashout', reviewer: 'Ajay', tag: 'severity',
     flows: [
       {flow:'Open Bets',
-       numbered:false,
        images:[{src:'img/my-bets-cashout/ob1.png',label:'01 · My Open Bets'},{src:'img/my-bets-cashout/ob2.png',label:'02 · Scroll'},{src:'img/my-bets-cashout/ob3.png',label:'03 · Open bet (single)'},{src:'img/my-bets-cashout/ob4.png',label:'04 · Open bet (multiple)'}],
        strengths:[
         {text:"Categorized tabs provide structured navigation across primary wagering categories."},
@@ -156,7 +155,6 @@ const topics = [
         {text:"Leg selection lists blend into general bet info — distinct container boundaries would aid visual parsing.",severity:"MEDIUM"},
        ]},
       {flow:'Cashout',
-       numbered:false,
        images:[{src:'img/my-bets-cashout/ca1.png',label:'01 · Empty state'},{src:'img/my-bets-cashout/ca2.png',label:'02 · Open bets'},{src:'img/my-bets-cashout/ca3.png',label:'03 · Card opportunities'},{src:'img/my-bets-cashout/ca4.png',label:'04 · Card full'}],
        strengths:[
         {text:"The Cashout section sits in a logical position within the screen hierarchy."},
@@ -171,7 +169,6 @@ const topics = [
         {text:"Feedback after Cashout relies solely on the top label — no supporting toast or confirmation popup.",severity:"CRITICAL"},
        ]},
       {flow:'Settled Bets',
-       numbered:false,
        images:[{src:'img/my-bets-cashout/se1.png',label:'01 · Settled bets'},{src:'img/my-bets-cashout/se2.png',label:'02 · Won bets'},{src:'img/my-bets-cashout/se3.png',label:'03 · Single bet'},{src:'img/my-bets-cashout/se4.png',label:'04 · Multiple bet'},{src:'img/my-bets-cashout/se5.png',label:'05 · Won bet inside'},{src:'img/my-bets-cashout/se6.png',label:'06 · Sharing popup'}],
        strengths:[
         {text:"Differentiation looks well executed across the layout."},
@@ -461,6 +458,9 @@ const IMG_NUMS = {
   'img/live-betting/lb4-1.png':['r1'],'img/live-betting/lb4-2.png':['g2','r3'],'img/live-betting/lb4-3.png':['g4','r5','r9'],'img/live-betting/lb4-4.png':['r8','g5','r7','g6'],
   'img/live-betting/lb5-1.png':['g1','r5'],'img/live-betting/lb5-2.png':['r2','r4','r5'],'img/live-betting/lb5-3.png':['r2','r3'],
   'img/live-betting/lb6-1.png':['r1'],'img/live-betting/lb6-2.png':['r2','r3'],'img/live-betting/lb6-3.png':['r2'],'img/live-betting/lb6-4.png':['r2'],
+  'img/my-bets-cashout/ob1.png':['g1','g2','g3','g4','r1','r2','r3','r4','r5','r6'],'img/my-bets-cashout/ob2.png':['g5'],'img/my-bets-cashout/ob3.png':['g6','g7','g8','r7'],'img/my-bets-cashout/ob4.png':['r8','r9','r10','r11'],
+  'img/my-bets-cashout/ca1.png':['r1'],'img/my-bets-cashout/ca2.png':['g1','r2'],'img/my-bets-cashout/ca3.png':['g2','r3'],'img/my-bets-cashout/ca4.png':['g3','r4','r5'],
+  'img/my-bets-cashout/se1.png':['r1','r2','r3'],'img/my-bets-cashout/se2.png':['g1','r4'],'img/my-bets-cashout/se3.png':['g4','r5'],'img/my-bets-cashout/se4.png':['g5','r6'],'img/my-bets-cashout/se5.png':['g2','g3','g6'],'img/my-bets-cashout/se6.png':['r7'],
 };
 for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
