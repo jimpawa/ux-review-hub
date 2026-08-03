@@ -8,7 +8,48 @@
       "flows": [
         {
           "flow": "betPawa.ng — Global Navigation",
-          "image": "img/global-navigation/betpawa-global-navigation.png",
+          "images": [
+            {
+              "src": "img/global-navigation/01-home.png",
+              "label": "01 · Home"
+            },
+            {
+              "src": "img/global-navigation/02-sports.png",
+              "label": "02 · Sports"
+            },
+            {
+              "src": "img/global-navigation/03-live.png",
+              "label": "03 · Live"
+            },
+            {
+              "src": "img/global-navigation/04-casino.png",
+              "label": "04 · Casino"
+            },
+            {
+              "src": "img/global-navigation/05-virtuals.png",
+              "label": "05 · Virtuals"
+            },
+            {
+              "src": "img/global-navigation/06-menu.png",
+              "label": "06 · Menu"
+            },
+            {
+              "src": "img/global-navigation/07-betslip.png",
+              "label": "07 · Betslip"
+            },
+            {
+              "src": "img/global-navigation/08-my-bets.png",
+              "label": "08 · My Bets"
+            },
+            {
+              "src": "img/global-navigation/09-account.png",
+              "label": "09 · Account"
+            },
+            {
+              "src": "img/global-navigation/10-logged-out.png",
+              "label": "10 · Logged-out"
+            }
+          ],
           "strengths": [
             {
               "text": "Persistent bottom bar keeps the betting loop (Sports · Betslip · My bets · Account) one tap away from anywhere.",
@@ -151,7 +192,7 @@
           ]
         },
         {
-          "flow": "Homepage · Quick-bet: Popular Match Combos",
+          "flow": "Homepage · Quick-bet",
           "strengths": [
             {
               "text": "One tap adds a full pre-built combo and the win-bonus updates instantly — very low friction.",

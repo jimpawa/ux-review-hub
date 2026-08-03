@@ -11,7 +11,18 @@ const topics = [
     name: 'Global Navigation', reviewer: 'Jim', tag: 'law',
     flows: [{
       flow: 'betPawa.ng — Global Navigation',
-      image: 'img/global-navigation/betpawa-global-navigation.png',
+      images: [
+        {src:'img/global-navigation/01-home.png',label:'01 · Home'},
+        {src:'img/global-navigation/02-sports.png',label:'02 · Sports'},
+        {src:'img/global-navigation/03-live.png',label:'03 · Live'},
+        {src:'img/global-navigation/04-casino.png',label:'04 · Casino'},
+        {src:'img/global-navigation/05-virtuals.png',label:'05 · Virtuals'},
+        {src:'img/global-navigation/06-menu.png',label:'06 · Menu'},
+        {src:'img/global-navigation/07-betslip.png',label:'07 · Betslip'},
+        {src:'img/global-navigation/08-my-bets.png',label:'08 · My Bets'},
+        {src:'img/global-navigation/09-account.png',label:'09 · Account'},
+        {src:'img/global-navigation/10-logged-out.png',label:'10 · Logged-out'},
+      ],
       strengths: [
         {text:"Persistent bottom bar keeps the betting loop (Sports · Betslip · My bets · Account) one tap away from anywhere.", law:"Fitts's Law"},
         {text:"Betslip is a self-contained sheet — Betslip↔My bets pill, an “accept odds change” toggle, and clear stake/odds/payout.", law:"Jakob's Law"},
@@ -233,7 +244,7 @@ const topics = [
         {text:"The three promo cards are visually near-identical (‘Read More’), so no single offer stands out.",severity:"LOW",law:"Law of Similarity"},
         {text:"Every visit starts by scrolling past promos.",severity:"MEDIUM",law:"Cognitive Load"},
        ]},
-      {flow:"Homepage · Quick-bet: Popular Match Combos",
+      {flow:"Homepage · Quick-bet",
        strengths:[
         {text:"One tap adds a full pre-built combo and the win-bonus updates instantly — very low friction.",law:"Doherty Threshold"},
         {text:"Combos surface pre-built multi-leg bets right on the homepage — accelerates the core action.",law:"Goal-Gradient Effect"},
@@ -443,7 +454,12 @@ main{padding:22px 0 80px}
 .tc-fig{margin-top:12px;padding:4px 10px !important;font-size:11px !important}
 .flowimg-wrap{margin:0 0 16px;position:relative}
 .flowimg{width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:zoom-in}
-.flowimg-cap{font-size:11px;color:var(--mut);margin-top:6px}
+.flowimg-cap{font-size:11px;color:var(--mut);margin:0 0 16px}
+.shots{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin}
+.shot{flex:0 0 168px;margin:0}
+.shotimg{width:168px;display:block;border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:zoom-in;transition:border-color .15s}
+.shotimg:hover{border-color:var(--green)}
+.shotcap{font-size:11px;color:var(--mut);margin-top:6px;text-align:center}
 .fnum{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:800;margin-right:8px;flex:0 0 auto;vertical-align:middle}
 .fnum.g{background:var(--green);color:#fff} .fnum.r{background:var(--red);color:#fff}
 .card.hasnum{display:flex;align-items:flex-start;gap:0}
@@ -568,12 +584,17 @@ function renderTopic(){
   t.flows.forEach(f=>{
     const frShown = hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
     if(t.flows.length>1 && f.strengths.length===0 && frShown.length===0) return;
-    const showNum = !!f.image;
+    const showNum = !!(f.images && f.images.length) || !!f.image;
     const flow=el('div','flow'); flow.append(el('h2',null,esc(f.flow)));
-    if(f.image){
+    if(f.images && f.images.length){
+      flow.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click any to zoom.'));
+      const w=el('div','shots');
+      f.images.forEach(im=>{const fig=el('figure','shot');const img=el('img','shotimg');img.src=im.src;img.alt=esc(im.label||'');img.loading='lazy';img.onclick=()=>_lb(im.src);fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));w.append(fig);});
+      flow.append(w);
+    } else if(f.image){
       const w=el('div','flowimg-wrap');
       const img=el('img','flowimg'); img.src=f.image; img.alt=esc(f.flow); img.loading='lazy'; img.onclick=()=>_lb(f.image);
-      w.append(img); w.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click to zoom.'));
+      w.append(img); w.append(el('div','flowimg-cap','Annotated screens — click to zoom.'));
       flow.append(w);
     }
     const cols=el('div','cols');
