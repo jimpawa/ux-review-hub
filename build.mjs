@@ -721,7 +721,7 @@ main{padding:22px 0 80px}
 .dlg-info{flex:1;min-width:0}
 .dlg-topic{font-size:12px;font-weight:600;color:var(--mut);margin:0 0 14px}
 .crmeta{margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.crtopic{font-size:11.5px;color:var(--mut);font-weight:600}
+.crtopic{font-size:11px;color:var(--ink);font-weight:600;background:var(--panel2);border:1px solid var(--line);padding:3px 9px;border-radius:999px;white-space:nowrap}
 footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:18px 0;text-align:center}
 </style></head>
 <body>
