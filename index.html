@@ -271,11 +271,6 @@ function renderTopic(){
   const hasSev=t.flows.some(f=>f.frictions.some(x=>x.severity));
   const head=el('div','topichead','<h1>'+esc(t.name)+'</h1>'+figLink(t.figma));
   m.append(head);
-  const mini=el('div','mini');
-  mini.append(el('span','pill g',t.counts.s+' strengths'));
-  mini.append(el('span','pill r',t.counts.f+' friction'));
-  SEV.forEach(k=>{ if(t.counts.sev[k]) mini.append(el('span','pill',k+' '+t.counts.sev[k])); });
-  m.append(mini);
   if(hasSev){
     const sf=el('div','sevf');
     ['ALL',...SEV].forEach(k=>{const c=el('span','chip'+(sevFilter===k?' active':''),k);c.onclick=()=>{sevFilter=k;render();};sf.append(c);});
