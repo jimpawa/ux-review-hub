@@ -100,7 +100,7 @@
           ],
           "frictions": [
             {
-              "text": "Bottom bar represents only Sports of the four products — Home/Live/Casino/Virtuals aren’t in the bar.",
+              "text": "Bottom bar represents only Sports — Casino is not in the bar.",
               "law": "Jakob's Law",
               "severity": "HIGH"
             },

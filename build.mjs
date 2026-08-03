@@ -31,7 +31,7 @@ const topics = [
         {text:"Casino & Virtuals keep the product header (Sports/Live/Casino/Virtuals) — consistent within those products.", law:"Law of Common Region"},
       ],
       frictions: [
-        {text:"Bottom bar represents only Sports of the four products — Home/Live/Casino/Virtuals aren’t in the bar.", law:"Jakob's Law", severity:"HIGH"},
+        {text:"Bottom bar represents only Sports — Casino is not in the bar.", law:"Jakob's Law", severity:"HIGH"},
         {text:"When visiting Live, you are not having quick access in the previous navigation links", law:"Von Restorff Effect", severity:"MEDIUM"},
         {text:"Entering Sports/Live replaces the product switcher with the sports sub-nav — you can’t reach Casino/Virtuals from within Sports without the Menu.", law:"Mental Model", severity:"HIGH"},
         {text:"Three overlapping nav surfaces (header + bottom bar + full-screen Menu) duplicate the same destinations.", law:"Occam's Razor", severity:"MEDIUM"},
