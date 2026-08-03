@@ -187,18 +187,71 @@ const topics = [
     ],
   },
   {
-    name: 'Help & Support', reviewer: 'Ishkhan & Aleida', tag: 'none',
+    name: 'Help & Support', reviewer: 'Ishkhan & Aleida', tag: 'severity',
     flows: [
-      {flow:'Help Page', strengths:[], frictions:[
-        {text:"Play up the block titles and add illustrations to visually help users."},
-        {text:"Adding screenshots or videos would make it more convenient for the user."},
-        {text:"A search would make it easier for users to find the information they need."},
-      ]},
-      {flow:'Rules', strengths:[], frictions:[
-        {text:"Play up the block titles and add illustrations to visually help users."},
-        {text:"A search would make it easier for users to find the information they need."},
-        {text:"Add navigation within this page — by sport types and so on."},
-      ]},
+      {flow:'A1 · Account & Wallet',
+       images:[{src:'img/help-support/a1-1.png',label:'01 · Account sheet'},{src:'img/help-support/a1-2.png',label:'02 · Deposit'},{src:'img/help-support/a1-3.png',label:'03 · Withdraw'}],
+       strengths:[
+        {text:"Deposit & Withdraw are pinned to the top of the Account sheet — the two money actions are one tap away.", law:"Fitts's Law"},
+        {text:"The NGN/USDC currency toggle carries a plain-language note that switching only changes display, not funds.", law:"Mental Model"},
+        {text:"Deposit methods use recognisable provider logos (OPay, PalmPay, MoMo) — recognition over recall.", law:"Jakob's Law"},
+       ], frictions:[
+        {text:"Seven deposit methods list only a “Max” — no fees, speed or a recommended option to guide the choice.", severity:"MEDIUM", law:"Hick's Law"},
+        {text:"The withdraw amount field has no quick presets or a “withdraw all” option — users must type an exact figure within the Min / Max by hand.", severity:"LOW", law:"Fitts's Law"},
+       ]},
+      {flow:'A2 · Account management & security',
+       images:[{src:'img/help-support/a2-1.png',label:'01 · Change password'},{src:'img/help-support/a2-2.png',label:'02 · Self-exclusion'},{src:'img/help-support/a2-3.png',label:'03 · Notifications'}],
+       strengths:[
+        {text:"Change-password screen states the consequence up front (“we’ll log you out of all devices”).", law:"Mental Model"},
+        {text:"Each password field has an inline “Show” toggle — reduces entry errors.", law:"Jakob's Law"},
+        {text:"Self-exclusion uses supportive, non-judgmental copy and links to specialist help — a hard moment handled with care.", law:"Peak-End Rule"},
+       ], frictions:[
+        {text:"Self-exclusion, change-password and notifications hide under a collapsed “Manage account” accordion — safety controls take extra taps.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"Notifications mix promos (casino cashback) with account-critical alerts (failed withdrawal) in one undifferentiated list.", severity:"MEDIUM", law:"Selective Attention"},
+        {text:"Password minimum is just “4 characters” — a weak security floor for a real-money wallet.", severity:"HIGH", law:"Jakob's Law"},
+       ]},
+      {flow:'A3 · Activity & history',
+       images:[{src:'img/help-support/a3-1.png',label:'01 · My Bets'},{src:'img/help-support/a3-2.png',label:'02 · Statement'}],
+       strengths:[
+        {text:"My Bets uses clear Open / Settled / Virtuals tabs — bet status is instantly scannable.", law:"Jakob's Law"},
+        {text:"Each bet card surfaces Odds / Stake / Payout in a consistent mini-table — easy comparison across bets.", law:"Law of Proximity"},
+        {text:"Statement shows a running balance after every transaction — users can reconcile at a glance.", law:"Mental Model"},
+       ], frictions:[
+        {text:"Statement rows are labelled only by type (“Sport Bet Placed”) with no event name — users can’t tell which bet a line refers to without expanding.", severity:"MEDIUM", law:"Cognitive Load"},
+        {text:"My Bets and Statement live in two different places (bottom-nav vs Account menu) with overlapping content — no single “activity” home.", severity:"LOW", law:"Jakob's Law"},
+        {text:"No date-range or type filter on the Statement — finding an old transaction means endless scrolling.", severity:"MEDIUM", law:"Hick's Law"},
+       ]},
+      {flow:'B1 · Help Center & contact',
+       images:[{src:'img/help-support/b1-1.png',label:'01 · Help'},{src:'img/help-support/b1-2.png',label:'02 · Help links (footer)'}],
+       strengths:[
+        {text:"Help opens with the 7 most common questions in plain language (“How to reset your password”) — matches real intents.", law:"Jakob's Law"},
+        {text:"A “Request a Call” form with the number pre-filled turns a support need into a single action.", law:"Fitts's Law"},
+        {text:"Several contact routes (call-back, speak to an agent, Contact Us) are offered — users pick their channel.", law:"Postel's Law"},
+       ], frictions:[
+        {text:"The Help list has no search box — users must scan or scroll to find anything beyond the top 7 topics.", severity:"MEDIUM", law:"Hick's Law"},
+        {text:"FAQ links and the “Request a Call” form share one screen with no grouping headers — self-serve vs. contact-us intents blur.", severity:"LOW", law:"Law of Proximity"},
+        {text:"Help links are duplicated between the Account “Help Center” accordion and the page footer, with slightly different sets.", severity:"LOW", law:"Jakob's Law"},
+       ]},
+      {flow:'B2 · Rules & policies',
+       images:[{src:'img/help-support/b2-1.png',label:'01 · Rules index'},{src:'img/help-support/b2-2.png',label:'02 · Rules detail'}],
+       strengths:[
+        {text:"Rules use a numbered, collapsible hierarchy (1 General, 2 Football…) — a huge document stays navigable.", law:"Chunking"},
+        {text:"Sections are chunked by sport and bet type, so users can jump to the area that matters to them.", law:"Law of Proximity"},
+       ], frictions:[
+        {text:"Rules are a deep wall of nested links (3.25 … 3.47) with no search or in-page find — locating one market rule is slow.", severity:"HIGH", law:"Hick's Law"},
+        {text:"No summaries, examples or visuals — dense legal-style prose raises the reading effort.", severity:"HIGH", law:"Cognitive Load"},
+        {text:"Tiny body type and only a floating “Back to top” — no “back to section” anchor for a document this long.", severity:"LOW", law:"Fitts's Law"},
+       ]},
+      {flow:'B3 · Responsible Gambling',
+       images:[{src:'img/help-support/b3-1.png',label:'01 · Responsible Gambling'},{src:'img/help-support/b3-2.png',label:'02 · Guidance detail'}],
+       strengths:[
+        {text:"Content leads with actionable tools (self-exclusion, monitor activity) and links straight to them — help is one tap away.", law:"Fitts's Law"},
+        {text:"Warning signs and control tips are written in plain, supportive language — reduces stigma and reading effort.", law:"Peak-End Rule"},
+        {text:"A request-a-call and a customer-support link sit on the page — distress moments route to a human quickly.", law:"Jakob's Law"},
+       ], frictions:[
+        {text:"The page is a long single scroll of prose; the tools (self-exclusion, limits) aren’t surfaced as tappable cards up top.", severity:"HIGH", law:"Selective Attention"},
+        {text:"Deposit / spending limits are described but there is no visible control to set them here — advice without an in-context action.", severity:"HIGH", law:"Mental Model"},
+       ]},
     ],
   },
   {
@@ -526,6 +579,12 @@ const IMG_NUMS = {
   'img/casino-virtuals/v2.png':['r1','r2','r3','r4','r5','r6','g2'],'img/casino-virtuals/v4.png':['r7','g1'],'img/casino-virtuals/v6.png':['r8','g6'],'img/casino-virtuals/v7.png':['r9','g5'],'img/casino-virtuals/v9.png':['g4'],'img/casino-virtuals/v10.png':['r10'],'img/casino-virtuals/v11.png':['r11'],'img/casino-virtuals/v12.png':['g3'],'img/casino-virtuals/v13.png':['g7'],
   'img/pre-match/pm1-1.png':['g1','g2','r3','r4'],'img/pre-match/pm1-2.png':['r5','r6','g7','r8','r9'],'img/pre-match/pm1-3.png':['r10','g11','r12'],'img/pre-match/pm1-4.png':['r13','g14'],
   'img/pre-match/pm2-1.png':['g2','r1'],'img/pre-match/pm2-2.png':['g3'],'img/pre-match/pm2-3.png':['g5','r4'],'img/pre-match/pm2-4.png':['r6'],
+  'img/help-support/a1-1.png':['g1','g2'],'img/help-support/a1-2.png':['g3','r1'],'img/help-support/a1-3.png':['r2'],
+  'img/help-support/a2-1.png':['g1','g2','r3'],'img/help-support/a2-2.png':['g3','r1'],'img/help-support/a2-3.png':['r2'],
+  'img/help-support/a3-1.png':['g1','g2','r2'],'img/help-support/a3-2.png':['g3','r1','r3'],
+  'img/help-support/b1-1.png':['g1','g2','g3','r1','r2'],'img/help-support/b1-2.png':['r3'],
+  'img/help-support/b2-1.png':['g1','g2'],'img/help-support/b2-2.png':['r1','r2','r3'],
+  'img/help-support/b3-1.png':['g1','g3','r1'],'img/help-support/b3-2.png':['g2','r2'],
 };
 for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
@@ -776,16 +835,9 @@ function renderSummary(){
   DATA.topics.forEach(function(tp){tp.flows.forEach(function(f){f.frictions.forEach(function(x,fi){ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,law:x.law||'',images:f.images||[],tok:'r'+(x.n||(fi+1))}); });});});
   prio.sort((a,b)=>(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1));
   if(prio.length){
-    const ex=el('div','sumblock'); ex.append(el('h2',null,'Executive summary — start here'));
-    const T=DATA.totals;
-    ex.append(el('p','about-intro','Across <b>'+DATA.topics.length+'</b> journeys the review logged <b>'+T.f+'</b> friction points — <b>'+T.sev.CRITICAL+' critical</b> and <b>'+T.sev.HIGH+' high-priority</b>. Critical issues block or mislead users and should be tackled first:'));
-    const crit=prio.filter(c=>c.severity==='CRITICAL').slice().sort((a,b)=>DATA.topics.findIndex(t=>t.name===a.topic)-DATA.topics.findIndex(t=>t.name===b.topic));
-    const ul=el('ul','about-list');
-    crit.forEach(c=>ul.append(el('li',null,'<b>'+esc(c.topic)+':</b> '+esc(c.text))));
-    ex.append(ul); m.append(ex);
-  }
-  if(prio.length){
     const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — Critical & High ('+prio.length+')'));
+    const T=DATA.totals;
+    cb.append(el('p','about-intro','The list below pulls together the most severe issues — <b>'+T.sev.CRITICAL+' critical</b> and <b>'+T.sev.HIGH+' high-priority</b> — from across all '+DATA.topics.length+' journeys, so the highest-impact problems sit in one place before you dive into each topic. Filter by topic with the tabs; every row shows the severity, the UX principle it breaks, where it happens, and — where a screen is available — a thumbnail you can open.'));
     const withPrio=DATA.topics.map(t=>t.name).filter(n=>prio.some(c=>c.topic===n));
     const ct=el('div','sevf');
     const list=el('div');
