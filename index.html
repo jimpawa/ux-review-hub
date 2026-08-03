@@ -153,18 +153,19 @@ function renderSummary(){
   DATA.todo.forEach(td=>{ const card=el('div','tcard todo','<div class="tc-h"><b>'+esc(td.name)+'</b><span class="by">TODO</span></div><div class="by" style="font-size:12px">'+esc(td.note)+'</div>'); addFig(card,td.figma); grid.append(card); });
   const gw=el('div','sumblock'); gw.append(el('h2',null,'Topics')); gw.append(grid); m.append(gw);
   // top critical across all topics
-  const crits=[];
-  DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL') crits.push({topic:tp.name,flow:f.flow,text:x.text}); })));
-  if(crits.length){
-    const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — CRITICAL ('+crits.length+')'));
-    const withCrit=[...new Set(crits.map(c=>c.topic))];
+  const prio=[];
+  DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity}); })));
+  prio.sort((a,b)=>(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1));
+  if(prio.length){
+    const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — Critical & High ('+prio.length+')'));
+    const withPrio=[...new Set(prio.map(c=>c.topic))].sort((a,b)=>prio.filter(c=>c.topic===b).length-prio.filter(c=>c.topic===a).length);
     const ct=el('div','sevf');
     const list=el('div');
-    function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paintCrits();};return c;}
-    function paintCrits(){ list.innerHTML=''; const shown=critFilter==='ALL'?crits:crits.filter(c=>c.topic===critFilter); shown.forEach(c=>list.append(el('div','card bad','<div class="crmeta"><span class="sev CRITICAL">CRITICAL</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)))); }
-    ct.append(chipEl('All','ALL',crits.length));
-    withCrit.forEach(tn=>ct.append(chipEl(tn,tn,crits.filter(c=>c.topic===tn).length)));
-    cb.append(ct); cb.append(list); paintCrits();
+    function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paint();};return c;}
+    function paint(){ list.innerHTML=''; const shown=critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter); shown.forEach(c=>list.append(el('div','card bad','<div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)))); }
+    ct.append(chipEl('All','ALL',prio.length));
+    withPrio.forEach(tn=>ct.append(chipEl(tn,tn,prio.filter(c=>c.topic===tn).length)));
+    cb.append(ct); cb.append(list); paint();
     m.append(cb);
   }
 }
