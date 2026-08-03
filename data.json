@@ -29,43 +29,53 @@
           "frictions": [
             {
               "text": "Bottom bar represents only Sports of the four products — Home/Live/Casino/Virtuals aren’t in the bar.",
-              "law": "Jakob's Law"
+              "law": "Jakob's Law",
+              "severity": "HIGH"
             },
             {
               "text": "No active state on Home/Casino/Virtuals; on Live the bar highlights “Sports” — absent/conflicting “you are here”.",
-              "law": "Von Restorff Effect"
+              "law": "Von Restorff Effect",
+              "severity": "MEDIUM"
             },
             {
               "text": "Entering Sports/Live replaces the product switcher with the sports sub-nav — you can’t reach Casino/Virtuals from within Sports without the Menu.",
-              "law": "Mental Model"
+              "law": "Mental Model",
+              "severity": "HIGH"
             },
             {
               "text": "Three overlapping nav surfaces (header + bottom bar + full-screen Menu) duplicate the same destinations.",
-              "law": "Occam's Razor"
+              "law": "Occam's Razor",
+              "severity": "MEDIUM"
             },
             {
               "text": "My Bets is reachable three ways (bottom-nav bets page, betslip pill, Account drawer) with different presentations.",
-              "law": "Occam's Razor"
+              "law": "Occam's Razor",
+              "severity": "LOW"
             },
             {
               "text": "Help / Support has no top-level entry — it lives only inside the Account drawer.",
-              "law": "Jakob's Law"
+              "law": "Jakob's Law",
+              "severity": "MEDIUM"
             },
             {
               "text": "The bottom bar changes between logged-out and logged-in (Join Now ↔ My bets).",
-              "law": "Jakob's Law"
+              "law": "Jakob's Law",
+              "severity": "LOW"
             },
             {
               "text": "No labelled “Home” anywhere — the homepage is reachable only via the logo and an unlabelled sub-nav icon; nothing in the header or bottom bar says Home.",
-              "law": "Jakob's Law"
+              "law": "Jakob's Law",
+              "severity": "MEDIUM"
             },
             {
               "text": "No single, obvious “Home”: the logo returns to the homepage while the bottom-nav “Sports” opens the events list — two different pages. A dedicated Home in the bottom bar, in the thumb zone, would give one clear way back.",
-              "law": "Mental Model"
+              "law": "Mental Model",
+              "severity": "MEDIUM"
             },
             {
               "text": "The in-content home shortcut is inconsistent — the sub-nav home icon appears on Sports/Casino/Virtuals but is replaced by “Upcoming” on Live, and it’s an icon-only ~40px tap target.",
-              "law": "Fitts's Law"
+              "law": "Fitts's Law",
+              "severity": "LOW"
             }
           ]
         }
@@ -76,9 +86,9 @@
         "f": 10,
         "sev": {
           "CRITICAL": 0,
-          "HIGH": 0,
-          "MEDIUM": 0,
-          "LOW": 0,
+          "HIGH": 2,
+          "MEDIUM": 5,
+          "LOW": 3,
           "NIT": 0
         }
       }
@@ -540,43 +550,56 @@
           "strengths": [],
           "frictions": [
             {
-              "text": "Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want."
+              "text": "Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want.",
+              "severity": "MEDIUM"
             },
             {
-              "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money."
+              "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money.",
+              "severity": "MEDIUM"
             },
             {
-              "text": "The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage."
+              "text": "The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage.",
+              "severity": "LOW"
             },
             {
-              "text": "A large number of games are hidden behind scrolling — the user might not notice them."
+              "text": "A large number of games are hidden behind scrolling — the user might not notice them.",
+              "severity": "LOW"
             },
             {
-              "text": "The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible."
+              "text": "The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible.",
+              "severity": "NIT"
             },
             {
-              "text": "The sorting may confuse users — there’s “Popular” in sorting and also one at the top."
+              "text": "The sorting may confuse users — there’s “Popular” in sorting and also one at the top.",
+              "severity": "LOW"
             },
             {
-              "text": "With many recent searches, we stop suggesting games — we could limit the number or hide the older ones."
+              "text": "With many recent searches, we stop suggesting games — we could limit the number or hide the older ones.",
+              "severity": "NIT"
             },
             {
-              "text": "Users may be more used to seeing the navigation at the top."
+              "text": "Users may be more used to seeing the navigation at the top.",
+              "severity": "NIT"
             },
             {
-              "text": "Show the number of players / likes / total plays to build interest."
+              "text": "Show the number of players / likes / total plays to build interest.",
+              "severity": "NIT"
             },
             {
-              "text": "When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games)."
+              "text": "When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games).",
+              "severity": "MEDIUM"
             },
             {
-              "text": "Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading."
+              "text": "Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading.",
+              "severity": "HIGH"
             },
             {
-              "text": "There’s no block with recent wins in casino games."
+              "text": "There’s no block with recent wins in casino games.",
+              "severity": "NIT"
             },
             {
-              "text": "There’s no action to delete all recent searches at once."
+              "text": "There’s no action to delete all recent searches at once.",
+              "severity": "LOW"
             }
           ]
         },
@@ -585,37 +608,48 @@
           "strengths": [],
           "frictions": [
             {
-              "text": "The illustrations don’t catch the eye."
+              "text": "The illustrations don’t catch the eye.",
+              "severity": "NIT"
             },
             {
-              "text": "Multiple entries essentially lead to the same Virtuals game and take up a lot of space."
+              "text": "Multiple entries essentially lead to the same Virtuals game and take up a lot of space.",
+              "severity": "LOW"
             },
             {
-              "text": "There aren’t many objects here — the layout could show everything to the user at once."
+              "text": "There aren’t many objects here — the layout could show everything to the user at once.",
+              "severity": "LOW"
             },
             {
-              "text": "Not much interactivity — no promotions, banners, etc. to engage the user."
+              "text": "Not much interactivity — no promotions, banners, etc. to engage the user.",
+              "severity": "LOW"
             },
             {
-              "text": "Show some big recent wins to draw the user in."
+              "text": "Show some big recent wins to draw the user in.",
+              "severity": "NIT"
             },
             {
-              "text": "A timer on the virtual thumbnail could show when the next match starts."
+              "text": "A timer on the virtual thumbnail could show when the next match starts.",
+              "severity": "LOW"
             },
             {
-              "text": "Show the league selection at the top."
+              "text": "Show the league selection at the top.",
+              "severity": "LOW"
             },
             {
-              "text": "It’s unclear where the Next button leads."
+              "text": "It’s unclear where the Next button leads.",
+              "severity": "MEDIUM"
             },
             {
-              "text": "Show more clearly that the match is live — maybe with an animation or illustration."
+              "text": "Show more clearly that the match is live — maybe with an animation or illustration.",
+              "severity": "LOW"
             },
             {
-              "text": "The active betslip isn’t very noticeable."
+              "text": "The active betslip isn’t very noticeable.",
+              "severity": "MEDIUM"
             },
             {
-              "text": "Consider a dedicated betslip on the Virtuals page to remove noise and focus the user on the action."
+              "text": "Consider a dedicated betslip on the Virtuals page to remove noise and focus the user on the action.",
+              "severity": "LOW"
             }
           ]
         }
@@ -626,10 +660,10 @@
         "f": 24,
         "sev": {
           "CRITICAL": 0,
-          "HIGH": 0,
-          "MEDIUM": 0,
-          "LOW": 0,
-          "NIT": 0
+          "HIGH": 1,
+          "MEDIUM": 5,
+          "LOW": 11,
+          "NIT": 7
         }
       }
     }
@@ -652,10 +686,10 @@
     "f": 95,
     "sev": {
       "CRITICAL": 17,
-      "HIGH": 13,
-      "MEDIUM": 13,
-      "LOW": 9,
-      "NIT": 3
+      "HIGH": 16,
+      "MEDIUM": 23,
+      "LOW": 23,
+      "NIT": 10
     }
   }
 }

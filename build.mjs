@@ -234,6 +234,24 @@ function clean(t){
 }
 topics.forEach(clean);
 
+// ---- severity assignment for topics reviewed without severity chips (GN, Casino) ----
+const SEV_ASSIGN = {
+  'Global Navigation': [
+    ['bottom bar represents only sports','HIGH'],['no active state','MEDIUM'],['entering sports/live','HIGH'],
+    ['three overlapping nav','MEDIUM'],['reachable three ways','LOW'],['top-level entry','MEDIUM'],
+    ['changes between logged-out','LOW'],['no labelled','MEDIUM'],['no single, obvious','MEDIUM'],['in-content home shortcut','LOW'],
+  ],
+  'Casino & Virtuals & Other Products': [
+    ['too many filter tabs','MEDIUM'],['no demo option','MEDIUM'],['renamed to','LOW'],['hidden behind scrolling','LOW'],
+    ['confirmation modal','NIT'],['sorting may confuse','LOW'],['stop suggesting','NIT'],['navigation at the top','NIT'],
+    ['number of players','NIT'],['closes immediately','MEDIUM'],['low quality','HIGH'],['recent wins in casino','NIT'],
+    ['delete all recent','LOW'],['catch the eye','NIT'],['same virtuals game','LOW'],['many objects here','LOW'],
+    ['not much interactivity','LOW'],['big recent wins','NIT'],['timer on the virtual','LOW'],['league selection at the top','LOW'],
+    ['next button leads','MEDIUM'],['match is live','LOW'],['active betslip','MEDIUM'],['dedicated betslip','LOW'],
+  ],
+};
+for(const t of topics){ const map=SEV_ASSIGN[t.name]; if(!map) continue; for(const f of t.flows){ for(const x of f.frictions){ if(x.severity) continue; const l=x.text.toLowerCase(); for(const [k,v] of map){ if(l.includes(k)){ x.severity=v; break; } } } } }
+
 // ---- counts ----
 const SEV_ORDER = ['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 function topicCounts(t){
