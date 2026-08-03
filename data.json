@@ -1388,7 +1388,6 @@
       "flows": [
         {
           "flow": "Casino page",
-          "numbered": false,
           "images": [
             {
               "src": "img/casino-virtuals/c1.png",
@@ -1396,19 +1395,35 @@
             },
             {
               "src": "img/casino-virtuals/c2.png",
-              "label": "02 · Casino page"
+              "label": "02 · Casino page",
+              "nums": [
+                "r1",
+                "g2",
+                "r3",
+                "r4"
+              ]
             },
             {
               "src": "img/casino-virtuals/c3.png",
-              "label": "03 · Remove from favourites"
+              "label": "03 · Remove from favourites",
+              "nums": [
+                "r5"
+              ]
             },
             {
               "src": "img/casino-virtuals/c4.png",
-              "label": "04 · Dropdown filter"
+              "label": "04 · Dropdown filter",
+              "nums": [
+                "r6"
+              ]
             },
             {
               "src": "img/casino-virtuals/c5.png",
-              "label": "05 · Search"
+              "label": "05 · Search",
+              "nums": [
+                "r7",
+                "r8"
+              ]
             },
             {
               "src": "img/casino-virtuals/c6.png",
@@ -1416,93 +1431,116 @@
             },
             {
               "src": "img/casino-virtuals/c7.png",
-              "label": "07 · Game entering"
+              "label": "07 · Game entering",
+              "nums": [
+                "r9",
+                "r12"
+              ]
             },
             {
               "src": "img/casino-virtuals/c8.png",
-              "label": "08 · Recently played"
+              "label": "08 · Recently played",
+              "nums": [
+                "r10",
+                "r11"
+              ]
             },
             {
               "src": "img/casino-virtuals/c9.png",
-              "label": "09 · Hero banner"
+              "label": "09 · Hero banner",
+              "nums": [
+                "r14"
+              ]
             },
             {
               "src": "img/casino-virtuals/c10.png",
               "label": "10 · All games button"
             }
           ],
-          "strengths": [],
+          "strengths": [
+            {
+              "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money.",
+              "n": 2,
+              "law": "Cognitive Load"
+            }
+          ],
           "frictions": [
             {
               "text": "Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want.",
+              "n": 1,
               "severity": "MEDIUM",
               "law": "Hick's Law"
             },
             {
-              "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money.",
-              "severity": "MEDIUM",
-              "law": "Cognitive Load"
-            },
-            {
               "text": "The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage.",
+              "n": 3,
               "severity": "LOW",
               "law": "Mental Model"
             },
             {
               "text": "A large number of games are hidden behind scrolling — the user might not notice them.",
+              "n": 4,
               "severity": "LOW",
               "law": "Serial Position Effect"
             },
             {
               "text": "The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible.",
+              "n": 5,
               "severity": "NIT",
               "law": "Tesler's Law"
             },
             {
               "text": "The sorting may confuse users — there’s “Popular” in sorting and also one at the top.",
+              "n": 6,
               "severity": "LOW",
               "law": "Jakob's Law"
             },
             {
               "text": "With many recent searches, we stop suggesting games — we could limit the number or hide the older ones.",
+              "n": 7,
               "severity": "NIT",
               "law": "Cognitive Load"
             },
             {
+              "text": "There’s no action to delete all recent searches at once.",
+              "n": 8,
+              "severity": "LOW",
+              "law": "Tesler's Law"
+            },
+            {
               "text": "Users may be more used to seeing the navigation at the top.",
+              "n": 9,
               "severity": "NIT",
               "law": "Jakob's Law"
             },
             {
+              "text": "There’s no block with recent wins in casino games.",
+              "n": 10,
+              "severity": "NIT",
+              "law": "Von Restorff Effect"
+            },
+            {
               "text": "Show the number of players / likes / total plays to build interest.",
+              "n": 11,
               "severity": "NIT",
               "law": "Von Restorff Effect"
             },
             {
               "text": "When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games).",
+              "n": 12,
               "severity": "MEDIUM",
               "law": "Peak-End Rule"
             },
             {
               "text": "Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading.",
+              "n": 14,
               "severity": "HIGH",
               "law": "Jakob's Law"
-            },
-            {
-              "text": "There’s no block with recent wins in casino games.",
-              "severity": "NIT",
-              "law": "Von Restorff Effect"
-            },
-            {
-              "text": "There’s no action to delete all recent searches at once.",
-              "severity": "LOW",
-              "law": "Tesler's Law"
             }
           ]
         },
         {
           "flow": "Virtuals",
-          "numbered": false,
           "images": [
             {
               "src": "img/casino-virtuals/v1.png",
@@ -1510,7 +1548,15 @@
             },
             {
               "src": "img/casino-virtuals/v2.png",
-              "label": "02 · Virtuals page"
+              "label": "02 · Virtuals page",
+              "nums": [
+                "r1",
+                "r2",
+                "r3",
+                "r4",
+                "r5",
+                "r6"
+              ]
             },
             {
               "src": "img/casino-virtuals/v3.png",
@@ -1518,7 +1564,10 @@
             },
             {
               "src": "img/casino-virtuals/v4.png",
-              "label": "04 · Match list"
+              "label": "04 · Match list",
+              "nums": [
+                "r7"
+              ]
             },
             {
               "src": "img/casino-virtuals/v5.png",
@@ -1526,11 +1575,17 @@
             },
             {
               "src": "img/casino-virtuals/v6.png",
-              "label": "06 · Match details"
+              "label": "06 · Match details",
+              "nums": [
+                "r8"
+              ]
             },
             {
               "src": "img/casino-virtuals/v7.png",
-              "label": "07 · Live matches"
+              "label": "07 · Live matches",
+              "nums": [
+                "r9"
+              ]
             },
             {
               "src": "img/casino-virtuals/v8.png",
@@ -1542,11 +1597,17 @@
             },
             {
               "src": "img/casino-virtuals/v10.png",
-              "label": "10 · Active betslip"
+              "label": "10 · Active betslip",
+              "nums": [
+                "r10"
+              ]
             },
             {
               "src": "img/casino-virtuals/v11.png",
-              "label": "11 · Betslip"
+              "label": "11 · Betslip",
+              "nums": [
+                "r11"
+              ]
             },
             {
               "src": "img/casino-virtuals/v12.png",
@@ -1619,12 +1680,12 @@
       ],
       "figma": "https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan",
       "counts": {
-        "s": 0,
-        "f": 24,
+        "s": 1,
+        "f": 23,
         "sev": {
           "CRITICAL": 0,
           "HIGH": 1,
-          "MEDIUM": 5,
+          "MEDIUM": 4,
           "LOW": 11,
           "NIT": 7
         }
@@ -1694,12 +1755,12 @@
     }
   ],
   "totals": {
-    "s": 57,
-    "f": 116,
+    "s": 58,
+    "f": 115,
     "sev": {
       "CRITICAL": 17,
       "HIGH": 20,
-      "MEDIUM": 31,
+      "MEDIUM": 30,
       "LOW": 32,
       "NIT": 10
     }

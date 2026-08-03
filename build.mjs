@@ -204,24 +204,25 @@ const topics = [
   {
     name: 'Casino & Virtuals & Other Products', reviewer: 'Ishkhan', tag: 'none',
     flows: [
-      {flow:'Casino page', numbered:false,
+      {flow:'Casino page',
        images:[{src:'img/casino-virtuals/c1.png',label:'01 · Landing'},{src:'img/casino-virtuals/c2.png',label:'02 · Casino page'},{src:'img/casino-virtuals/c3.png',label:'03 · Remove from favourites'},{src:'img/casino-virtuals/c4.png',label:'04 · Dropdown filter'},{src:'img/casino-virtuals/c5.png',label:'05 · Search'},{src:'img/casino-virtuals/c6.png',label:'06 · Search — no games'},{src:'img/casino-virtuals/c7.png',label:'07 · Game entering'},{src:'img/casino-virtuals/c8.png',label:'08 · Recently played'},{src:'img/casino-virtuals/c9.png',label:'09 · Hero banner'},{src:'img/casino-virtuals/c10.png',label:'10 · All games button'}],
-       strengths:[], frictions:[
-        {text:"Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want."},
-        {text:"Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money."},
-        {text:"The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage."},
-        {text:"A large number of games are hidden behind scrolling — the user might not notice them."},
-        {text:"The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible."},
-        {text:"The sorting may confuse users — there’s “Popular” in sorting and also one at the top."},
-        {text:"With many recent searches, we stop suggesting games — we could limit the number or hide the older ones."},
-        {text:"Users may be more used to seeing the navigation at the top."},
-        {text:"Show the number of players / likes / total plays to build interest."},
-        {text:"When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games)."},
-        {text:"Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading."},
-        {text:"There’s no block with recent wins in casino games."},
-        {text:"There’s no action to delete all recent searches at once."},
+       strengths:[
+        {text:"Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money.", n:2},
+       ], frictions:[
+        {text:"Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want.", n:1},
+        {text:"The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage.", n:3},
+        {text:"A large number of games are hidden behind scrolling — the user might not notice them.", n:4},
+        {text:"The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible.", n:5},
+        {text:"The sorting may confuse users — there’s “Popular” in sorting and also one at the top.", n:6},
+        {text:"With many recent searches, we stop suggesting games — we could limit the number or hide the older ones.", n:7},
+        {text:"There’s no action to delete all recent searches at once.", n:8},
+        {text:"Users may be more used to seeing the navigation at the top.", n:9},
+        {text:"There’s no block with recent wins in casino games.", n:10},
+        {text:"Show the number of players / likes / total plays to build interest.", n:11},
+        {text:"When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games).", n:12},
+        {text:"Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading.", n:14},
       ]},
-      {flow:'Virtuals', numbered:false,
+      {flow:'Virtuals',
        images:[{src:'img/casino-virtuals/v1.png',label:'01 · Landing'},{src:'img/casino-virtuals/v2.png',label:'02 · Virtuals page'},{src:'img/casino-virtuals/v3.png',label:'03 · Favourites'},{src:'img/casino-virtuals/v4.png',label:'04 · Match list'},{src:'img/casino-virtuals/v5.png',label:'05 · Leagues'},{src:'img/casino-virtuals/v6.png',label:'06 · Match details'},{src:'img/casino-virtuals/v7.png',label:'07 · Live matches'},{src:'img/casino-virtuals/v8.png',label:'08 · Results'},{src:'img/casino-virtuals/v9.png',label:'09 · League statistics'},{src:'img/casino-virtuals/v10.png',label:'10 · Active betslip'},{src:'img/casino-virtuals/v11.png',label:'11 · Betslip'},{src:'img/casino-virtuals/v12.png',label:'12 · Bet placed'},{src:'img/casino-virtuals/v13.png',label:'13 · My Bets (Virtuals)'}],
        strengths:[], frictions:[
         {text:"The illustrations don’t catch the eye."},
@@ -461,6 +462,8 @@ const IMG_NUMS = {
   'img/my-bets-cashout/ob1.png':['g1','g2','g3','g4','r1','r2','r3','r4','r5','r6'],'img/my-bets-cashout/ob2.png':['g5'],'img/my-bets-cashout/ob3.png':['g6','g7','g8','r7'],'img/my-bets-cashout/ob4.png':['r8','r9','r10','r11'],
   'img/my-bets-cashout/ca1.png':['r1'],'img/my-bets-cashout/ca2.png':['g1','r2'],'img/my-bets-cashout/ca3.png':['g2','r3'],'img/my-bets-cashout/ca4.png':['g3','r4','r5'],
   'img/my-bets-cashout/se1.png':['r1','r2','r3'],'img/my-bets-cashout/se2.png':['g1','r4'],'img/my-bets-cashout/se3.png':['g4','r5'],'img/my-bets-cashout/se4.png':['g5','r6'],'img/my-bets-cashout/se5.png':['g2','g3','g6'],'img/my-bets-cashout/se6.png':['r7'],
+  'img/casino-virtuals/c2.png':['r1','g2','r3','r4'],'img/casino-virtuals/c3.png':['r5'],'img/casino-virtuals/c4.png':['r6'],'img/casino-virtuals/c5.png':['r7','r8'],'img/casino-virtuals/c7.png':['r9','r12'],'img/casino-virtuals/c8.png':['r10','r11'],'img/casino-virtuals/c9.png':['r14'],
+  'img/casino-virtuals/v2.png':['r1','r2','r3','r4','r5','r6'],'img/casino-virtuals/v4.png':['r7'],'img/casino-virtuals/v6.png':['r8'],'img/casino-virtuals/v7.png':['r9'],'img/casino-virtuals/v10.png':['r10'],'img/casino-virtuals/v11.png':['r11'],
 };
 for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
