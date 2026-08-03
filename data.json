@@ -12,19 +12,36 @@
           "images": [
             {
               "src": "img/global-navigation/01-home.png",
-              "label": "01 · Home"
+              "label": "01 · Home",
+              "nums": [
+                "g1",
+                "r1",
+                "r7"
+              ]
             },
             {
               "src": "img/global-navigation/02-sports.png",
-              "label": "02 · Sports"
+              "label": "02 · Sports",
+              "nums": [
+                "g3",
+                "r3",
+                "r8"
+              ]
             },
             {
               "src": "img/global-navigation/03-live.png",
-              "label": "03 · Live"
+              "label": "03 · Live",
+              "nums": [
+                "r2",
+                "r8"
+              ]
             },
             {
               "src": "img/global-navigation/04-casino.png",
-              "label": "04 · Casino"
+              "label": "04 · Casino",
+              "nums": [
+                "g4"
+              ]
             },
             {
               "src": "img/global-navigation/05-virtuals.png",
@@ -32,11 +49,17 @@
             },
             {
               "src": "img/global-navigation/06-menu.png",
-              "label": "06 · Menu"
+              "label": "06 · Menu",
+              "nums": [
+                "r4"
+              ]
             },
             {
               "src": "img/global-navigation/07-betslip.png",
-              "label": "07 · Betslip"
+              "label": "07 · Betslip",
+              "nums": [
+                "g2"
+              ]
             },
             {
               "src": "img/global-navigation/08-my-bets.png",
@@ -44,11 +67,17 @@
             },
             {
               "src": "img/global-navigation/09-account.png",
-              "label": "09 · Account"
+              "label": "09 · Account",
+              "nums": [
+                "r5"
+              ]
             },
             {
               "src": "img/global-navigation/10-logged-out.png",
-              "label": "10 · Logged-out"
+              "label": "10 · Logged-out",
+              "nums": [
+                "r6"
+              ]
             }
           ],
           "strengths": [
@@ -508,23 +537,49 @@
           "images": [
             {
               "src": "img/live-betting/lb1-1.png",
-              "label": "01 · Landing"
+              "label": "01 · Landing",
+              "nums": [
+                "r2",
+                "r3",
+                "r4",
+                "g1"
+              ]
             },
             {
               "src": "img/live-betting/lb1-2.png",
-              "label": "01 · Landing"
+              "label": "01 · Landing",
+              "nums": [
+                "g5",
+                "r3",
+                "r6",
+                "r7"
+              ]
             },
             {
               "src": "img/live-betting/lb1-3.png",
-              "label": "02 · Live events"
+              "label": "02 · Live events",
+              "nums": [
+                "r10",
+                "g9",
+                "r8",
+                "r11",
+                "r13"
+              ]
             },
             {
               "src": "img/live-betting/lb1-4.png",
-              "label": "02 · Live events"
+              "label": "02 · Live events",
+              "nums": [
+                "g1"
+              ]
             },
             {
               "src": "img/live-betting/lb1-5.png",
-              "label": "02 · Live events"
+              "label": "02 · Live events",
+              "nums": [
+                "r14",
+                "r15"
+              ]
             }
           ],
           "strengths": [
@@ -608,15 +663,28 @@
           "images": [
             {
               "src": "img/live-betting/lb2-1.png",
-              "label": "03 · Select an event"
+              "label": "03 · Select an event",
+              "nums": [
+                "g1",
+                "r2"
+              ]
             },
             {
               "src": "img/live-betting/lb2-2.png",
-              "label": "04 · Find a market"
+              "label": "04 · Find a market",
+              "nums": [
+                "g3"
+              ]
             },
             {
               "src": "img/live-betting/lb2-3.png",
-              "label": "04 · Find a market"
+              "label": "04 · Find a market",
+              "nums": [
+                "r4",
+                "r7",
+                "r5",
+                "r6"
+              ]
             }
           ],
           "strengths": [
@@ -662,19 +730,33 @@
           "images": [
             {
               "src": "img/live-betting/lb3-1.png",
-              "label": "05 · Time & score indicators"
+              "label": "05 · Time & score indicators",
+              "nums": [
+                "g1"
+              ]
             },
             {
               "src": "img/live-betting/lb3-2.png",
-              "label": "05 · 2nd half resuming"
+              "label": "05 · 2nd half resuming",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/live-betting/lb3-3.png",
-              "label": "05 · Open full stats"
+              "label": "05 · Open full stats",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/live-betting/lb3-4.png",
-              "label": "06 · All markets suspended"
+              "label": "06 · All markets suspended",
+              "nums": [
+                "r3",
+                "g5",
+                "r4"
+              ]
             }
           ],
           "strengths": [
@@ -710,19 +792,37 @@
           "images": [
             {
               "src": "img/live-betting/lb4-1.png",
-              "label": "07 · Open betslip"
+              "label": "07 · Open betslip",
+              "nums": [
+                "r1"
+              ]
             },
             {
               "src": "img/live-betting/lb4-2.png",
-              "label": "07 · Odds change"
+              "label": "07 · Odds change",
+              "nums": [
+                "g2",
+                "r3"
+              ]
             },
             {
               "src": "img/live-betting/lb4-3.png",
-              "label": "08 · Unavailable markets"
+              "label": "08 · Unavailable markets",
+              "nums": [
+                "g4",
+                "r5",
+                "r9"
+              ]
             },
             {
               "src": "img/live-betting/lb4-4.png",
-              "label": "08 · Unavailable markets"
+              "label": "08 · Unavailable markets",
+              "nums": [
+                "r8",
+                "g5",
+                "r7",
+                "g6"
+              ]
             }
           ],
           "strengths": [
@@ -777,15 +877,28 @@
           "images": [
             {
               "src": "img/live-betting/lb5-1.png",
-              "label": "09 · Placed bet"
+              "label": "09 · Placed bet",
+              "nums": [
+                "g1",
+                "r5"
+              ]
             },
             {
               "src": "img/live-betting/lb5-2.png",
-              "label": "09 · Placed bet"
+              "label": "09 · Placed bet",
+              "nums": [
+                "r2",
+                "r4",
+                "r5"
+              ]
             },
             {
               "src": "img/live-betting/lb5-3.png",
-              "label": "09 · Placed bet"
+              "label": "09 · Placed bet",
+              "nums": [
+                "r2",
+                "r3"
+              ]
             }
           ],
           "strengths": [
@@ -822,19 +935,32 @@
           "images": [
             {
               "src": "img/live-betting/lb6-1.png",
-              "label": "Search results"
+              "label": "Search results",
+              "nums": [
+                "r1"
+              ]
             },
             {
               "src": "img/live-betting/lb6-2.png",
-              "label": "Events page"
+              "label": "Events page",
+              "nums": [
+                "r2",
+                "r3"
+              ]
             },
             {
               "src": "img/live-betting/lb6-3.png",
-              "label": "Events page"
+              "label": "Events page",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/live-betting/lb6-4.png",
-              "label": "Events page"
+              "label": "Events page",
+              "nums": [
+                "r2"
+              ]
             }
           ],
           "strengths": [],
@@ -877,6 +1003,13 @@
       "flows": [
         {
           "flow": "Open Bets",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/my-bets-cashout/mb1-open-bets.png",
+              "label": "My Open Bets"
+            }
+          ],
           "strengths": [
             {
               "text": "Categorized tabs provide structured navigation across primary wagering categories."
@@ -952,6 +1085,13 @@
         },
         {
           "flow": "Cashout",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/my-bets-cashout/mb2-cashout.png",
+              "label": "Cashout"
+            }
+          ],
           "strengths": [
             {
               "text": "The Cashout section sits in a logical position within the screen hierarchy."
@@ -988,6 +1128,13 @@
         },
         {
           "flow": "Settled Bets",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/my-bets-cashout/mb3-settled.png",
+              "label": "My Settled Bets"
+            }
+          ],
           "strengths": [
             {
               "text": "Differentiation looks well executed across the layout."

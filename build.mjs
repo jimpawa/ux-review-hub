@@ -130,6 +130,8 @@ const topics = [
     name: 'My Bets & Cashout', reviewer: 'Ajay', tag: 'severity',
     flows: [
       {flow:'Open Bets',
+       numbered:false,
+       images:[{src:'img/my-bets-cashout/mb1-open-bets.png',label:'My Open Bets'}],
        strengths:[
         {text:"Categorized tabs provide structured navigation across primary wagering categories."},
         {text:"Detailed headers and item counts streamline content consumption without cognitive overload."},
@@ -154,6 +156,8 @@ const topics = [
         {text:"Leg selection lists blend into general bet info — distinct container boundaries would aid visual parsing.",severity:"MEDIUM"},
        ]},
       {flow:'Cashout',
+       numbered:false,
+       images:[{src:'img/my-bets-cashout/mb2-cashout.png',label:'Cashout'}],
        strengths:[
         {text:"The Cashout section sits in a logical position within the screen hierarchy."},
         {text:"The action happens directly on the page with fast response times."},
@@ -167,6 +171,8 @@ const topics = [
         {text:"Feedback after Cashout relies solely on the top label — no supporting toast or confirmation popup.",severity:"CRITICAL"},
        ]},
       {flow:'Settled Bets',
+       numbered:false,
+       images:[{src:'img/my-bets-cashout/mb3-settled.png',label:'My Settled Bets'}],
        strengths:[
         {text:"Differentiation looks well executed across the layout."},
         {text:"The internal card design is strong and distinguishes itself from a regular win (needs clearer explanations and UI refinement)."},
@@ -403,6 +409,17 @@ const LAWS = {
   "Law of Similarity":"The eye groups elements that look alike, perceiving them as a set even when they are apart.",
   "Flow":"The state of being fully immersed and focused in an activity, with a good balance of challenge and skill.",
 };
+// per-screen badge tokens (color g/r + number) → lets a finding map to the exact screen it sits on
+const IMG_NUMS = {
+  'img/global-navigation/01-home.png':['g1','r1','r7'],'img/global-navigation/02-sports.png':['g3','r3','r8'],'img/global-navigation/03-live.png':['r2','r8'],'img/global-navigation/04-casino.png':['g4'],'img/global-navigation/06-menu.png':['r4'],'img/global-navigation/07-betslip.png':['g2'],'img/global-navigation/09-account.png':['r5'],'img/global-navigation/10-logged-out.png':['r6'],
+  'img/live-betting/lb1-1.png':['r2','r3','r4','g1'],'img/live-betting/lb1-2.png':['g5','r3','r6','r7'],'img/live-betting/lb1-3.png':['r10','g9','r8','r11','r13'],'img/live-betting/lb1-4.png':['g1'],'img/live-betting/lb1-5.png':['r14','r15'],
+  'img/live-betting/lb2-1.png':['g1','r2'],'img/live-betting/lb2-2.png':['g3'],'img/live-betting/lb2-3.png':['r4','r7','r5','r6'],
+  'img/live-betting/lb3-1.png':['g1'],'img/live-betting/lb3-2.png':['r2'],'img/live-betting/lb3-3.png':['r2'],'img/live-betting/lb3-4.png':['r3','g5','r4'],
+  'img/live-betting/lb4-1.png':['r1'],'img/live-betting/lb4-2.png':['g2','r3'],'img/live-betting/lb4-3.png':['g4','r5','r9'],'img/live-betting/lb4-4.png':['r8','g5','r7','g6'],
+  'img/live-betting/lb5-1.png':['g1','r5'],'img/live-betting/lb5-2.png':['r2','r4','r5'],'img/live-betting/lb5-3.png':['r2','r3'],
+  'img/live-betting/lb6-1.png':['r1'],'img/live-betting/lb6-2.png':['r2','r3'],'img/live-betting/lb6-3.png':['r2'],'img/live-betting/lb6-4.png':['r2'],
+};
+for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
 fs.writeFileSync(new URL('./data.json', import.meta.url), JSON.stringify(payload,null,2));
 
@@ -548,7 +565,7 @@ const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=nu
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 window._lb=function(src){const lb=document.getElementById('lb');document.getElementById('lbimg').src=src;lb.classList.add('open');};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.getElementById('dlg').classList.remove('open');}});
-function openPrio(it){var box=document.getElementById('dlgbox');box.innerHTML='<div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span><span class="crtopic">'+esc(it.topic)+' · '+esc(it.flow)+'</span></div><p class="dlg-text">'+esc(it.text)+'</p><div class="shots" id="dlgshots"></div>';var sh=document.getElementById('dlgshots');(it.images||[]).forEach(function(im){var fig=el('figure','shot');var img=el('img','shotimg');img.src=im.src;img.loading='lazy';img.onclick=function(){_lb(im.src);};fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));sh.append(fig);});document.getElementById('dlg').classList.add('open');}
+function openPrio(it){var box=document.getElementById('dlgbox');box.innerHTML='<div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span>'+(it.law?'<span class="law" data-law="'+esc(it.law)+'">'+esc(it.law)+'</span>':'')+'<span class="crtopic">'+esc(it.topic)+' · '+esc(it.flow)+'</span></div><p class="dlg-text">'+esc(it.text)+'</p><div class="shots" id="dlgshots"></div>';var sh=document.getElementById('dlgshots');(it._imgs||it.images||[]).forEach(function(im){var fig=el('figure','shot');var img=el('img','shotimg');img.src=im.src;img.loading='lazy';img.onclick=function(){_lb(im.src);};fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));sh.append(fig);});document.getElementById('dlg').classList.add('open');}
 window._closeDlg=function(){document.getElementById('dlg').classList.remove('open');};
 function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
 function hashSlug(){let h=location.hash||'';if(h[0]==='#')h=h.slice(1);if(h[0]==='/')h=h.slice(1);return h.trim();}
@@ -562,7 +579,7 @@ function route(){applyHash();sevFilter='ALL';render();window.scrollTo(0,0);}
   function hide(){var t=tipEl();if(t){t.style.display='none';t._for=null;}}
   document.addEventListener('mouseover',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;if(el)show(el);});
   document.addEventListener('mouseout',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;if(el)hide();});
-  document.addEventListener('click',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;var t=tipEl();if(el){e.preventDefault();if(t&&t.style.display==='block'&&t._for===el){hide();}else{show(el);}}else if(!(e.target.closest&&e.target.closest('#lawtip'))){hide();}});
+  document.addEventListener('click',function(e){var el=e.target.closest?e.target.closest('.law[data-law]'):null;var t=tipEl();if(el){e.preventDefault();e.stopPropagation();if(t&&t.style.display==='block'&&t._for===el){hide();}else{show(el);}}else if(!(e.target.closest&&e.target.closest('#lawtip'))){hide();}});
   window.addEventListener('scroll',hide,true);
 })();
 
@@ -621,7 +638,7 @@ function renderSummary(){
   DATA.topics.forEach((tp,i)=>{
     const c=tp.counts;
     const sev=SEV.filter(k=>c.sev[k]).map(k=>'<span class="sev '+k+'">'+k+' '+c.sev[k]+'</span>').join(' ');
-    const card=el('div','tcard','<div class="tc-h"><b>'+esc(tp.name)+'</b><span class="by">'+esc(tp.reviewer)+'</span></div>'+
+    const card=el('div','tcard','<div class="tc-h"><b>'+esc(tp.name)+'</b></div>'+
       '<div class="tc-n"><span class="pill g">'+c.s+' strengths</span><span class="pill r">'+c.f+' friction</span></div>'+
       '<div class="tc-sev">'+(sev||'<span class="by" style="font-size:12px">— no severity —</span>')+'</div>');
     card.onclick=()=>nav(slugify(tp.name));
@@ -632,7 +649,7 @@ function renderSummary(){
   const gw=el('div','sumblock'); gw.append(el('h2',null,'Topics')); gw.append(grid); m.append(gw);
   // top critical across all topics
   const prio=[];
-  DATA.topics.forEach(tp=>tp.flows.forEach(f=>f.frictions.forEach(x=>{ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,images:f.images||[]}); })));
+  DATA.topics.forEach(function(tp){tp.flows.forEach(function(f){f.frictions.forEach(function(x,fi){ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,law:x.law||'',images:f.images||[],tok:'r'+(x.n||(fi+1))}); });});});
   prio.sort((a,b)=>(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1));
   if(prio.length){
     const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — Critical & High ('+prio.length+')'));
@@ -641,8 +658,8 @@ function renderSummary(){
     const list=el('div');
     function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paint();};return c;}
     function paint(){ list.innerHTML=''; const shown=critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter);
-      shown.forEach(function(c){ const hasImg=c.images&&c.images.length; const card=el('div','card bad'+(hasImg?' prio-clickable':''));
-        card.innerHTML='<div class="prio-row">'+(hasImg?'<img class="prio-thumb" loading="lazy" src="'+c.images[0].src+'" alt="">':'')+'<div class="prio-main"><div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span><span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)+(hasImg?'<div class="prio-hint">Click to view the screen(s) →</div>':'')+'</div></div>';
+      shown.forEach(function(c){ var m=(c.images||[]).filter(function(im){return im.nums&&im.nums.indexOf(c.tok)>=0;}); c._imgs=m.length?m:(c.images||[]); var hasImg=c._imgs.length>0; const card=el('div','card bad'+(hasImg?' prio-clickable':''));
+        card.innerHTML='<div class="prio-row">'+(hasImg?'<img class="prio-thumb" loading="lazy" src="'+c._imgs[0].src+'" alt="">':'')+'<div class="prio-main"><div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span>'+(c.law?'<span class="law" data-law="'+esc(c.law)+'">'+esc(c.law)+'</span>':'')+'<span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)+(hasImg?'<div class="prio-hint">Click to view the screen →</div>':'')+'</div></div>';
         if(hasImg) card.onclick=function(){openPrio(c);};
         list.append(card); }); }
     ct.append(chipEl('All','ALL',prio.length));
@@ -655,7 +672,7 @@ function renderTopic(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.topics[current];
   const hasSev=t.flows.some(f=>f.frictions.some(x=>x.severity));
-  const head=el('div','topichead','<h1>'+esc(t.name)+'</h1><span class="by">reviewer · '+esc(t.reviewer)+'</span>'+figLink(t.figma));
+  const head=el('div','topichead','<h1>'+esc(t.name)+'</h1>'+figLink(t.figma));
   m.append(head);
   const mini=el('div','mini');
   mini.append(el('span','pill g',t.counts.s+' strengths'));
@@ -670,7 +687,7 @@ function renderTopic(){
   t.flows.forEach(f=>{
     const frShown = hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
     if(t.flows.length>1 && f.strengths.length===0 && frShown.length===0) return;
-    const showNum = !!(f.images && f.images.length);
+    const showNum = f.numbered!==false && !!(f.images && f.images.length);
     const flow=el('div','flow'); flow.append(el('h2',null,esc(f.flow)));
     if(f.images && f.images.length){
       flow.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click any to zoom.'));
