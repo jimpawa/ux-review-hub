@@ -849,7 +849,11 @@ function renderSummary(){
   // top critical across all topics
   const prio=[];
   DATA.topics.forEach(function(tp){tp.flows.forEach(function(f){f.frictions.forEach(function(x,fi){ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,law:x.law||'',images:f.images||[],tok:'r'+(x.n||(fi+1))}); });});});
-  prio.sort((a,b)=>(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1));
+  prio.sort((a,b)=>{
+    const ta=DATA.topics.findIndex(t=>t.name===a.topic), tb=DATA.topics.findIndex(t=>t.name===b.topic);
+    if(ta!==tb) return ta-tb;
+    return (a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1);
+  });
   if(prio.length){
     const cb=el('div','sumblock'); cb.append(el('h2',null,'Top priority — Critical & High ('+prio.length+')'));
     const T=DATA.totals;
