@@ -44,7 +44,11 @@ main{padding:22px 0 80px}
 .sevf{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 18px}
 .sevf .chip{cursor:pointer;font-size:11px;font-weight:700;border-radius:999px;padding:4px 11px;border:1px solid var(--line);color:var(--mut);background:var(--panel)}
 .sevf .chip.active{color:#fff;border-color:var(--ink)}
-.flow{margin:0 0 26px}
+.flow{margin:0 0 26px;scroll-margin-top:64px}
+.flowtabs{position:sticky;top:0;z-index:15;display:flex;gap:8px;flex-wrap:wrap;padding:10px 0;margin:0 0 14px;background:var(--bg);border-bottom:1px solid var(--line)}
+.ftab{font-size:12.5px;font-weight:600;color:var(--mut);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+.ftab:hover{color:var(--ink)}
+.ftab.active{color:var(--ink);border-color:var(--green2);background:var(--panel2)}
 .flow h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:760px){.cols{grid-template-columns:1fr}.tab{scroll-snap-align:start}}
@@ -279,11 +283,18 @@ function renderTopic(){
     ['ALL',...SEV].forEach(k=>{const c=el('span','chip'+(sevFilter===k?' active':''),k);c.onclick=()=>{sevFilter=k;render();};sf.append(c);});
     m.append(sf);
   }
-  t.flows.forEach(f=>{
-    const frShown = hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
-    if(t.flows.length>1 && f.strengths.length===0 && frShown.length===0) return;
+  const frShownOf=f=> hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
+  const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && o.f.strengths.length===0 && frShownOf(o.f).length===0));
+  if(visFlows.length>1){
+    const ft=el('div','flowtabs');
+    visFlows.forEach(o=>{const c=el('span','ftab',esc(o.f.flow));c.dataset.t='flow-'+o.i;c.onclick=()=>{const s=document.getElementById('flow-'+o.i);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});};ft.append(c);});
+    m.append(ft);
+  }
+  visFlows.forEach(o=>{
+    const f=o.f;
+    const frShown = frShownOf(f);
     const showNum = f.numbered!==false && !!(f.images && f.images.length);
-    const flow=el('div','flow'); flow.append(el('h2',null,esc(f.flow)));
+    const flow=el('div','flow'); flow.id='flow-'+o.i; flow.append(el('h2',null,esc(f.flow)));
     if(f.images && f.images.length){
       flow.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click any to zoom.'));
       const w=el('div','shots');
@@ -314,6 +325,20 @@ function renderTopic(){
     });
     cols.append(good,bad); flow.append(cols); m.append(flow);
   });
+  if(visFlows.length>1) setupFlowSpy();
+}
+function setupFlowSpy(){
+  const tabs=[...document.querySelectorAll('.ftab')];
+  const secs=tabs.map(t=>document.getElementById(t.dataset.t)).filter(Boolean);
+  if(secs.length<2) return;
+  const setActive=id=>tabs.forEach(t=>t.classList.toggle('active',t.dataset.t===id));
+  setActive(tabs[0].dataset.t);
+  if(window._flowIO) window._flowIO.disconnect();
+  window._flowIO=new IntersectionObserver(function(ents){
+    const vis=ents.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+    if(vis.length) setActive(vis[0].target.id);
+  },{rootMargin:'-72px 0px -60% 0px',threshold:0});
+  secs.forEach(s=>window._flowIO.observe(s));
 }
 function render(){renderTabs(); if(current==='summary') renderSummary(); else renderTopic(); paintThemeBtn();}
 renderStats();window.addEventListener('hashchange',route);route();
