@@ -1398,9 +1398,13 @@
               "label": "02 · Casino page",
               "nums": [
                 "r1",
-                "g2",
                 "r3",
-                "r4"
+                "r4",
+                "g2",
+                "g3",
+                "g4",
+                "g5",
+                "g6"
               ]
             },
             {
@@ -1414,7 +1418,8 @@
               "src": "img/casino-virtuals/c4.png",
               "label": "04 · Dropdown filter",
               "nums": [
-                "r6"
+                "r6",
+                "g7"
               ]
             },
             {
@@ -1422,7 +1427,9 @@
               "label": "05 · Search",
               "nums": [
                 "r7",
-                "r8"
+                "r8",
+                "g1",
+                "g2"
               ]
             },
             {
@@ -1449,7 +1456,7 @@
               "src": "img/casino-virtuals/c9.png",
               "label": "09 · Hero banner",
               "nums": [
-                "r14"
+                "r13"
               ]
             },
             {
@@ -1459,9 +1466,44 @@
           ],
           "strengths": [
             {
+              "text": "Persistent search with its own screen and removable “Recent Searches” chips — a fast way back to games with minimal re-typing.",
+              "n": 1,
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "A dedicated Favourites (star) tab lets players save and re-find games — recognition over recall.",
+              "n": 2,
+              "law": "Jakob's Law"
+            },
+            {
               "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money.",
               "n": 2,
               "law": "Cognitive Load"
+            },
+            {
+              "text": "Games are grouped into clear themed rails (“Most Popular in Nigeria”, “Hot Games”) — curated, scannable browsing.",
+              "n": 3,
+              "law": "Law of Common Region"
+            },
+            {
+              "text": "Bold tile art plus “Exclusive” / “Hot” tags and jackpot figures draw the eye and set expectations at a glance.",
+              "n": 4,
+              "law": "Von Restorff Effect"
+            },
+            {
+              "text": "One-tap category chips (Home / All / Popular / Hot) keep browsing on a single screen.",
+              "n": 5,
+              "law": "Fitts's Law"
+            },
+            {
+              "text": "The top bar and bottom nav are identical to the sportsbook, so switching Sports ↔ Casino needs no relearning.",
+              "n": 6,
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "The Win-Bonus progress bar carries into Casino too — consistent reward messaging across products.",
+              "n": 7,
+              "law": "Goal-Gradient Effect"
             }
           ],
           "frictions": [
@@ -1533,7 +1575,7 @@
             },
             {
               "text": "Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading.",
-              "n": 14,
+              "n": 13,
               "severity": "HIGH",
               "law": "Jakob's Law"
             }
@@ -1680,7 +1722,7 @@
       ],
       "figma": "https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan",
       "counts": {
-        "s": 1,
+        "s": 8,
         "f": 23,
         "sev": {
           "CRITICAL": 0,
@@ -1755,7 +1797,7 @@
     }
   ],
   "totals": {
-    "s": 58,
+    "s": 65,
     "f": 115,
     "sev": {
       "CRITICAL": 17,
