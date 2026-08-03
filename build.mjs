@@ -641,8 +641,9 @@ main{padding:22px 0 80px}
 .sevf .chip{cursor:pointer;font-size:11px;font-weight:700;border-radius:999px;padding:4px 11px;border:1px solid var(--line);color:var(--mut);background:var(--panel)}
 .sevf .chip.active{color:#fff;border-color:var(--ink)}
 .flow{margin:0 0 26px;scroll-margin-top:64px}
-.flowtabs{position:sticky;top:0;z-index:15;display:flex;gap:2px;flex-wrap:wrap;margin:0 0 18px;background:var(--bg);border-bottom:1px solid var(--line)}
-.ftab{font-size:13px;font-weight:600;color:var(--mut);padding:11px 15px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+.flowtabs{position:sticky;top:0;z-index:15;display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 0 18px;background:var(--bg);border-bottom:1px solid var(--line)}
+.flowtabs::-webkit-scrollbar{display:none}
+.ftab{flex:0 0 auto;font-size:13px;font-weight:600;color:var(--mut);padding:11px 15px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
 .ftab:hover{color:var(--ink)}
 .ftab.active{color:var(--ink);border-bottom-color:var(--green2)}
 .flow h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
