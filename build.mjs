@@ -322,6 +322,7 @@ const topics = [
         {text:"No advanced filters or advanced search on the homepage or in the header.", n:3, severity:"MEDIUM", law:"Hick's Law"},
         {text:"Combo bets show on the first screen, but no event cards are visible without scrolling.", n:4, severity:"MEDIUM", law:"Serial Position Effect"},
         {text:"The stat icon is hard to understand and too small — it needs to be bigger and clearer.", n:5, severity:"LOW", law:"Fitts's Law"},
+        {text:"No indication that a selection was already made, unless it’s a 1X2 pick — the chosen market isn’t reflected back to the user.", n:6, severity:"MEDIUM", law:"Von Restorff Effect"},
         {text:"At the card level it isn’t clear how many markets or bet options an event offers.", n:8, severity:"MEDIUM", law:"Cognitive Load"},
         {text:"The “＞” arrow icon buttons look redundant — they do the same thing as tapping the card.", n:9, severity:"LOW", law:"Tesler's Law"},
         {text:"The card header could be more engaging with visuals (team crests, form, etc.).", n:10, severity:"LOW", law:"Aesthetic-Usability Effect"},

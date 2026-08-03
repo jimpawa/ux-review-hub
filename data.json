@@ -621,6 +621,12 @@
               "law": "Fitts's Law"
             },
             {
+              "text": "No indication that a selection was already made, unless it’s a 1X2 pick — the chosen market isn’t reflected back to the user.",
+              "n": 6,
+              "severity": "MEDIUM",
+              "law": "Von Restorff Effect"
+            },
+            {
               "text": "At the card level it isn’t clear how many markets or bet options an event offers.",
               "n": 8,
               "severity": "MEDIUM",
@@ -806,11 +812,11 @@
       "figma": "https://www.figma.com/design/PoVIhpxPmpC2MtxrIhRHNs/Pre-match-Betting-%7C-UX-Review-%7C-Aleida---Konsta",
       "counts": {
         "s": 8,
-        "f": 18,
+        "f": 19,
         "sev": {
           "CRITICAL": 0,
           "HIGH": 5,
-          "MEDIUM": 8,
+          "MEDIUM": 9,
           "LOW": 5,
           "NIT": 0
         }
@@ -2413,11 +2419,11 @@
   "todo": [],
   "totals": {
     "s": 97,
-    "f": 143,
+    "f": 144,
     "sev": {
       "CRITICAL": 17,
       "HIGH": 30,
-      "MEDIUM": 44,
+      "MEDIUM": 45,
       "LOW": 42,
       "NIT": 10
     }
