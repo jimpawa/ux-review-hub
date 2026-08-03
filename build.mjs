@@ -641,10 +641,10 @@ main{padding:22px 0 80px}
 .sevf .chip{cursor:pointer;font-size:11px;font-weight:700;border-radius:999px;padding:4px 11px;border:1px solid var(--line);color:var(--mut);background:var(--panel)}
 .sevf .chip.active{color:#fff;border-color:var(--ink)}
 .flow{margin:0 0 26px;scroll-margin-top:64px}
-.flowtabs{position:sticky;top:0;z-index:15;display:flex;gap:8px;flex-wrap:wrap;padding:10px 0;margin:0 0 14px;background:var(--bg);border-bottom:1px solid var(--line)}
-.ftab{font-size:12.5px;font-weight:600;color:var(--mut);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+.flowtabs{position:sticky;top:0;z-index:15;display:flex;gap:2px;flex-wrap:wrap;margin:0 0 18px;background:var(--bg);border-bottom:1px solid var(--line)}
+.ftab{font-size:13px;font-weight:600;color:var(--mut);padding:11px 15px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
 .ftab:hover{color:var(--ink)}
-.ftab.active{color:var(--ink);border-color:var(--green2);background:var(--panel2)}
+.ftab.active{color:var(--ink);border-bottom-color:var(--green2)}
 .flow h2{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:760px){.cols{grid-template-columns:1fr}.tab{scroll-snap-align:start}}
@@ -750,7 +750,7 @@ footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
-let current = 'summary', sevFilter = 'ALL', critFilter = 'ALL';
+let current = 'summary', sevFilter = 'ALL', critFilter = 'ALL', flowIdx = 0;
 const SEV=['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -767,7 +767,7 @@ function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^
 function hashSlug(){let h=location.hash||'';if(h[0]==='#')h=h.slice(1);if(h[0]==='/')h=h.slice(1);return h.trim();}
 function applyHash(){const h=hashSlug();if(!h||h==='summary'){current='summary';return;}const i=DATA.topics.findIndex(t=>slugify(t.name)===h);current=i>=0?i:'summary';}
 function nav(slug){if(hashSlug()===slug){route();}else{location.hash='/'+slug;}}
-function route(){applyHash();sevFilter='ALL';render();window.scrollTo(0,0);}
+function route(){applyHash();sevFilter='ALL';flowIdx=0;render();window.scrollTo(0,0);}
 (function(){
   function tipEl(){return document.getElementById('lawtip');}
   function descFor(name){var d=DATA.laws[name];if(!d){var f=(name.split('·')[0]||'').trim();d=DATA.laws[f];}return d;}
@@ -881,12 +881,14 @@ function renderTopic(){
   }
   const frShownOf=f=> hasSev && sevFilter!=='ALL' ? f.frictions.filter(x=>x.severity===sevFilter) : f.frictions;
   const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && o.f.strengths.length===0 && frShownOf(o.f).length===0));
-  if(visFlows.length>1){
+  if(flowIdx>=visFlows.length) flowIdx=0;
+  const tabbed=visFlows.length>1;
+  if(tabbed){
     const ft=el('div','flowtabs');
-    visFlows.forEach(o=>{const c=el('span','ftab',esc(o.f.flow));c.dataset.t='flow-'+o.i;c.onclick=()=>{const s=document.getElementById('flow-'+o.i);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});};ft.append(c);});
+    visFlows.forEach((o,j)=>{const c=el('span','ftab'+(j===flowIdx?' active':''),esc(o.f.flow));c.onclick=()=>{flowIdx=j;render();window.scrollTo(0,0);};ft.append(c);});
     m.append(ft);
   }
-  visFlows.forEach(o=>{
+  (tabbed?[visFlows[flowIdx]]:visFlows).forEach(o=>{
     const f=o.f;
     const frShown = frShownOf(f);
     const showNum = f.numbered!==false && !!(f.images && f.images.length);
@@ -921,20 +923,6 @@ function renderTopic(){
     });
     cols.append(good,bad); flow.append(cols); m.append(flow);
   });
-  if(visFlows.length>1) setupFlowSpy();
-}
-function setupFlowSpy(){
-  const tabs=[...document.querySelectorAll('.ftab')];
-  const secs=tabs.map(t=>document.getElementById(t.dataset.t)).filter(Boolean);
-  if(secs.length<2) return;
-  const setActive=id=>tabs.forEach(t=>t.classList.toggle('active',t.dataset.t===id));
-  setActive(tabs[0].dataset.t);
-  if(window._flowIO) window._flowIO.disconnect();
-  window._flowIO=new IntersectionObserver(function(ents){
-    const vis=ents.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
-    if(vis.length) setActive(vis[0].target.id);
-  },{rootMargin:'-72px 0px -60% 0px',threshold:0});
-  secs.forEach(s=>window._flowIO.observe(s));
 }
 function render(){renderTabs(); if(current==='summary') renderSummary(); else renderTopic(); paintThemeBtn();}
 renderStats();window.addEventListener('hashchange',route);route();
