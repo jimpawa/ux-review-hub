@@ -1,0 +1,655 @@
+{
+  "snapshot": "2026-08-03",
+  "topics": [
+    {
+      "name": "Global Navigation",
+      "reviewer": "Jim",
+      "tag": "law",
+      "flows": [
+        {
+          "flow": "betPawa.ng — Global Navigation",
+          "strengths": [
+            {
+              "text": "Persistent bottom bar keeps the betting loop (Sports · Betslip · My bets · Account) one tap away from anywhere.",
+              "law": "Fitts's Law"
+            },
+            {
+              "text": "Betslip is a self-contained sheet — Betslip↔My bets pill, an “accept odds change” toggle, and clear stake/odds/payout.",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "Sport + market selections persist in the URL — browser back/refresh keep the user’s place.",
+              "law": "Mental Model"
+            },
+            {
+              "text": "Casino & Virtuals keep the product header (Sports/Live/Casino/Virtuals) — consistent within those products.",
+              "law": "Law of Common Region"
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Bottom bar represents only Sports of the four products — Home/Live/Casino/Virtuals aren’t in the bar.",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "No active state on Home/Casino/Virtuals; on Live the bar highlights “Sports” — absent/conflicting “you are here”.",
+              "law": "Von Restorff Effect"
+            },
+            {
+              "text": "Entering Sports/Live replaces the product switcher with the sports sub-nav — you can’t reach Casino/Virtuals from within Sports without the Menu.",
+              "law": "Mental Model"
+            },
+            {
+              "text": "Three overlapping nav surfaces (header + bottom bar + full-screen Menu) duplicate the same destinations.",
+              "law": "Occam's Razor"
+            },
+            {
+              "text": "My Bets is reachable three ways (bottom-nav bets page, betslip pill, Account drawer) with different presentations.",
+              "law": "Occam's Razor"
+            },
+            {
+              "text": "Help / Support has no top-level entry — it lives only inside the Account drawer.",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "The bottom bar changes between logged-out and logged-in (Join Now ↔ My bets).",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "No labelled “Home” anywhere — the homepage is reachable only via the logo and an unlabelled sub-nav icon; nothing in the header or bottom bar says Home.",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "No single, obvious “Home”: the logo returns to the homepage while the bottom-nav “Sports” opens the events list — two different pages. A dedicated Home in the bottom bar, in the thumb zone, would give one clear way back.",
+              "law": "Mental Model"
+            },
+            {
+              "text": "The in-content home shortcut is inconsistent — the sub-nav home icon appears on Sports/Casino/Virtuals but is replaced by “Upcoming” on Live, and it’s an icon-only ~40px tap target.",
+              "law": "Fitts's Law"
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "s": 4,
+        "f": 10,
+        "sev": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0,
+          "NIT": 0
+        }
+      }
+    },
+    {
+      "name": "Live Betting",
+      "reviewer": "Henry",
+      "tag": "severity",
+      "flows": [
+        {
+          "flow": "Live event discovery",
+          "strengths": [
+            {
+              "text": "Live events featured above the fold, easily visible on top navigation."
+            },
+            {
+              "text": "Can find live events on home page, with indication of how many more are available."
+            },
+            {
+              "text": "Can easily sort and filter; applied filters clearly visible and easy to clear."
+            },
+            {
+              "text": "Shows the number of live events under each category."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Live events is the last option and easily missed. We also don’t show this whole column for other sports besides football; when the user switches to another sport, football is still prioritised on the homepage’s live section.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Live event count mismatches within the same session (Home “Live 7” pill vs. “Live 15” section header).",
+              "severity": "LOW"
+            },
+            {
+              "text": "Type chips (Outrights/Upcoming/Live) and competition chips (UEFA CL/EL) share one scrollable row with no visual grouping — unclear where one category ends and the next begins.",
+              "severity": "NIT"
+            },
+            {
+              "text": "Individual live rows mix sports (football, tennis) with no sport icon, only a text label — recall over recognition.",
+              "severity": "LOW"
+            },
+            {
+              "text": "Floating “Back to top” pill overlaps live list content at the bottom of the scroll.",
+              "severity": "LOW"
+            },
+            {
+              "text": "User expects to see the 15 more live games, but the default list comes short since other games sit under other categories — misleading.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "It’s not clear how to search for a specific game from this list; the search icon up top is easy to miss, and search results navigate the user away from the page.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Nothing distinguishes “actively updating” from “frozen” — just silent time jumps.",
+              "severity": "LOW"
+            },
+            {
+              "text": "No visible default sort logic on the default live page.",
+              "severity": "NIT"
+            },
+            {
+              "text": "Some events don’t show market selections on the match card.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "The 1UP & 2UP fixed section reduces the view area — the user ends up seeing only two match cards per view.",
+              "severity": "LOW"
+            }
+          ]
+        },
+        {
+          "flow": "Selecting an event & market",
+          "strengths": [
+            {
+              "text": "Markets have explainers that show on demand."
+            },
+            {
+              "text": "User can search for a market without exiting the page."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Tooltip text is cut off and auto-closes on scroll.",
+              "severity": "LOW"
+            },
+            {
+              "text": "Search returns different results depending on which tab you’re in, with no indication of why or which tab is being searched — a hidden boundary.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Search empty state has no way to broaden the search (e.g. “search all markets”) — a dead end.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Exiting search navigates the user back to the “All” tab even when a different tab was active.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Navigating back to the live events list doesn’t update the list right away.",
+              "severity": "CRITICAL"
+            }
+          ]
+        },
+        {
+          "flow": "Halftime & market suspension states",
+          "strengths": [
+            {
+              "text": "Half-time indicators are present."
+            },
+            {
+              "text": "Clear ‘why’ and next action for the user."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Live indicator reverts to the scheduled kickoff time instead of a HT badge while the event is still ongoing — miscommunication between the 3rd-party stats game time and betPawa.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Markets disappear and reappear with no genuine loading state (skeleton) to show whether the page loaded.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "At times the live page shows the second half has started but the details page doesn’t update for ~20 seconds.",
+              "severity": "LOW"
+            }
+          ]
+        },
+        {
+          "flow": "Placing a betslip",
+          "strengths": [
+            {
+              "text": "Odds-change direction is shown clearly."
+            },
+            {
+              "text": "“Accept odds change” toggle correctly gates behaviour."
+            },
+            {
+              "text": "Clear indication of locked and unavailable selections."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "No actual time & score for live events — hard to tell if the score changed since your last selection.",
+              "severity": "NIT"
+            },
+            {
+              "text": "“Accept odds change” is auto-toggled off when odds change.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "The “Odds changed” banner doesn’t get dismissed.",
+              "severity": "LOW"
+            },
+            {
+              "text": "“Locked” and “Unavailable” are two different badges with no explanation of what distinguishes them (temporarily suspended vs. permanently gone?).",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Error banner says “Click ‘Place bet without N/A’” but the actual button reads “PLACE BET WITHOUT LOCKED”.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Selection order re-shuffles between states (a team moves bottom → top → bottom) with no user action.",
+              "severity": "CRITICAL"
+            }
+          ]
+        },
+        {
+          "flow": "Follow-up in betslip",
+          "strengths": [
+            {
+              "text": "Live legs show the live badge, half and time."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Distinct visuals for live stats create more inconsistency.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "There are cases where the ‘minimize stats’ action within the widget doesn’t show up.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Opening the inline stats panel pushes the remaining legs a full scroll below, and the viewpoint is off — the maximize/minimize interaction is frustrating.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Two different disclaimer strings cover the same thing.",
+              "severity": "LOW"
+            }
+          ]
+        },
+        {
+          "flow": "Other",
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "Clicking on events navigates the user back to Upcoming.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Sometimes we show full stats, sometimes we don’t.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Inconsistent opening behaviour of live stats (expand vs. bottom-sheet).",
+              "severity": "MEDIUM"
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "s": 12,
+        "f": 32,
+        "sev": {
+          "CRITICAL": 11,
+          "HIGH": 2,
+          "MEDIUM": 7,
+          "LOW": 9,
+          "NIT": 3
+        }
+      }
+    },
+    {
+      "name": "My Bets & Cashout",
+      "reviewer": "Ajay",
+      "tag": "severity",
+      "flows": [
+        {
+          "flow": "Open Bets",
+          "strengths": [
+            {
+              "text": "Categorized tabs provide structured navigation across primary wagering categories."
+            },
+            {
+              "text": "Detailed headers and item counts streamline content consumption without cognitive overload."
+            },
+            {
+              "text": "Granular status labels clearly communicate real-time progress for individual selections inside multi-leg wagers."
+            },
+            {
+              "text": "Active tab highlighting offers strong feedback vs. competitors (contrasting badge colours would optimise it further)."
+            },
+            {
+              "text": "A functional return-to-top control enables rapid upward navigation without obscuring card elements."
+            },
+            {
+              "text": "Essential wagering details remain clearly grouped within the primary visual focus area."
+            },
+            {
+              "text": "The share trigger occupies a high-visibility position that reinforces social features."
+            },
+            {
+              "text": "Bet cards display full context: sport type, tournament name, and league details."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Header tabs stay fixed but trigger navigation to unrelated screens outside the My Bets section — unexpected flows and navigational confusion.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Secondary navigation tabs don’t stay pinned during vertical scrolling, forcing users to scroll back up to switch views.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Bet ID values are static text with no copy functionality — reduced utility for support or reference.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Date attributes are correct, but a more structured visual layout (à la BetKing) would improve hierarchy and legibility.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Grey informational boxes occupy disproportionate screen space — an opportunity for more compact UI.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Bet cards lack selection details despite available space — preview components or expandable accordions would add instant clarity.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "The Re-use button sits above match listings, creating ambiguity about targeted selections — move it below the specific games.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "No explicit tap-to-copy for unique wagering identifiers.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Status badges show game state but cards lack rich live visualisations, field movement, and clear event identifiers.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Users can’t tap through to primary event pages from within bet cards — breaks expected exploration paths.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Leg selection lists blend into general bet info — distinct container boundaries would aid visual parsing.",
+              "severity": "MEDIUM"
+            }
+          ]
+        },
+        {
+          "flow": "Cashout",
+          "strengths": [
+            {
+              "text": "The Cashout section sits in a logical position within the screen hierarchy."
+            },
+            {
+              "text": "The action happens directly on the page with fast response times."
+            },
+            {
+              "text": "The status label is placed in a correct and visually prominent location."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Cashout information is completely absent despite the corresponding badge in the UI.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Show the Cashout amount upfront (like competitors); wide spacing between header and Request button creates uncertainty about the outcome.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Advanced Cashout functionality available on competitor platforms is entirely missing.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "The status label after Cashout lacks clarity, and the header doesn’t use past tense to signal completion.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "Feedback after Cashout relies solely on the top label — no supporting toast or confirmation popup.",
+              "severity": "CRITICAL"
+            }
+          ]
+        },
+        {
+          "flow": "Settled Bets",
+          "strengths": [
+            {
+              "text": "Differentiation looks well executed across the layout."
+            },
+            {
+              "text": "The internal card design is strong and distinguishes itself from a regular win (needs clearer explanations and UI refinement)."
+            },
+            {
+              "text": "The Share button has an impressive visual design that draws appropriate attention."
+            }
+          ],
+          "frictions": [
+            {
+              "text": "This banner permanently occupies too much space while limiting sorting — a dedicated filter button with deep customisation would be better.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "All negative aspects from the Open Bets card persist here; Settled cards should be more clearly distinct from Open bets.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "Essential sharing functionality is completely absent directly on the card.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "The reason for celebrating this win with confetti and a trophy is unclear, and the iconography looks cluttered/unrecognisable without zooming in.",
+              "severity": "MEDIUM"
+            },
+            {
+              "text": "A dropdown pattern for Open bet details plus full-page navigation for Settled bets would maximise usability.",
+              "severity": "HIGH"
+            },
+            {
+              "text": "The card doesn’t clearly communicate whether a game is won or lost — requires deep analysis vs. immediate visual cues used by competitors.",
+              "severity": "CRITICAL"
+            },
+            {
+              "text": "Sharing is heavily constrained and falls behind competitors — needs significant expansion and customisation.",
+              "severity": "CRITICAL"
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "s": 14,
+        "f": 23,
+        "sev": {
+          "CRITICAL": 6,
+          "HIGH": 11,
+          "MEDIUM": 6,
+          "LOW": 0,
+          "NIT": 0
+        }
+      }
+    },
+    {
+      "name": "Help & Support",
+      "reviewer": "Ishkhan & Aleida",
+      "tag": "none",
+      "flows": [
+        {
+          "flow": "Help Page",
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "Play up the block titles and add illustrations to visually help users."
+            },
+            {
+              "text": "Adding screenshots or videos would make it more convenient for the user."
+            },
+            {
+              "text": "A search would make it easier for users to find the information they need."
+            }
+          ]
+        },
+        {
+          "flow": "Rules",
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "Play up the block titles and add illustrations to visually help users."
+            },
+            {
+              "text": "A search would make it easier for users to find the information they need."
+            },
+            {
+              "text": "Add navigation within this page — by sport types and so on."
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "s": 0,
+        "f": 6,
+        "sev": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0,
+          "NIT": 0
+        }
+      }
+    },
+    {
+      "name": "Casino & Virtuals & Other Products",
+      "reviewer": "Ishkhan",
+      "tag": "none",
+      "flows": [
+        {
+          "flow": "Casino page",
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want."
+            },
+            {
+              "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money."
+            },
+            {
+              "text": "The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage."
+            },
+            {
+              "text": "A large number of games are hidden behind scrolling — the user might not notice them."
+            },
+            {
+              "text": "The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible."
+            },
+            {
+              "text": "The sorting may confuse users — there’s “Popular” in sorting and also one at the top."
+            },
+            {
+              "text": "With many recent searches, we stop suggesting games — we could limit the number or hide the older ones."
+            },
+            {
+              "text": "Users may be more used to seeing the navigation at the top."
+            },
+            {
+              "text": "Show the number of players / likes / total plays to build interest."
+            },
+            {
+              "text": "When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games)."
+            },
+            {
+              "text": "Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading."
+            },
+            {
+              "text": "There’s no block with recent wins in casino games."
+            },
+            {
+              "text": "There’s no action to delete all recent searches at once."
+            }
+          ]
+        },
+        {
+          "flow": "Virtuals",
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "The illustrations don’t catch the eye."
+            },
+            {
+              "text": "Multiple entries essentially lead to the same Virtuals game and take up a lot of space."
+            },
+            {
+              "text": "There aren’t many objects here — the layout could show everything to the user at once."
+            },
+            {
+              "text": "Not much interactivity — no promotions, banners, etc. to engage the user."
+            },
+            {
+              "text": "Show some big recent wins to draw the user in."
+            },
+            {
+              "text": "A timer on the virtual thumbnail could show when the next match starts."
+            },
+            {
+              "text": "Show the league selection at the top."
+            },
+            {
+              "text": "It’s unclear where the Next button leads."
+            },
+            {
+              "text": "Show more clearly that the match is live — maybe with an animation or illustration."
+            },
+            {
+              "text": "The active betslip isn’t very noticeable."
+            },
+            {
+              "text": "Consider a dedicated betslip on the Virtuals page to remove noise and focus the user on the action."
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "s": 0,
+        "f": 24,
+        "sev": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0,
+          "NIT": 0
+        }
+      }
+    }
+  ],
+  "todo": [
+    {
+      "name": "PreMatch",
+      "reviewer": "—",
+      "note": "Δεν είναι έτοιμο ακόμη — θα προστεθεί όταν ολοκληρωθεί."
+    },
+    {
+      "name": "Homepage & Sports Discovery",
+      "reviewer": "—",
+      "note": "Δεν είναι έτοιμο ακόμη — θα προστεθεί όταν ολοκληρωθεί."
+    }
+  ],
+  "totals": {
+    "s": 30,
+    "f": 95,
+    "sev": {
+      "CRITICAL": 17,
+      "HIGH": 13,
+      "MEDIUM": 13,
+      "LOW": 9,
+      "NIT": 3
+    }
+  }
+}
