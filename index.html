@@ -111,6 +111,9 @@ main{padding:22px 0 80px}
 .prio-row{display:flex;gap:14px;align-items:flex-start}
 .prio-thumb{width:66px;height:120px;object-fit:cover;object-position:top center;border-radius:8px;border:1px solid var(--line);background:var(--panel);flex:0 0 auto}
 .prio-main{flex:1;min-width:0}
+.prio-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.prio-list .card{margin:0}
+@media(max-width:820px){.prio-list{grid-template-columns:1fr}}
 .prio-clickable{cursor:pointer;transition:border-color .15s,transform .1s}
 .prio-clickable:hover{border-color:var(--red)}
 .prio-hint{margin-top:8px;font-size:11px;font-weight:700;color:var(--mut)}
@@ -252,7 +255,7 @@ function renderSummary(){
     cb.append(el('p','about-intro','The list below pulls together the most severe issues — <b>'+T.sev.CRITICAL+' critical</b> and <b>'+T.sev.HIGH+' high-priority</b> — from across all '+DATA.topics.length+' journeys, so the highest-impact problems sit in one place before you dive into each topic. Filter by topic with the tabs; every row shows the severity, the UX principle it breaks, where it happens, and — where a screen is available — a thumbnail you can open.'));
     const withPrio=DATA.topics.map(t=>t.name).filter(n=>prio.some(c=>c.topic===n));
     const ct=el('div','sevf');
-    const list=el('div');
+    const list=el('div','prio-list');
     function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paint();};return c;}
     function paint(){ list.innerHTML=''; const shown=critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter);
       shown.forEach(function(c){ var m=(c.images||[]).filter(function(im){return im.nums&&im.nums.indexOf(c.tok)>=0;}); c._imgs=m.length?m:(c.images||[]); var hasImg=c._imgs.length>0; const card=el('div','card bad'+(hasImg?' prio-clickable':''));
