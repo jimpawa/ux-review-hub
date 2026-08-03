@@ -1279,6 +1279,49 @@
       "flows": [
         {
           "flow": "Casino page",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/casino-virtuals/c1.png",
+              "label": "01 · Landing"
+            },
+            {
+              "src": "img/casino-virtuals/c2.png",
+              "label": "02 · Casino page"
+            },
+            {
+              "src": "img/casino-virtuals/c3.png",
+              "label": "03 · Remove from favourites"
+            },
+            {
+              "src": "img/casino-virtuals/c4.png",
+              "label": "04 · Dropdown filter"
+            },
+            {
+              "src": "img/casino-virtuals/c5.png",
+              "label": "05 · Search"
+            },
+            {
+              "src": "img/casino-virtuals/c6.png",
+              "label": "06 · Search — no games"
+            },
+            {
+              "src": "img/casino-virtuals/c7.png",
+              "label": "07 · Game entering"
+            },
+            {
+              "src": "img/casino-virtuals/c8.png",
+              "label": "08 · Recently played"
+            },
+            {
+              "src": "img/casino-virtuals/c9.png",
+              "label": "09 · Hero banner"
+            },
+            {
+              "src": "img/casino-virtuals/c10.png",
+              "label": "10 · All games button"
+            }
+          ],
           "strengths": [],
           "frictions": [
             {
@@ -1350,6 +1393,61 @@
         },
         {
           "flow": "Virtuals",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/casino-virtuals/v1.png",
+              "label": "01 · Landing"
+            },
+            {
+              "src": "img/casino-virtuals/v2.png",
+              "label": "02 · Virtuals page"
+            },
+            {
+              "src": "img/casino-virtuals/v3.png",
+              "label": "03 · Favourites"
+            },
+            {
+              "src": "img/casino-virtuals/v4.png",
+              "label": "04 · Match list"
+            },
+            {
+              "src": "img/casino-virtuals/v5.png",
+              "label": "05 · Leagues"
+            },
+            {
+              "src": "img/casino-virtuals/v6.png",
+              "label": "06 · Match details"
+            },
+            {
+              "src": "img/casino-virtuals/v7.png",
+              "label": "07 · Live matches"
+            },
+            {
+              "src": "img/casino-virtuals/v8.png",
+              "label": "08 · Results"
+            },
+            {
+              "src": "img/casino-virtuals/v9.png",
+              "label": "09 · League statistics"
+            },
+            {
+              "src": "img/casino-virtuals/v10.png",
+              "label": "10 · Active betslip"
+            },
+            {
+              "src": "img/casino-virtuals/v11.png",
+              "label": "11 · Betslip"
+            },
+            {
+              "src": "img/casino-virtuals/v12.png",
+              "label": "12 · Bet placed"
+            },
+            {
+              "src": "img/casino-virtuals/v13.png",
+              "label": "13 · My Bets (Virtuals)"
+            }
+          ],
           "strengths": [],
           "frictions": [
             {

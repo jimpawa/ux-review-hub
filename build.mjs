@@ -207,7 +207,9 @@ const topics = [
   {
     name: 'Casino & Virtuals & Other Products', reviewer: 'Ishkhan', tag: 'none',
     flows: [
-      {flow:'Casino page', strengths:[], frictions:[
+      {flow:'Casino page', numbered:false,
+       images:[{src:'img/casino-virtuals/c1.png',label:'01 · Landing'},{src:'img/casino-virtuals/c2.png',label:'02 · Casino page'},{src:'img/casino-virtuals/c3.png',label:'03 · Remove from favourites'},{src:'img/casino-virtuals/c4.png',label:'04 · Dropdown filter'},{src:'img/casino-virtuals/c5.png',label:'05 · Search'},{src:'img/casino-virtuals/c6.png',label:'06 · Search — no games'},{src:'img/casino-virtuals/c7.png',label:'07 · Game entering'},{src:'img/casino-virtuals/c8.png',label:'08 · Recently played'},{src:'img/casino-virtuals/c9.png',label:'09 · Hero banner'},{src:'img/casino-virtuals/c10.png',label:'10 · All games button'}],
+       strengths:[], frictions:[
         {text:"Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want."},
         {text:"Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money."},
         {text:"The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage."},
@@ -222,7 +224,9 @@ const topics = [
         {text:"There’s no block with recent wins in casino games."},
         {text:"There’s no action to delete all recent searches at once."},
       ]},
-      {flow:'Virtuals', strengths:[], frictions:[
+      {flow:'Virtuals', numbered:false,
+       images:[{src:'img/casino-virtuals/v1.png',label:'01 · Landing'},{src:'img/casino-virtuals/v2.png',label:'02 · Virtuals page'},{src:'img/casino-virtuals/v3.png',label:'03 · Favourites'},{src:'img/casino-virtuals/v4.png',label:'04 · Match list'},{src:'img/casino-virtuals/v5.png',label:'05 · Leagues'},{src:'img/casino-virtuals/v6.png',label:'06 · Match details'},{src:'img/casino-virtuals/v7.png',label:'07 · Live matches'},{src:'img/casino-virtuals/v8.png',label:'08 · Results'},{src:'img/casino-virtuals/v9.png',label:'09 · League statistics'},{src:'img/casino-virtuals/v10.png',label:'10 · Active betslip'},{src:'img/casino-virtuals/v11.png',label:'11 · Betslip'},{src:'img/casino-virtuals/v12.png',label:'12 · Bet placed'},{src:'img/casino-virtuals/v13.png',label:'13 · My Bets (Virtuals)'}],
+       strengths:[], frictions:[
         {text:"The illustrations don’t catch the eye."},
         {text:"Multiple entries essentially lead to the same Virtuals game and take up a lot of space."},
         {text:"There aren’t many objects here — the layout could show everything to the user at once."},
@@ -533,9 +537,11 @@ main{padding:22px 0 80px}
 .about-card h4{margin:0 0 10px;font-size:13px;display:flex;align-items:center;gap:8px}
 .about-card h4 .step{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:800;flex:0 0 auto}
 .about-card p{margin:0;font-size:13px;color:var(--ink);opacity:.85;line-height:1.55}
+.about-list{margin:0;padding-left:18px;font-size:13px;color:var(--ink);opacity:.88;line-height:1.5}
+.about-list li{margin:7px 0}
 .about-card p b{opacity:1}
-.sevdef{display:flex;gap:8px;align-items:flex-start;margin:7px 0;font-size:12.5px;color:var(--ink);opacity:.9}
-.sevdef .sev{flex:0 0 auto;min-width:62px;text-align:center}
+.sevdef{display:grid;grid-template-columns:82px 1fr;gap:10px;align-items:start;margin:8px 0;font-size:12.5px;color:var(--ink);opacity:.9}
+.sevdef .sev{width:100%;text-align:center;box-sizing:border-box}
 .sevbar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
 .sevbar .seg{height:100%}
 .seg.CRITICAL{background:var(--crit)} .seg.HIGH{background:var(--high)} .seg.MEDIUM{background:var(--med)} .seg.LOW{background:var(--low)} .seg.NIT{background:var(--nit)}
@@ -669,7 +675,7 @@ function renderSummary(){
   // how this review was done
   const about=el('div','sumblock'); about.append(el('h2',null,'How this review was done'));
   const ag=el('div','about-grid');
-  ag.append(el('div','about-card','<h4><span class="step">1</span>Reviewing the flows</h4><p>Each reviewer took one journey and walked it on betPawa Nigeria (mobile) <b>flow by flow</b> — capturing the key screens in order, dropping numbered badges on the UI, and logging every observation as a <b>🟢 strength</b> (works well) or a <b>🔴 friction / idea</b>. Every finding traces back to a real screen.</p>'));
+  ag.append(el('div','about-card','<h4><span class="step">1</span>Reviewing the flows</h4><ul class="about-list"><li>Each topic is a journey on betPawa Nigeria (mobile), walked <b>flow by flow</b>.</li><li>Key screens are captured in order, with numbered badges dropped on the UI.</li><li>Every observation is logged as a <b>🟢 strength</b> (works well) or a <b>🔴 friction / idea</b>.</li><li>Every finding traces back to a real screen.</li></ul>'));
   const sevDefs=[['CRITICAL','blocks or breaks the task, or misleads the user / loses their action'],['HIGH','significant friction — costs time or trust, but has a workaround'],['MEDIUM','a noticeable issue or inconsistency worth fixing'],['LOW','minor polish — small clarity or consistency gains'],['NIT','cosmetic, nice-to-have']];
   ag.append(el('div','about-card','<h4><span class="step">2</span>Rating severity</h4>'+sevDefs.map(d=>'<div class="sevdef"><span class="sev '+d[0]+'">'+d[0]+'</span><span>'+d[1]+'</span></div>').join('')));
   ag.append(el('div','about-card','<h4><span class="step">3</span>Assigning a Law of UX</h4><p>Every finding is tagged with the usability heuristic it relates to (from <b>lawsofux.com</b>) — e.g. Fitts’s Law, Jakob’s Law, Hick’s Law, Mental Model. The tag grounds the <b>“why”</b> in a known principle rather than opinion, and links to a short explainer.</p>'));
