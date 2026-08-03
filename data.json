@@ -76,7 +76,7 @@
               "severity": "HIGH"
             },
             {
-              "text": "No active state on Home/Casino/Virtuals; on Live the bar highlights “Sports” — absent/conflicting “you are here”.",
+              "text": "When visiting Live, you are not having quick access in the previous navigation links",
               "law": "Von Restorff Effect",
               "severity": "MEDIUM"
             },
@@ -91,11 +91,6 @@
               "severity": "MEDIUM"
             },
             {
-              "text": "My Bets is reachable three ways (bottom-nav bets page, betslip pill, Account drawer) with different presentations.",
-              "law": "Occam's Razor",
-              "severity": "LOW"
-            },
-            {
               "text": "Help / Support has no top-level entry — it lives only inside the Account drawer.",
               "law": "Jakob's Law",
               "severity": "MEDIUM"
@@ -106,13 +101,8 @@
               "severity": "LOW"
             },
             {
-              "text": "No labelled “Home” anywhere — the homepage is reachable only via the logo and an unlabelled sub-nav icon; nothing in the header or bottom bar says Home.",
+              "text": "No labelled “Home” anywhere — the homepage (/) is reachable only via the logo and an unlabelled sub-nav icon; nothing in the header or bottom bar says Home. A dedicated Home in the bottom bar — in the natural thumb zone — would give one clear, predictable way back.",
               "law": "Jakob's Law",
-              "severity": "MEDIUM"
-            },
-            {
-              "text": "No single, obvious “Home”: the logo returns to the homepage while the bottom-nav “Sports” opens the events list — two different pages. A dedicated Home in the bottom bar, in the thumb zone, would give one clear way back.",
-              "law": "Mental Model",
               "severity": "MEDIUM"
             },
             {
@@ -126,12 +116,12 @@
       "figma": "https://www.figma.com/design/1H2KzGBaKHKuv9TirkutUM/Global-Navigation-%7C-UX-Review-%7C-Jim",
       "counts": {
         "s": 4,
-        "f": 10,
+        "f": 8,
         "sev": {
           "CRITICAL": 0,
           "HIGH": 2,
-          "MEDIUM": 5,
-          "LOW": 3,
+          "MEDIUM": 4,
+          "LOW": 2,
           "NIT": 0
         }
       }
@@ -515,62 +505,99 @@
       "flows": [
         {
           "flow": "Live event discovery",
+          "images": [
+            {
+              "src": "img/live-betting/lb1-1.png",
+              "label": "01 · Landing"
+            },
+            {
+              "src": "img/live-betting/lb1-2.png",
+              "label": "01 · Landing"
+            },
+            {
+              "src": "img/live-betting/lb1-3.png",
+              "label": "02 · Live events"
+            },
+            {
+              "src": "img/live-betting/lb1-4.png",
+              "label": "02 · Live events"
+            },
+            {
+              "src": "img/live-betting/lb1-5.png",
+              "label": "02 · Live events"
+            }
+          ],
           "strengths": [
             {
+              "n": "1",
               "text": "Live events featured above the fold, easily visible on top navigation."
             },
             {
+              "n": "5",
               "text": "Can find live events on home page, with indication of how many more are available."
             },
             {
+              "n": "9",
               "text": "Can easily sort and filter; applied filters clearly visible and easy to clear."
             },
             {
+              "n": "12",
               "text": "Shows the number of live events under each category."
             }
           ],
           "frictions": [
             {
+              "n": "2",
               "text": "Live events is the last option and easily missed. We also don’t show this whole column for other sports besides football; when the user switches to another sport, football is still prioritised on the homepage’s live section.",
               "severity": "MEDIUM"
             },
             {
+              "n": "3",
               "text": "Live event count mismatches within the same session (Home “Live 7” pill vs. “Live 15” section header).",
               "severity": "LOW"
             },
             {
+              "n": "4",
               "text": "Type chips (Outrights/Upcoming/Live) and competition chips (UEFA CL/EL) share one scrollable row with no visual grouping — unclear where one category ends and the next begins.",
               "severity": "NIT"
             },
             {
+              "n": "6",
               "text": "Individual live rows mix sports (football, tennis) with no sport icon, only a text label — recall over recognition.",
               "severity": "LOW"
             },
             {
+              "n": "7",
               "text": "Floating “Back to top” pill overlaps live list content at the bottom of the scroll.",
               "severity": "LOW"
             },
             {
+              "n": "8",
               "text": "User expects to see the 15 more live games, but the default list comes short since other games sit under other categories — misleading.",
               "severity": "MEDIUM"
             },
             {
+              "n": "10",
               "text": "It’s not clear how to search for a specific game from this list; the search icon up top is easy to miss, and search results navigate the user away from the page.",
               "severity": "MEDIUM"
             },
             {
+              "n": "11",
               "text": "Nothing distinguishes “actively updating” from “frozen” — just silent time jumps.",
               "severity": "LOW"
             },
             {
+              "n": "13",
               "text": "No visible default sort logic on the default live page.",
               "severity": "NIT"
             },
             {
+              "n": "14",
               "text": "Some events don’t show market selections on the match card.",
               "severity": "CRITICAL"
             },
             {
+              "n": "15",
               "text": "The 1UP & 2UP fixed section reduces the view area — the user ends up seeing only two match cards per view.",
               "severity": "LOW"
             }
@@ -578,57 +605,101 @@
         },
         {
           "flow": "Selecting an event & market",
+          "images": [
+            {
+              "src": "img/live-betting/lb2-1.png",
+              "label": "03 · Select an event"
+            },
+            {
+              "src": "img/live-betting/lb2-2.png",
+              "label": "04 · Find a market"
+            },
+            {
+              "src": "img/live-betting/lb2-3.png",
+              "label": "04 · Find a market"
+            }
+          ],
           "strengths": [
             {
+              "n": "1",
               "text": "Markets have explainers that show on demand."
             },
             {
+              "n": "3",
               "text": "User can search for a market without exiting the page."
             }
           ],
           "frictions": [
             {
+              "n": "2",
               "text": "Tooltip text is cut off and auto-closes on scroll.",
               "severity": "LOW"
             },
             {
+              "n": "4",
               "text": "Search returns different results depending on which tab you’re in, with no indication of why or which tab is being searched — a hidden boundary.",
               "severity": "CRITICAL"
             },
             {
-              "text": "Search empty state has no way to broaden the search (e.g. “search all markets”) — a dead end.",
-              "severity": "HIGH"
-            },
-            {
+              "n": "5",
               "text": "Exiting search navigates the user back to the “All” tab even when a different tab was active.",
               "severity": "CRITICAL"
             },
             {
+              "n": "6",
               "text": "Navigating back to the live events list doesn’t update the list right away.",
               "severity": "CRITICAL"
+            },
+            {
+              "n": "7",
+              "text": "Search empty state has no way to broaden the search (e.g. “search all markets”) — a dead end.",
+              "severity": "HIGH"
             }
           ]
         },
         {
           "flow": "Halftime & market suspension states",
+          "images": [
+            {
+              "src": "img/live-betting/lb3-1.png",
+              "label": "05 · Time & score indicators"
+            },
+            {
+              "src": "img/live-betting/lb3-2.png",
+              "label": "05 · 2nd half resuming"
+            },
+            {
+              "src": "img/live-betting/lb3-3.png",
+              "label": "05 · Open full stats"
+            },
+            {
+              "src": "img/live-betting/lb3-4.png",
+              "label": "06 · All markets suspended"
+            }
+          ],
           "strengths": [
             {
+              "n": "1",
               "text": "Half-time indicators are present."
             },
             {
+              "n": "5",
               "text": "Clear ‘why’ and next action for the user."
             }
           ],
           "frictions": [
             {
+              "n": "2",
               "text": "Live indicator reverts to the scheduled kickoff time instead of a HT badge while the event is still ongoing — miscommunication between the 3rd-party stats game time and betPawa.",
               "severity": "CRITICAL"
             },
             {
+              "n": "3",
               "text": "Markets disappear and reappear with no genuine loading state (skeleton) to show whether the page loaded.",
               "severity": "CRITICAL"
             },
             {
+              "n": "4",
               "text": "At times the live page shows the second half has started but the details page doesn’t update for ~20 seconds.",
               "severity": "LOW"
             }
@@ -636,39 +707,66 @@
         },
         {
           "flow": "Placing a betslip",
+          "images": [
+            {
+              "src": "img/live-betting/lb4-1.png",
+              "label": "07 · Open betslip"
+            },
+            {
+              "src": "img/live-betting/lb4-2.png",
+              "label": "07 · Odds change"
+            },
+            {
+              "src": "img/live-betting/lb4-3.png",
+              "label": "08 · Unavailable markets"
+            },
+            {
+              "src": "img/live-betting/lb4-4.png",
+              "label": "08 · Unavailable markets"
+            }
+          ],
           "strengths": [
             {
+              "n": "2",
               "text": "Odds-change direction is shown clearly."
             },
             {
+              "n": "4",
               "text": "“Accept odds change” toggle correctly gates behaviour."
             },
             {
+              "n": "6",
               "text": "Clear indication of locked and unavailable selections."
             }
           ],
           "frictions": [
             {
+              "n": "1",
               "text": "No actual time & score for live events — hard to tell if the score changed since your last selection.",
               "severity": "NIT"
             },
             {
+              "n": "3",
               "text": "“Accept odds change” is auto-toggled off when odds change.",
               "severity": "CRITICAL"
             },
             {
+              "n": "5",
               "text": "The “Odds changed” banner doesn’t get dismissed.",
               "severity": "LOW"
             },
             {
+              "n": "7",
               "text": "“Locked” and “Unavailable” are two different badges with no explanation of what distinguishes them (temporarily suspended vs. permanently gone?).",
               "severity": "MEDIUM"
             },
             {
+              "n": "8",
               "text": "Error banner says “Click ‘Place bet without N/A’” but the actual button reads “PLACE BET WITHOUT LOCKED”.",
               "severity": "CRITICAL"
             },
             {
+              "n": "9",
               "text": "Selection order re-shuffles between states (a team moves bottom → top → bottom) with no user action.",
               "severity": "CRITICAL"
             }
@@ -676,25 +774,44 @@
         },
         {
           "flow": "Follow-up in betslip",
+          "images": [
+            {
+              "src": "img/live-betting/lb5-1.png",
+              "label": "09 · Placed bet"
+            },
+            {
+              "src": "img/live-betting/lb5-2.png",
+              "label": "09 · Placed bet"
+            },
+            {
+              "src": "img/live-betting/lb5-3.png",
+              "label": "09 · Placed bet"
+            }
+          ],
           "strengths": [
             {
+              "n": "1",
               "text": "Live legs show the live badge, half and time."
             }
           ],
           "frictions": [
             {
+              "n": "2",
               "text": "Distinct visuals for live stats create more inconsistency.",
               "severity": "MEDIUM"
             },
             {
+              "n": "3",
               "text": "There are cases where the ‘minimize stats’ action within the widget doesn’t show up.",
               "severity": "CRITICAL"
             },
             {
+              "n": "4",
               "text": "Opening the inline stats panel pushes the remaining legs a full scroll below, and the viewpoint is off — the maximize/minimize interaction is frustrating.",
               "severity": "HIGH"
             },
             {
+              "n": "5",
               "text": "Two different disclaimer strings cover the same thing.",
               "severity": "LOW"
             }
@@ -702,17 +819,38 @@
         },
         {
           "flow": "Other",
+          "images": [
+            {
+              "src": "img/live-betting/lb6-1.png",
+              "label": "Search results"
+            },
+            {
+              "src": "img/live-betting/lb6-2.png",
+              "label": "Events page"
+            },
+            {
+              "src": "img/live-betting/lb6-3.png",
+              "label": "Events page"
+            },
+            {
+              "src": "img/live-betting/lb6-4.png",
+              "label": "Events page"
+            }
+          ],
           "strengths": [],
           "frictions": [
             {
+              "n": "1",
               "text": "Clicking on events navigates the user back to Upcoming.",
               "severity": "CRITICAL"
             },
             {
+              "n": "2",
               "text": "Sometimes we show full stats, sometimes we don’t.",
               "severity": "MEDIUM"
             },
             {
+              "n": "3",
               "text": "Inconsistent opening behaviour of live stats (expand vs. bottom-sheet).",
               "severity": "MEDIUM"
             }
@@ -1092,12 +1230,12 @@
   ],
   "totals": {
     "s": 57,
-    "f": 118,
+    "f": 116,
     "sev": {
       "CRITICAL": 17,
       "HIGH": 20,
-      "MEDIUM": 32,
-      "LOW": 33,
+      "MEDIUM": 31,
+      "LOW": 32,
       "NIT": 10
     }
   }
