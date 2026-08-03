@@ -215,7 +215,7 @@
             {
               "text": "Casino Cashback is the first promo card on a sports home — casino cross-sell ahead of sport.",
               "severity": "MEDIUM",
-              "law": ""
+              "law": "Serial Position Effect"
             },
             {
               "text": "The three promo cards are visually near-identical (‘Read More’), so no single offer stands out.",
@@ -256,7 +256,7 @@
             },
             {
               "text": "Each combo lists its legs (Double Chance, Over 1.5, Multigoals) so bettors see exactly what they’re backing.",
-              "law": ""
+              "law": "Cognitive Load"
             },
             {
               "text": "Combined odds are shown on every combo card — the payout is clear before adding to the slip.",
@@ -313,7 +313,7 @@
             },
             {
               "text": "Each promo page includes a plain-language ‘What makes it different / How it works’ breakdown.",
-              "law": ""
+              "law": "Cognitive Load"
             },
             {
               "text": "A single BET NOW / PLAY NOW CTA per page keeps the next step obvious.",
@@ -329,7 +329,7 @@
             {
               "text": "Casino cashback is promoted on the homepage home — cross-sell competes with sports intent.",
               "severity": "MEDIUM",
-              "law": ""
+              "law": "Selective Attention"
             },
             {
               "text": "Promo pages are long marketing scrolls — the actual terms and limits sit well below the fold.",
@@ -385,12 +385,12 @@
             {
               "text": "Filters open as separate overlays; there's no single view of all active filters at once.",
               "severity": "MEDIUM",
-              "law": ""
+              "law": "Cognitive Load"
             },
             {
               "text": "Applied filters aren't summarised on the results list — easy to forget what's active.",
               "severity": "LOW",
-              "law": ""
+              "law": "Cognitive Load"
             },
             {
               "text": "The market filter is a long radio list with no search — finding a specific market is slow.",
@@ -435,7 +435,7 @@
             },
             {
               "text": "Event sub-tabs (Match · Statistics · Head-to-head · Standings) keep all context in one place.",
-              "law": ""
+              "law": "Law of Common Region"
             }
           ],
           "frictions": [
@@ -447,7 +447,7 @@
             {
               "text": "The in-play visualiser dominates the first screen, pushing the actual markets down.",
               "severity": "MEDIUM",
-              "law": ""
+              "law": "Serial Position Effect"
             },
             {
               "text": "The ‘Show 1UP & 2UP’ toggle tops the live list with no hint of what 1UP / 2UP actually does.",
@@ -457,7 +457,7 @@
             {
               "text": "The date picker only allows a single date selection — selecting multiple dates is not supported.",
               "severity": "LOW",
-              "law": ""
+              "law": "Mental Model"
             }
           ]
         },
@@ -484,7 +484,7 @@
             },
             {
               "text": "Markets are grouped into scannable tabs (All/Popular/Goals/Halves) with counts.",
-              "law": ""
+              "law": "Law of Common Region"
             },
             {
               "text": "Win-probability bar + previous meetings give quick form context before betting.",
@@ -492,14 +492,14 @@
             },
             {
               "text": "Market groups carry counts (Popular 18 · Goals 40 · Halves) so bettors gauge depth at a glance.",
-              "law": ""
+              "law": "Von Restorff Effect"
             }
           ],
           "frictions": [
             {
               "text": "Statistics fill the whole first screen; the actual markets sit far below the fold.",
               "severity": "HIGH",
-              "law": ""
+              "law": "Serial Position Effect"
             },
             {
               "text": "Market-group tabs scroll horizontally and can hide options off-screen.",
@@ -585,76 +585,91 @@
           "strengths": [
             {
               "n": "1",
-              "text": "Live events featured above the fold, easily visible on top navigation."
+              "text": "Live events featured above the fold, easily visible on top navigation.",
+              "law": "Serial Position Effect"
             },
             {
               "n": "5",
-              "text": "Can find live events on home page, with indication of how many more are available."
+              "text": "Can find live events on home page, with indication of how many more are available.",
+              "law": "Goal-Gradient Effect"
             },
             {
               "n": "9",
-              "text": "Can easily sort and filter; applied filters clearly visible and easy to clear."
+              "text": "Can easily sort and filter; applied filters clearly visible and easy to clear.",
+              "law": "Jakob's Law"
             },
             {
               "n": "12",
-              "text": "Shows the number of live events under each category."
+              "text": "Shows the number of live events under each category.",
+              "law": "Von Restorff Effect"
             }
           ],
           "frictions": [
             {
               "n": "2",
               "text": "Live events is the last option and easily missed. We also don’t show this whole column for other sports besides football; when the user switches to another sport, football is still prioritised on the homepage’s live section.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Serial Position Effect"
             },
             {
               "n": "3",
               "text": "Live event count mismatches within the same session (Home “Live 7” pill vs. “Live 15” section header).",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Jakob's Law"
             },
             {
               "n": "4",
               "text": "Type chips (Outrights/Upcoming/Live) and competition chips (UEFA CL/EL) share one scrollable row with no visual grouping — unclear where one category ends and the next begins.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Law of Common Region"
             },
             {
               "n": "6",
               "text": "Individual live rows mix sports (football, tennis) with no sport icon, only a text label — recall over recognition.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Von Restorff Effect"
             },
             {
               "n": "7",
               "text": "Floating “Back to top” pill overlaps live list content at the bottom of the scroll.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Fitts's Law"
             },
             {
               "n": "8",
               "text": "User expects to see the 15 more live games, but the default list comes short since other games sit under other categories — misleading.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Mental Model"
             },
             {
               "n": "10",
               "text": "It’s not clear how to search for a specific game from this list; the search icon up top is easy to miss, and search results navigate the user away from the page.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
             },
             {
               "n": "11",
               "text": "Nothing distinguishes “actively updating” from “frozen” — just silent time jumps.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Doherty Threshold"
             },
             {
               "n": "13",
               "text": "No visible default sort logic on the default live page.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Cognitive Load"
             },
             {
               "n": "14",
               "text": "Some events don’t show market selections on the match card.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Cognitive Load"
             },
             {
               "n": "15",
               "text": "The 1UP & 2UP fixed section reduces the view area — the user ends up seeing only two match cards per view.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Serial Position Effect"
             }
           ]
         },
@@ -690,38 +705,45 @@
           "strengths": [
             {
               "n": "1",
-              "text": "Markets have explainers that show on demand."
+              "text": "Markets have explainers that show on demand.",
+              "law": "Cognitive Load"
             },
             {
               "n": "3",
-              "text": "User can search for a market without exiting the page."
+              "text": "User can search for a market without exiting the page.",
+              "law": "Jakob's Law"
             }
           ],
           "frictions": [
             {
               "n": "2",
               "text": "Tooltip text is cut off and auto-closes on scroll.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Cognitive Load"
             },
             {
               "n": "4",
               "text": "Search returns different results depending on which tab you’re in, with no indication of why or which tab is being searched — a hidden boundary.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "n": "5",
               "text": "Exiting search navigates the user back to the “All” tab even when a different tab was active.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "n": "6",
               "text": "Navigating back to the live events list doesn’t update the list right away.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Doherty Threshold"
             },
             {
               "n": "7",
               "text": "Search empty state has no way to broaden the search (e.g. “search all markets”) — a dead end.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Hick's Law"
             }
           ]
         },
@@ -762,28 +784,33 @@
           "strengths": [
             {
               "n": "1",
-              "text": "Half-time indicators are present."
+              "text": "Half-time indicators are present.",
+              "law": "Von Restorff Effect"
             },
             {
               "n": "5",
-              "text": "Clear ‘why’ and next action for the user."
+              "text": "Clear ‘why’ and next action for the user.",
+              "law": "Mental Model"
             }
           ],
           "frictions": [
             {
               "n": "2",
               "text": "Live indicator reverts to the scheduled kickoff time instead of a HT badge while the event is still ongoing — miscommunication between the 3rd-party stats game time and betPawa.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "n": "3",
               "text": "Markets disappear and reappear with no genuine loading state (skeleton) to show whether the page loaded.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Doherty Threshold"
             },
             {
               "n": "4",
               "text": "At times the live page shows the second half has started but the details page doesn’t update for ~20 seconds.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Doherty Threshold"
             }
           ]
         },
@@ -828,47 +855,56 @@
           "strengths": [
             {
               "n": "2",
-              "text": "Odds-change direction is shown clearly."
+              "text": "Odds-change direction is shown clearly.",
+              "law": "Von Restorff Effect"
             },
             {
               "n": "4",
-              "text": "“Accept odds change” toggle correctly gates behaviour."
+              "text": "“Accept odds change” toggle correctly gates behaviour.",
+              "law": "Jakob's Law"
             },
             {
               "n": "6",
-              "text": "Clear indication of locked and unavailable selections."
+              "text": "Clear indication of locked and unavailable selections.",
+              "law": "Von Restorff Effect"
             }
           ],
           "frictions": [
             {
               "n": "1",
               "text": "No actual time & score for live events — hard to tell if the score changed since your last selection.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Cognitive Load"
             },
             {
               "n": "3",
               "text": "“Accept odds change” is auto-toggled off when odds change.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "n": "5",
               "text": "The “Odds changed” banner doesn’t get dismissed.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Cognitive Load"
             },
             {
               "n": "7",
               "text": "“Locked” and “Unavailable” are two different badges with no explanation of what distinguishes them (temporarily suspended vs. permanently gone?).",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Mental Model"
             },
             {
               "n": "8",
               "text": "Error banner says “Click ‘Place bet without N/A’” but the actual button reads “PLACE BET WITHOUT LOCKED”.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Jakob's Law"
             },
             {
               "n": "9",
               "text": "Selection order re-shuffles between states (a team moves bottom → top → bottom) with no user action.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             }
           ]
         },
@@ -904,29 +940,34 @@
           "strengths": [
             {
               "n": "1",
-              "text": "Live legs show the live badge, half and time."
+              "text": "Live legs show the live badge, half and time.",
+              "law": "Von Restorff Effect"
             }
           ],
           "frictions": [
             {
               "n": "2",
               "text": "Distinct visuals for live stats create more inconsistency.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
             },
             {
               "n": "3",
               "text": "There are cases where the ‘minimize stats’ action within the widget doesn’t show up.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Cognitive Load"
             },
             {
               "n": "4",
               "text": "Opening the inline stats panel pushes the remaining legs a full scroll below, and the viewpoint is off — the maximize/minimize interaction is frustrating.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Serial Position Effect"
             },
             {
               "n": "5",
               "text": "Two different disclaimer strings cover the same thing.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Jakob's Law"
             }
           ]
         },
@@ -968,17 +1009,20 @@
             {
               "n": "1",
               "text": "Clicking on events navigates the user back to Upcoming.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "n": "2",
               "text": "Sometimes we show full stats, sometimes we don’t.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
             },
             {
               "n": "3",
               "text": "Inconsistent opening behaviour of live stats (expand vs. bottom-sheet).",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
             }
           ]
         }
@@ -1012,74 +1056,93 @@
           ],
           "strengths": [
             {
-              "text": "Categorized tabs provide structured navigation across primary wagering categories."
+              "text": "Categorized tabs provide structured navigation across primary wagering categories.",
+              "law": "Law of Common Region"
             },
             {
-              "text": "Detailed headers and item counts streamline content consumption without cognitive overload."
+              "text": "Detailed headers and item counts streamline content consumption without cognitive overload.",
+              "law": "Cognitive Load"
             },
             {
-              "text": "Granular status labels clearly communicate real-time progress for individual selections inside multi-leg wagers."
+              "text": "Granular status labels clearly communicate real-time progress for individual selections inside multi-leg wagers.",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "Active tab highlighting offers strong feedback vs. competitors (contrasting badge colours would optimise it further)."
+              "text": "Active tab highlighting offers strong feedback vs. competitors (contrasting badge colours would optimise it further).",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "A functional return-to-top control enables rapid upward navigation without obscuring card elements."
+              "text": "A functional return-to-top control enables rapid upward navigation without obscuring card elements.",
+              "law": "Fitts's Law"
             },
             {
-              "text": "Essential wagering details remain clearly grouped within the primary visual focus area."
+              "text": "Essential wagering details remain clearly grouped within the primary visual focus area.",
+              "law": "Law of Common Region"
             },
             {
-              "text": "The share trigger occupies a high-visibility position that reinforces social features."
+              "text": "The share trigger occupies a high-visibility position that reinforces social features.",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "Bet cards display full context: sport type, tournament name, and league details."
+              "text": "Bet cards display full context: sport type, tournament name, and league details.",
+              "law": "Cognitive Load"
             }
           ],
           "frictions": [
             {
               "text": "Header tabs stay fixed but trigger navigation to unrelated screens outside the My Bets section — unexpected flows and navigational confusion.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "text": "Secondary navigation tabs don’t stay pinned during vertical scrolling, forcing users to scroll back up to switch views.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Jakob's Law"
             },
             {
               "text": "Bet ID values are static text with no copy functionality — reduced utility for support or reference.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Fitts's Law"
             },
             {
               "text": "Date attributes are correct, but a more structured visual layout (à la BetKing) would improve hierarchy and legibility.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Jakob's Law"
             },
             {
               "text": "Grey informational boxes occupy disproportionate screen space — an opportunity for more compact UI.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Cognitive Load"
             },
             {
               "text": "Bet cards lack selection details despite available space — preview components or expandable accordions would add instant clarity.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Cognitive Load"
             },
             {
               "text": "The Re-use button sits above match listings, creating ambiguity about targeted selections — move it below the specific games.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Mental Model"
             },
             {
               "text": "No explicit tap-to-copy for unique wagering identifiers.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Fitts's Law"
             },
             {
               "text": "Status badges show game state but cards lack rich live visualisations, field movement, and clear event identifiers.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Cognitive Load"
             },
             {
               "text": "Users can’t tap through to primary event pages from within bet cards — breaks expected exploration paths.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Mental Model"
             },
             {
               "text": "Leg selection lists blend into general bet info — distinct container boundaries would aid visual parsing.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Law of Common Region"
             }
           ]
         },
@@ -1094,35 +1157,43 @@
           ],
           "strengths": [
             {
-              "text": "The Cashout section sits in a logical position within the screen hierarchy."
+              "text": "The Cashout section sits in a logical position within the screen hierarchy.",
+              "law": "Serial Position Effect"
             },
             {
-              "text": "The action happens directly on the page with fast response times."
+              "text": "The action happens directly on the page with fast response times.",
+              "law": "Doherty Threshold"
             },
             {
-              "text": "The status label is placed in a correct and visually prominent location."
+              "text": "The status label is placed in a correct and visually prominent location.",
+              "law": "Von Restorff Effect"
             }
           ],
           "frictions": [
             {
               "text": "Cashout information is completely absent despite the corresponding badge in the UI.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Cognitive Load"
             },
             {
               "text": "Show the Cashout amount upfront (like competitors); wide spacing between header and Request button creates uncertainty about the outcome.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
             },
             {
               "text": "Advanced Cashout functionality available on competitor platforms is entirely missing.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
             },
             {
               "text": "The status label after Cashout lacks clarity, and the header doesn’t use past tense to signal completion.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Mental Model"
             },
             {
               "text": "Feedback after Cashout relies solely on the top label — no supporting toast or confirmation popup.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Doherty Threshold"
             }
           ]
         },
@@ -1137,43 +1208,53 @@
           ],
           "strengths": [
             {
-              "text": "Differentiation looks well executed across the layout."
+              "text": "Differentiation looks well executed across the layout.",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "The internal card design is strong and distinguishes itself from a regular win (needs clearer explanations and UI refinement)."
+              "text": "The internal card design is strong and distinguishes itself from a regular win (needs clearer explanations and UI refinement).",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "The Share button has an impressive visual design that draws appropriate attention."
+              "text": "The Share button has an impressive visual design that draws appropriate attention.",
+              "law": "Von Restorff Effect"
             }
           ],
           "frictions": [
             {
               "text": "This banner permanently occupies too much space while limiting sorting — a dedicated filter button with deep customisation would be better.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Hick's Law"
             },
             {
               "text": "All negative aspects from the Open Bets card persist here; Settled cards should be more clearly distinct from Open bets.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
             },
             {
               "text": "Essential sharing functionality is completely absent directly on the card.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Fitts's Law"
             },
             {
               "text": "The reason for celebrating this win with confetti and a trophy is unclear, and the iconography looks cluttered/unrecognisable without zooming in.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Mental Model"
             },
             {
               "text": "A dropdown pattern for Open bet details plus full-page navigation for Settled bets would maximise usability.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Jakob's Law"
             },
             {
               "text": "The card doesn’t clearly communicate whether a game is won or lost — requires deep analysis vs. immediate visual cues used by competitors.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "Sharing is heavily constrained and falls behind competitors — needs significant expansion and customisation.",
-              "severity": "CRITICAL"
+              "severity": "CRITICAL",
+              "law": "Jakob's Law"
             }
           ]
         }
@@ -1202,55 +1283,68 @@
           "frictions": [
             {
               "text": "Too many filter tabs at the top — the user scrolls a long horizontal row just to find the category they want.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Hick's Law"
             },
             {
               "text": "Games have no Demo option or info/description button — no way to preview a game or learn how it works before committing real money.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
             },
             {
               "text": "The “Home” tab inside Casino should be renamed to “Recommended”, so users don’t think tapping it leaves Casino for the site homepage.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Mental Model"
             },
             {
               "text": "A large number of games are hidden behind scrolling — the user might not notice them.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Serial Position Effect"
             },
             {
               "text": "The confirmation modal for removing from favourites is unnecessary — the action is minor and instantly reversible.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Tesler's Law"
             },
             {
               "text": "The sorting may confuse users — there’s “Popular” in sorting and also one at the top.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Jakob's Law"
             },
             {
               "text": "With many recent searches, we stop suggesting games — we could limit the number or hide the older ones.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Cognitive Load"
             },
             {
               "text": "Users may be more used to seeing the navigation at the top.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Jakob's Law"
             },
             {
               "text": "Show the number of players / likes / total plays to build interest.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "When the user closes a casino game the app closes immediately, with no attempt to retain them (e.g. suggesting other games).",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Peak-End Rule"
             },
             {
               "text": "Banners between game category blocks look low quality — like static screenshots with a fake baked-in CTA button; the whole banner is the click target, making the button misleading.",
-              "severity": "HIGH"
+              "severity": "HIGH",
+              "law": "Jakob's Law"
             },
             {
               "text": "There’s no block with recent wins in casino games.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "There’s no action to delete all recent searches at once.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Tesler's Law"
             }
           ]
         },
@@ -1260,47 +1354,58 @@
           "frictions": [
             {
               "text": "The illustrations don’t catch the eye.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "Multiple entries essentially lead to the same Virtuals game and take up a lot of space.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Occam's Razor"
             },
             {
               "text": "There aren’t many objects here — the layout could show everything to the user at once.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Cognitive Load"
             },
             {
               "text": "Not much interactivity — no promotions, banners, etc. to engage the user.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Goal-Gradient Effect"
             },
             {
               "text": "Show some big recent wins to draw the user in.",
-              "severity": "NIT"
+              "severity": "NIT",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "A timer on the virtual thumbnail could show when the next match starts.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Goal-Gradient Effect"
             },
             {
               "text": "Show the league selection at the top.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Serial Position Effect"
             },
             {
               "text": "It’s unclear where the Next button leads.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Mental Model"
             },
             {
               "text": "Show more clearly that the match is live — maybe with an animation or illustration.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "The active betslip isn’t very noticeable.",
-              "severity": "MEDIUM"
+              "severity": "MEDIUM",
+              "law": "Von Restorff Effect"
             },
             {
               "text": "Consider a dedicated betslip on the Virtuals page to remove noise and focus the user on the action.",
-              "severity": "LOW"
+              "severity": "LOW",
+              "law": "Law of Common Region"
             }
           ]
         }
@@ -1328,13 +1433,16 @@
           "strengths": [],
           "frictions": [
             {
-              "text": "Play up the block titles and add illustrations to visually help users."
+              "text": "Play up the block titles and add illustrations to visually help users.",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "Adding screenshots or videos would make it more convenient for the user."
+              "text": "Adding screenshots or videos would make it more convenient for the user.",
+              "law": "Cognitive Load"
             },
             {
-              "text": "A search would make it easier for users to find the information they need."
+              "text": "A search would make it easier for users to find the information they need.",
+              "law": "Hick's Law"
             }
           ]
         },
@@ -1343,13 +1451,16 @@
           "strengths": [],
           "frictions": [
             {
-              "text": "Play up the block titles and add illustrations to visually help users."
+              "text": "Play up the block titles and add illustrations to visually help users.",
+              "law": "Von Restorff Effect"
             },
             {
-              "text": "A search would make it easier for users to find the information they need."
+              "text": "A search would make it easier for users to find the information they need.",
+              "law": "Hick's Law"
             },
             {
-              "text": "Add navigation within this page — by sport types and so on."
+              "text": "Add navigation within this page — by sport types and so on.",
+              "law": "Jakob's Law"
             }
           ]
         }

@@ -365,6 +365,45 @@ const SEV_ASSIGN = {
 };
 for(const t of topics){ const map=SEV_ASSIGN[t.name]; if(!map) continue; for(const f of t.flows){ for(const x of f.frictions){ if(x.severity) continue; const l=x.text.toLowerCase(); for(const [k,v] of map){ if(l.includes(k)){ x.severity=v; break; } } } } }
 
+// Law-of-UX assignment for topics whose reviewers didn't tag laws (hub-side, first pass — refine per-finding as needed)
+const LAW_ASSIGN=[
+  // Live Betting
+  ["featured above the fold","Serial Position Effect"],["indication of how many more","Goal-Gradient Effect"],["applied filters clearly visible","Jakob's Law"],["number of live events under each category","Von Restorff Effect"],
+  ["last option and easily missed","Serial Position Effect"],["count mismatches within the same session","Jakob's Law"],["type chips (outrights","Law of Common Region"],["no sport icon, only a text label","Von Restorff Effect"],
+  ["pill overlaps live list content","Fitts's Law"],["expects to see the 15 more","Mental Model"],["not clear how to search for a specific game","Jakob's Law"],["actively updating","Doherty Threshold"],
+  ["no visible default sort logic","Cognitive Load"],["market selections on the match card","Cognitive Load"],["fixed section reduces the view area","Serial Position Effect"],
+  ["markets have explainers","Cognitive Load"],["search for a market without exiting","Jakob's Law"],["tooltip text is cut off","Cognitive Load"],["different results depending on which tab","Mental Model"],
+  ["even when a different tab was active","Mental Model"],["live events list doesn","Doherty Threshold"],["no way to broaden the search","Hick's Law"],
+  ["half-time indicators are present","Von Restorff Effect"],["next action for the user","Mental Model"],["reverts to the scheduled kickoff","Mental Model"],["markets disappear and reappear","Doherty Threshold"],["second half has started but the details page","Doherty Threshold"],
+  ["odds-change direction is shown clearly","Von Restorff Effect"],["toggle correctly gates behaviour","Jakob's Law"],["indication of locked and unavailable selections","Von Restorff Effect"],["no actual time & score for live events","Cognitive Load"],
+  ["auto-toggled off when odds change","Mental Model"],["banner doesn","Cognitive Load"],["two different badges with no explanation","Mental Model"],["actual button reads","Jakob's Law"],["selection order re-shuffles","Mental Model"],
+  ["live legs show the live badge","Von Restorff Effect"],["distinct visuals for live stats create more","Jakob's Law"],["minimize stats","Cognitive Load"],["inline stats panel pushes the remaining legs","Serial Position Effect"],["two different disclaimer strings","Jakob's Law"],
+  ["navigates the user back to upcoming","Mental Model"],["sometimes we show full stats","Jakob's Law"],["opening behaviour of live stats","Jakob's Law"],
+  // My Bets & Cashout
+  ["categorized tabs provide structured navigation","Law of Common Region"],["detailed headers and item counts","Cognitive Load"],["granular status labels clearly communicate","Von Restorff Effect"],["active tab highlighting offers strong feedback","Von Restorff Effect"],
+  ["return-to-top control enables rapid","Fitts's Law"],["essential wagering details remain clearly grouped","Law of Common Region"],["share trigger occupies a high-visibility","Von Restorff Effect"],["full context: sport type","Cognitive Load"],
+  ["header tabs stay fixed but trigger navigation","Mental Model"],["stay pinned during vertical scrolling","Jakob's Law"],["bet id values are static text","Fitts's Law"],["structured visual layout","Jakob's Law"],
+  ["grey informational boxes occupy","Cognitive Load"],["lack selection details despite available space","Cognitive Load"],["re-use button sits above match listings","Mental Model"],["no explicit tap-to-copy","Fitts's Law"],
+  ["lack rich live visualisations","Cognitive Load"],["tap through to primary event pages","Mental Model"],["leg selection lists blend into general","Law of Common Region"],
+  ["cashout section sits in a logical position","Serial Position Effect"],["action happens directly on the page with fast","Doherty Threshold"],["status label is placed in a correct","Von Restorff Effect"],
+  ["cashout information is completely absent","Cognitive Load"],["show the cashout amount upfront","Cognitive Load"],["advanced cashout functionality available","Jakob's Law"],["status label after cashout lacks clarity","Mental Model"],["feedback after cashout relies solely","Doherty Threshold"],
+  ["differentiation looks well executed","Von Restorff Effect"],["internal card design is strong","Von Restorff Effect"],["share button has an impressive visual","Von Restorff Effect"],["banner permanently occupies too much space","Hick's Law"],
+  ["negative aspects from the open bets card persist","Jakob's Law"],["sharing functionality is completely absent directly","Fitts's Law"],["confetti and a trophy","Mental Model"],["dropdown pattern for open bet details","Jakob's Law"],["whether a game is won or lost","Von Restorff Effect"],["sharing is heavily constrained","Jakob's Law"],
+  // Casino & Virtuals
+  ["too many filter tabs at the top","Hick's Law"],["no demo option","Cognitive Load"],["renamed to","Mental Model"],["hidden behind scrolling","Serial Position Effect"],["confirmation modal for removing from favourites","Tesler's Law"],
+  ["sorting may confuse users","Jakob's Law"],["stop suggesting games","Cognitive Load"],["used to seeing the navigation at the top","Jakob's Law"],["number of players","Von Restorff Effect"],["closes immediately","Peak-End Rule"],
+  ["banners between game category blocks look low quality","Jakob's Law"],["no block with recent wins in casino","Von Restorff Effect"],["delete all recent searches","Tesler's Law"],
+  ["illustrations don","Von Restorff Effect"],["same virtuals game","Occam's Razor"],["many objects here","Cognitive Load"],["not much interactivity","Goal-Gradient Effect"],["big recent wins","Von Restorff Effect"],["timer on the virtual thumbnail","Goal-Gradient Effect"],
+  ["league selection at the top","Serial Position Effect"],["next button leads","Mental Model"],["clearly that the match is live","Von Restorff Effect"],["active betslip","Von Restorff Effect"],["dedicated betslip on the virtuals page","Law of Common Region"],
+  // Help & Support
+  ["play up the block titles","Von Restorff Effect"],["adding screenshots or videos","Cognitive Load"],["a search would make it easier","Hick's Law"],["add navigation within this page","Jakob's Law"],
+  // Homepage & Sports Discovery (findings the reviewer left untagged)
+  ["casino cashback is the first promo","Serial Position Effect"],["each combo lists its legs","Cognitive Load"],["plain-language","Cognitive Load"],["cross-sell competes with sports intent","Selective Attention"],
+  ["no single view of all active filters","Cognitive Load"],["aren't summarised on the results list","Cognitive Load"],["event sub-tabs","Law of Common Region"],["in-play visualiser dominates","Serial Position Effect"],
+  ["date picker only allows a single date","Mental Model"],["grouped into scannable tabs","Law of Common Region"],["market groups carry counts","Von Restorff Effect"],["statistics fill the whole first screen","Serial Position Effect"],
+];
+for(const t of topics){ for(const f of t.flows){ for(const arr of [f.strengths,f.frictions]){ for(const x of arr){ if(x.law) continue; const l=x.text.toLowerCase(); for(const [k,v] of LAW_ASSIGN){ if(l.includes(k)){ x.law=v; break; } } } } } }
+
 // ---- counts ----
 const SEV_ORDER = ['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 function topicCounts(t){
