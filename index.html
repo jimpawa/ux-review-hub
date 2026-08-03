@@ -291,7 +291,7 @@ function renderTopic(){
   const tabbed=visFlows.length>1;
   if(tabbed){
     const ft=el('div','flowtabs');
-    visFlows.forEach((o,j)=>{const c=el('span','ftab'+(j===flowIdx?' active':''),esc(o.f.flow));c.onclick=()=>{flowIdx=j;render();window.scrollTo(0,0);};ft.append(c);});
+    visFlows.forEach((o,j)=>{const p=o.f.flow.indexOf('·');const lbl=p>=0?o.f.flow.slice(p+1).trim():o.f.flow;const c=el('span','ftab'+(j===flowIdx?' active':''),esc(lbl));c.onclick=()=>{flowIdx=j;render();window.scrollTo(0,0);};ft.append(c);});
     m.append(ft);
   }
   (tabbed?[visFlows[flowIdx]]:visFlows).forEach(o=>{
