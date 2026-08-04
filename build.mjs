@@ -573,7 +573,7 @@ function topicCounts(t){
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
 // ---- tab display order (Summary is always first, PreMatch/TODO always last) ----
-const ORDER=['Global Navigation','Sign-up & Login','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support'];
+const ORDER=['Global Navigation','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support','Sign-up & Login'];
 topics.sort((a,b)=>{const ia=ORDER.indexOf(a.name),ib=ORDER.indexOf(b.name);return (ia<0?99:ia)-(ib<0?99:ib);});
 
 const FIGMA = {
