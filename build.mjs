@@ -310,7 +310,7 @@ const topics = [
   {
     name: 'Deposits & Withdrawals', reviewer: '—', tag: 'severity',
     flows: [
-      {flow:'Deposit · MoMo', numbered:false,
+      {flow:'Deposit · MoMo',
        images:[{src:'img/deposits-withdrawals/mo1.png',label:'01 · Deposit guide'},{src:'img/deposits-withdrawals/mo2.png',label:'02 · Deposit amount'},{src:'img/deposits-withdrawals/mo3.png',label:'03 · Success'},{src:'img/deposits-withdrawals/mo4.png',label:'04 · Insufficient funds'}],
        strengths:[
         {text:"Successful-deposit confirmation is shown.", law:"Peak-End Rule"},
@@ -324,7 +324,7 @@ const topics = [
         {text:"In some markets (seen in MW) the insufficient-funds error is delayed or never shows on betPawa, even though the Telco already sent the SMS.", severity:"HIGH", law:"Doherty Threshold"},
         {text:"The error message is vague and doesn’t clarify the actual issue — mirror the clearer message shown on the following screen.", severity:"MEDIUM", law:"Cognitive Load"},
        ]},
-      {flow:'Deposit · Opay', numbered:false,
+      {flow:'Deposit · Opay',
        images:[{src:'img/deposits-withdrawals/op1.png',label:'01 · Deposit start'},{src:'img/deposits-withdrawals/op2.png',label:'02 · Opay redirect'},{src:'img/deposits-withdrawals/op3.png',label:'03 · After Return to Merchant'},{src:'img/deposits-withdrawals/op4.png',label:'04 · Unsuccessful message'}],
        strengths:[
         {text:"Online deposit via Opay is seamless.", law:"Jakob's Law"},
@@ -333,7 +333,7 @@ const topics = [
         {text:"After tapping “Return to Merchant”, the user lands back on Opay’s deposit page instead of the betPawa site.", severity:"MEDIUM", law:"Mental Model"},
         {text:"No deposit-success message is shown — you have to reload/refresh the page to see the balance update.", severity:"HIGH", law:"Doherty Threshold"},
        ]},
-      {flow:'Deposit · Monnify', numbered:false,
+      {flow:'Deposit · Monnify',
        images:[{src:'img/deposits-withdrawals/mn1.png',label:'01 · Monnify start'},{src:'img/deposits-withdrawals/mn2.png',label:'02 · Payment reference'},{src:'img/deposits-withdrawals/mn3.png',label:'03 · Success without deposit'},{src:'img/deposits-withdrawals/mn4.png',label:'04 · Delay message'}],
        strengths:[
         {text:"Clear successful-transaction message.", law:"Peak-End Rule"},
@@ -343,19 +343,19 @@ const topics = [
         {text:"Users have to leave betPawa to complete the transaction.", severity:"MEDIUM", law:"Mental Model"},
         {text:"A “successful deposit” notification appears even when no deposit was actually made.", severity:"HIGH", law:"Mental Model"},
        ]},
-      {flow:'Deposit · Palmpay', numbered:false,
+      {flow:'Deposit · Palmpay',
        images:[{src:'img/deposits-withdrawals/pp1.png',label:'01 · Palmpay start'},{src:'img/deposits-withdrawals/pp2.png',label:'02 · Palmpay'},{src:'img/deposits-withdrawals/pp3.png',label:'03 · Success without deposit'}],
        strengths:[
         {text:"Clear communication when there’s a delay.", law:"Doherty Threshold"},
        ], frictions:[
         {text:"A “successful deposit” notification appears even when no deposit was actually made.", severity:"HIGH", law:"Mental Model"},
        ]},
-      {flow:'Deposit · Wave', numbered:false,
+      {flow:'Deposit · Wave',
        images:[{src:'img/deposits-withdrawals/wv1.png',label:'01 · Deposit'},{src:'img/deposits-withdrawals/wv2.png',label:'02 · Deposit'},{src:'img/deposits-withdrawals/wv3.png',label:'03 · Success despite low balance'}],
        strengths:[], frictions:[
         {text:"A “deposit successful” message shows even when the user has insufficient balance.", severity:"HIGH", law:"Mental Model"},
        ]},
-      {flow:'Withdrawal — MoMo', numbered:false,
+      {flow:'Withdrawal — MoMo',
        images:[{src:'img/deposits-withdrawals/wm1.png',label:'01 · Withdraw'},{src:'img/deposits-withdrawals/wm2.png',label:'02 · Insufficient balance'},{src:'img/deposits-withdrawals/wm3.png',label:'03 · Approved'}],
        strengths:[
         {text:"User is notified once the withdrawal request is approved.", law:"Doherty Threshold"},
@@ -363,7 +363,7 @@ const topics = [
         {text:"Insufficient-balance should be flagged before the user taps Withdraw, not after.", severity:"MEDIUM", law:"Jakob's Law"},
         {text:"The Withdraw button should disable once the insufficient-balance notice appears.", severity:"MEDIUM", law:"Jakob's Law"},
        ]},
-      {flow:'Withdrawal — Bank transfer', numbered:false,
+      {flow:'Withdrawal — Bank transfer',
        images:[{src:'img/deposits-withdrawals/wb1.png',label:'01 · Bank withdraw'},{src:'img/deposits-withdrawals/wb2.png',label:'02 · Insufficient balance'},{src:'img/deposits-withdrawals/wb3.png',label:'03 · Add account'},{src:'img/deposits-withdrawals/wb4.png',label:'04 · Account validation'}],
        strengths:[
         {text:"Users can add more than one bank account to withdraw to.", law:"Jakob's Law"},
@@ -374,7 +374,7 @@ const topics = [
         {text:"No “Contact us” link is provided in the notification.", severity:"LOW", law:"Jakob's Law"},
         {text:"Account validation should happen in real time, before the user taps “Add New Account”.", severity:"MEDIUM", law:"Doherty Threshold"},
        ]},
-      {flow:'Dark-mode icons (NG)', numbered:false,
+      {flow:'Dark-mode icons (NG)',
        images:[{src:'img/deposits-withdrawals/dk1.png',label:'01 · Deposit method icons (dark)'}],
        strengths:[], frictions:[
         {text:"Some bank / deposit-method icons have poor contrast in dark mode (NG only).", severity:"LOW", law:"Cognitive Load"},

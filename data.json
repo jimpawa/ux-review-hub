@@ -2422,7 +2422,6 @@
       "flows": [
         {
           "flow": "Deposit · MoMo",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/mo1.png",
@@ -2489,7 +2488,6 @@
         },
         {
           "flow": "Deposit · Opay",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/op1.png",
@@ -2533,7 +2531,6 @@
         },
         {
           "flow": "Deposit · Monnify",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/mn1.png",
@@ -2582,7 +2579,6 @@
         },
         {
           "flow": "Deposit · Palmpay",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/pp1.png",
@@ -2613,7 +2609,6 @@
         },
         {
           "flow": "Deposit · Wave",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/wv1.png",
@@ -2639,7 +2634,6 @@
         },
         {
           "flow": "Withdrawal — MoMo",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/wm1.png",
@@ -2675,7 +2669,6 @@
         },
         {
           "flow": "Withdrawal — Bank transfer",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/wb1.png",
@@ -2729,7 +2722,6 @@
         },
         {
           "flow": "Dark-mode icons (NG)",
-          "numbered": false,
           "images": [
             {
               "src": "img/deposits-withdrawals/dk1.png",
