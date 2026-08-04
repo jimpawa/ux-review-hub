@@ -319,7 +319,6 @@ const topics = [
         {text:"The dropdown arrow icon isn’t clickable, and the input-field label doesn’t match the ID type.", severity:"MEDIUM", law:"Fitts's Law"},
         {text:"The error message doesn’t list the acceptable registration networks.", severity:"MEDIUM", law:"Cognitive Load"},
         {text:"After a page refresh you have to re-enter all the details from scratch.", severity:"MEDIUM", law:"Tesler's Law"},
-        {text:"The Terms & Conditions page appears after verification even though the user already accepted them when creating the account.", severity:"LOW", law:"Occam's Razor"},
        ]},
       {flow:'Login', numbered:false,
        images:[{src:'img/sign-up-login/l1.png',label:'01 · Empty state'},{src:'img/sign-up-login/l2.png',label:'03 · Network error'}],
@@ -331,7 +330,7 @@ const topics = [
       {flow:'Password reset & verification', numbered:false,
        images:[{src:'img/sign-up-login/p1.png',label:'02 · Forgot password'},{src:'img/sign-up-login/p2.png',label:'03 · Verification code'},{src:'img/sign-up-login/p3.png',label:'04 · Code via WhatsApp'}],
        strengths:[], frictions:[
-        {text:"The verification-page text is unclear and potentially unnecessary.", severity:"LOW", law:"Cognitive Load"},
+        {text:"The note on the Verification page should be updated or removed — password reset isn’t done on that page.", severity:"LOW", law:"Cognitive Load"},
         {text:"After hitting the daily SMS limit, the alternative verification methods surface in a confusing way.", severity:"MEDIUM", law:"Hick's Law"},
         {text:"“Call” is auto-selected as the next alternative method, outside the user’s control.", severity:"MEDIUM", law:"Mental Model"},
         {text:"The USSD pop-up closes when tapping outside, interrupting the intended action.", severity:"HIGH", law:"Mental Model"},
@@ -346,7 +345,11 @@ const topics = [
         {text:"Validation errors and empty-field errors are shown together, not separated by cause.", severity:"MEDIUM", law:"Jakob's Law"},
         {text:"After a page refresh you have to re-enter all the details from scratch.", severity:"MEDIUM", law:"Tesler's Law"},
         {text:"An incorrect “reset password” error is shown for an incomplete sign-up with an unverified number.", severity:"MEDIUM", law:"Mental Model"},
-        {text:"The Terms & Conditions page appears after verification even though the user already accepted them.", severity:"LOW", law:"Occam's Razor"},
+       ]},
+      {flow:'Successful sign-up', numbered:false,
+       strengths:[], frictions:[
+        {text:"The Terms & Conditions modal appears after verification even though the user already accepted the terms during registration — no need to show it again to new users.", severity:"LOW", law:"Occam's Razor"},
+        {text:"A “limit reached” error shows even for a brand-new user trying to verify, and the alternative-verification component should be open by default.", severity:"MEDIUM", law:"Mental Model"},
        ]},
     ],
   },
@@ -571,7 +574,7 @@ function topicCounts(t){
   return {s,f,sev};
 }
 // hidden topics — kept in code but not shown (remove from HIDDEN to re-enable)
-const HIDDEN=['Sign-up & Login'];
+const HIDDEN=[];
 for(let i=topics.length-1;i>=0;i--){ if(HIDDEN.includes(topics[i].name)) topics.splice(i,1); }
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
