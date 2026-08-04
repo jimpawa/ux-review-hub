@@ -156,6 +156,205 @@
       }
     },
     {
+      "name": "Sign-up & Login",
+      "reviewer": "—",
+      "tag": "severity",
+      "flows": [
+        {
+          "flow": "Sign up · Ghana",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/sign-up-login/g1.png",
+              "label": "01 · Sign-up page"
+            },
+            {
+              "src": "img/sign-up-login/g2.png",
+              "label": "03 · Nationality"
+            },
+            {
+              "src": "img/sign-up-login/g3.png",
+              "label": "04 · Unsupported network"
+            }
+          ],
+          "strengths": [
+            {
+              "text": "All onboarding requirements are visible, with labels above each input field.",
+              "law": "Cognitive Load"
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Validation errors and empty-field errors are shown together as one combined message instead of per-field — and no error appears when Date of Birth is left unselected.",
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "The dropdown arrow icon isn’t clickable, and the input-field label doesn’t match the ID type.",
+              "severity": "MEDIUM",
+              "law": "Fitts's Law"
+            },
+            {
+              "text": "The error message doesn’t list the acceptable registration networks.",
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "After a page refresh you have to re-enter all the details from scratch.",
+              "severity": "MEDIUM",
+              "law": "Tesler's Law"
+            },
+            {
+              "text": "The Terms & Conditions page appears after verification even though the user already accepted them when creating the account.",
+              "severity": "LOW",
+              "law": "Occam's Razor"
+            }
+          ]
+        },
+        {
+          "flow": "Login",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/sign-up-login/l1.png",
+              "label": "01 · Empty state"
+            },
+            {
+              "src": "img/sign-up-login/l2.png",
+              "label": "03 · Network error"
+            }
+          ],
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "Validation errors and empty-field errors are shown together, not separated by cause.",
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "Vague error message — it doesn’t address the real issue.",
+              "severity": "MEDIUM",
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "Long delay (~10 seconds) before the network-error message appears.",
+              "severity": "HIGH",
+              "law": "Doherty Threshold"
+            }
+          ]
+        },
+        {
+          "flow": "Password reset & verification",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/sign-up-login/p1.png",
+              "label": "02 · Forgot password"
+            },
+            {
+              "src": "img/sign-up-login/p2.png",
+              "label": "03 · Verification code"
+            },
+            {
+              "src": "img/sign-up-login/p3.png",
+              "label": "04 · Code via WhatsApp"
+            }
+          ],
+          "strengths": [],
+          "frictions": [
+            {
+              "text": "The verification-page text is unclear and potentially unnecessary.",
+              "severity": "LOW",
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "After hitting the daily SMS limit, the alternative verification methods surface in a confusing way.",
+              "severity": "MEDIUM",
+              "law": "Hick's Law"
+            },
+            {
+              "text": "“Call” is auto-selected as the next alternative method, outside the user’s control.",
+              "severity": "MEDIUM",
+              "law": "Mental Model"
+            },
+            {
+              "text": "The USSD pop-up closes when tapping outside, interrupting the intended action.",
+              "severity": "HIGH",
+              "law": "Mental Model"
+            },
+            {
+              "text": "Text formatting is inconsistent across the flow.",
+              "severity": "LOW",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "The “Send Verification Code” button stays active even after all verification options are exhausted.",
+              "severity": "MEDIUM",
+              "law": "Mental Model"
+            }
+          ]
+        },
+        {
+          "flow": "Sign up · Nigeria",
+          "numbered": false,
+          "images": [
+            {
+              "src": "img/sign-up-login/n1.png",
+              "label": "01 · Sign-up page"
+            },
+            {
+              "src": "img/sign-up-login/n2.png",
+              "label": "02 · Empty input field"
+            },
+            {
+              "src": "img/sign-up-login/n3.png",
+              "label": "04 · Unsupported network"
+            }
+          ],
+          "strengths": [
+            {
+              "text": "All onboarding requirements are visible, with labels above each input field.",
+              "law": "Cognitive Load"
+            }
+          ],
+          "frictions": [
+            {
+              "text": "Validation errors and empty-field errors are shown together, not separated by cause.",
+              "severity": "MEDIUM",
+              "law": "Jakob's Law"
+            },
+            {
+              "text": "After a page refresh you have to re-enter all the details from scratch.",
+              "severity": "MEDIUM",
+              "law": "Tesler's Law"
+            },
+            {
+              "text": "An incorrect “reset password” error is shown for an incomplete sign-up with an unverified number.",
+              "severity": "MEDIUM",
+              "law": "Mental Model"
+            },
+            {
+              "text": "The Terms & Conditions page appears after verification even though the user already accepted them.",
+              "severity": "LOW",
+              "law": "Occam's Razor"
+            }
+          ]
+        }
+      ],
+      "figma": "https://www.figma.com/design/fuDEdY5Y69N5k0dwhC8AFf/Sign-up-and-Login-Journeys-%7C-UX-Review",
+      "counts": {
+        "s": 2,
+        "f": 18,
+        "sev": {
+          "CRITICAL": 0,
+          "HIGH": 2,
+          "MEDIUM": 12,
+          "LOW": 4,
+          "NIT": 0
+        }
+      }
+    },
+    {
       "name": "Homepage & Sports Discovery",
       "reviewer": "—",
       "tag": "severity",
@@ -2418,13 +2617,13 @@
   ],
   "todo": [],
   "totals": {
-    "s": 97,
-    "f": 144,
+    "s": 99,
+    "f": 162,
     "sev": {
       "CRITICAL": 17,
-      "HIGH": 30,
-      "MEDIUM": 45,
-      "LOW": 42,
+      "HIGH": 32,
+      "MEDIUM": 57,
+      "LOW": 46,
       "NIT": 10
     }
   },

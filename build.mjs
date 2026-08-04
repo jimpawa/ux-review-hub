@@ -308,6 +308,49 @@ const topics = [
     ],
   },
   {
+    name: 'Sign-up & Login', reviewer: '—', tag: 'severity',
+    flows: [
+      {flow:'Sign up · Ghana', numbered:false,
+       images:[{src:'img/sign-up-login/g1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/g2.png',label:'03 · Nationality'},{src:'img/sign-up-login/g3.png',label:'04 · Unsupported network'}],
+       strengths:[
+        {text:"All onboarding requirements are visible, with labels above each input field.", law:"Cognitive Load"},
+       ], frictions:[
+        {text:"Validation errors and empty-field errors are shown together as one combined message instead of per-field — and no error appears when Date of Birth is left unselected.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"The dropdown arrow icon isn’t clickable, and the input-field label doesn’t match the ID type.", severity:"MEDIUM", law:"Fitts's Law"},
+        {text:"The error message doesn’t list the acceptable registration networks.", severity:"MEDIUM", law:"Cognitive Load"},
+        {text:"After a page refresh you have to re-enter all the details from scratch.", severity:"MEDIUM", law:"Tesler's Law"},
+        {text:"The Terms & Conditions page appears after verification even though the user already accepted them when creating the account.", severity:"LOW", law:"Occam's Razor"},
+       ]},
+      {flow:'Login', numbered:false,
+       images:[{src:'img/sign-up-login/l1.png',label:'01 · Empty state'},{src:'img/sign-up-login/l2.png',label:'03 · Network error'}],
+       strengths:[], frictions:[
+        {text:"Validation errors and empty-field errors are shown together, not separated by cause.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"Vague error message — it doesn’t address the real issue.", severity:"MEDIUM", law:"Cognitive Load"},
+        {text:"Long delay (~10 seconds) before the network-error message appears.", severity:"HIGH", law:"Doherty Threshold"},
+       ]},
+      {flow:'Password reset & verification', numbered:false,
+       images:[{src:'img/sign-up-login/p1.png',label:'02 · Forgot password'},{src:'img/sign-up-login/p2.png',label:'03 · Verification code'},{src:'img/sign-up-login/p3.png',label:'04 · Code via WhatsApp'}],
+       strengths:[], frictions:[
+        {text:"The verification-page text is unclear and potentially unnecessary.", severity:"LOW", law:"Cognitive Load"},
+        {text:"After hitting the daily SMS limit, the alternative verification methods surface in a confusing way.", severity:"MEDIUM", law:"Hick's Law"},
+        {text:"“Call” is auto-selected as the next alternative method, outside the user’s control.", severity:"MEDIUM", law:"Mental Model"},
+        {text:"The USSD pop-up closes when tapping outside, interrupting the intended action.", severity:"HIGH", law:"Mental Model"},
+        {text:"Text formatting is inconsistent across the flow.", severity:"LOW", law:"Jakob's Law"},
+        {text:"The “Send Verification Code” button stays active even after all verification options are exhausted.", severity:"MEDIUM", law:"Mental Model"},
+       ]},
+      {flow:'Sign up · Nigeria', numbered:false,
+       images:[{src:'img/sign-up-login/n1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/n2.png',label:'02 · Empty input field'},{src:'img/sign-up-login/n3.png',label:'04 · Unsupported network'}],
+       strengths:[
+        {text:"All onboarding requirements are visible, with labels above each input field.", law:"Cognitive Load"},
+       ], frictions:[
+        {text:"Validation errors and empty-field errors are shown together, not separated by cause.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"After a page refresh you have to re-enter all the details from scratch.", severity:"MEDIUM", law:"Tesler's Law"},
+        {text:"An incorrect “reset password” error is shown for an incomplete sign-up with an unverified number.", severity:"MEDIUM", law:"Mental Model"},
+        {text:"The Terms & Conditions page appears after verification even though the user already accepted them.", severity:"LOW", law:"Occam's Razor"},
+       ]},
+    ],
+  },
+  {
     name: 'Pre-Event Betting', reviewer: '—', tag: 'severity',
     flows: [
       {flow:'Discovery → event card → event page',
@@ -530,7 +573,7 @@ function topicCounts(t){
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
 // ---- tab display order (Summary is always first, PreMatch/TODO always last) ----
-const ORDER=['Global Navigation','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support'];
+const ORDER=['Global Navigation','Sign-up & Login','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support'];
 topics.sort((a,b)=>{const ia=ORDER.indexOf(a.name),ib=ORDER.indexOf(b.name);return (ia<0?99:ia)-(ib<0?99:ib);});
 
 const FIGMA = {
@@ -541,6 +584,7 @@ const FIGMA = {
   'Casino & Virtuals & Other Products':'https://www.figma.com/design/Hw0iiubXIIO7ASeTXm7hJI/Casino--Virtuals---Other-Products-%7C-UX-Review-%7C-Ishkhan',
   'Homepage & Sports Discovery':'https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-',
   'Pre-Event Betting':'https://www.figma.com/design/PoVIhpxPmpC2MtxrIhRHNs/Pre-match-Betting-%7C-UX-Review-%7C-Aleida---Konsta',
+  'Sign-up & Login':'https://www.figma.com/design/fuDEdY5Y69N5k0dwhC8AFf/Sign-up-and-Login-Journeys-%7C-UX-Review',
 };
 TODO.forEach(t=>{ if(FIGMA[t.name]) t.figma=FIGMA[t.name]; });
 // Law-of-UX descriptions (from the Global Nav "Laws of UX" Figma page; * = standard lawsofux.com definition, not on that page)
