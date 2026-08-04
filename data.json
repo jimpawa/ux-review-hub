@@ -2429,11 +2429,19 @@
             },
             {
               "src": "img/sign-up-login/g2.png",
-              "label": "03 · Nationality"
+              "label": "02 · Empty input field"
             },
             {
               "src": "img/sign-up-login/g3.png",
+              "label": "03 · Nationality change"
+            },
+            {
+              "src": "img/sign-up-login/g4.png",
               "label": "04 · Unsupported network"
+            },
+            {
+              "src": "img/sign-up-login/g5.png",
+              "label": "05 · Network error"
             }
           ],
           "strengths": [
@@ -2479,6 +2487,10 @@
             },
             {
               "src": "img/sign-up-login/l2.png",
+              "label": "02 · Incorrect login detail"
+            },
+            {
+              "src": "img/sign-up-login/l3.png",
               "label": "03 · Network error"
             }
           ],
@@ -2497,7 +2509,7 @@
               "law": "Cognitive Load"
             },
             {
-              "text": "Long delay (~10 seconds) before the network-error message appears.",
+              "text": "When logging in, a long delay (~10 seconds) happens before the network-error message appears.",
               "n": 3,
               "severity": "HIGH",
               "law": "Doherty Threshold"
@@ -2517,7 +2529,19 @@
             },
             {
               "src": "img/sign-up-login/p3.png",
-              "label": "04 · Code via WhatsApp"
+              "label": "04 · Exhaust SMS codes"
+            },
+            {
+              "src": "img/sign-up-login/p4.png",
+              "label": "04 · Second preferred method"
+            },
+            {
+              "src": "img/sign-up-login/p5.png",
+              "label": "USSD verification"
+            },
+            {
+              "src": "img/sign-up-login/p6.png",
+              "label": "All options used"
             }
           ],
           "strengths": [],
@@ -2529,13 +2553,13 @@
               "law": "Cognitive Load"
             },
             {
-              "text": "After hitting the daily SMS limit, the alternative verification methods surface in a confusing way.",
+              "text": "After reaching the daily SMS limit, the alternative-verification methods component should be open by default.",
               "n": 2,
               "severity": "MEDIUM",
               "law": "Hick's Law"
             },
             {
-              "text": "“Call” is auto-selected as the next alternative method, outside the user’s control.",
+              "text": "“Call” shouldn’t be auto-selected as the next alternative method outside of availability hours.",
               "n": 3,
               "severity": "MEDIUM",
               "law": "Mental Model"
@@ -2553,7 +2577,7 @@
               "law": "Jakob's Law"
             },
             {
-              "text": "The “Send Verification Code” button stays active even after all verification options are exhausted.",
+              "text": "The “Send Verification Code” button stays active after all options are exhausted, and redirects to an unavailable “Call” option.",
               "n": 6,
               "severity": "MEDIUM",
               "law": "Mental Model"

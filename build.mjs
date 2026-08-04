@@ -311,7 +311,7 @@ const topics = [
     name: 'Sign-up & Login', reviewer: '—', tag: 'severity',
     flows: [
       {flow:'Sign up · Ghana',
-       images:[{src:'img/sign-up-login/g1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/g2.png',label:'03 · Nationality'},{src:'img/sign-up-login/g3.png',label:'04 · Unsupported network'}],
+       images:[{src:'img/sign-up-login/g1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/g2.png',label:'02 · Empty input field'},{src:'img/sign-up-login/g3.png',label:'03 · Nationality change'},{src:'img/sign-up-login/g4.png',label:'04 · Unsupported network'},{src:'img/sign-up-login/g5.png',label:'05 · Network error'}],
        strengths:[
         {text:"All onboarding requirements are visible, with labels above each input field.", n:1, law:"Cognitive Load"},
        ], frictions:[
@@ -321,21 +321,21 @@ const topics = [
         {text:"After a page refresh you have to re-enter all the details from scratch.", n:5, severity:"MEDIUM", law:"Tesler's Law"},
        ]},
       {flow:'Login',
-       images:[{src:'img/sign-up-login/l1.png',label:'01 · Empty state'},{src:'img/sign-up-login/l2.png',label:'03 · Network error'}],
+       images:[{src:'img/sign-up-login/l1.png',label:'01 · Empty state'},{src:'img/sign-up-login/l2.png',label:'02 · Incorrect login detail'},{src:'img/sign-up-login/l3.png',label:'03 · Network error'}],
        strengths:[], frictions:[
         {text:"Validation errors and empty-field errors are shown together, not separated by cause.", n:1, severity:"MEDIUM", law:"Jakob's Law"},
         {text:"Vague error message — it doesn’t address the real issue.", n:2, severity:"MEDIUM", law:"Cognitive Load"},
-        {text:"Long delay (~10 seconds) before the network-error message appears.", n:3, severity:"HIGH", law:"Doherty Threshold"},
+        {text:"When logging in, a long delay (~10 seconds) happens before the network-error message appears.", n:3, severity:"HIGH", law:"Doherty Threshold"},
        ]},
       {flow:'Password reset & verification',
-       images:[{src:'img/sign-up-login/p1.png',label:'02 · Forgot password'},{src:'img/sign-up-login/p2.png',label:'03 · Verification code'},{src:'img/sign-up-login/p3.png',label:'04 · Code via WhatsApp'}],
+       images:[{src:'img/sign-up-login/p1.png',label:'02 · Forgot password'},{src:'img/sign-up-login/p2.png',label:'03 · Verification code'},{src:'img/sign-up-login/p3.png',label:'04 · Exhaust SMS codes'},{src:'img/sign-up-login/p4.png',label:'04 · Second preferred method'},{src:'img/sign-up-login/p5.png',label:'USSD verification'},{src:'img/sign-up-login/p6.png',label:'All options used'}],
        strengths:[], frictions:[
         {text:"The note on the Verification page should be updated or removed — password reset isn’t done on that page.", n:1, severity:"LOW", law:"Cognitive Load"},
-        {text:"After hitting the daily SMS limit, the alternative verification methods surface in a confusing way.", n:2, severity:"MEDIUM", law:"Hick's Law"},
-        {text:"“Call” is auto-selected as the next alternative method, outside the user’s control.", n:3, severity:"MEDIUM", law:"Mental Model"},
+        {text:"After reaching the daily SMS limit, the alternative-verification methods component should be open by default.", n:2, severity:"MEDIUM", law:"Hick's Law"},
+        {text:"“Call” shouldn’t be auto-selected as the next alternative method outside of availability hours.", n:3, severity:"MEDIUM", law:"Mental Model"},
         {text:"The USSD pop-up closes when tapping outside, interrupting the intended action.", n:4, severity:"HIGH", law:"Mental Model"},
         {text:"Text formatting is inconsistent across the flow.", n:5, severity:"LOW", law:"Jakob's Law"},
-        {text:"The “Send Verification Code” button stays active even after all verification options are exhausted.", n:6, severity:"MEDIUM", law:"Mental Model"},
+        {text:"The “Send Verification Code” button stays active after all options are exhausted, and redirects to an unavailable “Call” option.", n:6, severity:"MEDIUM", law:"Mental Model"},
        ]},
       {flow:'Sign up · Nigeria',
        images:[{src:'img/sign-up-login/n1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/n2.png',label:'02 · Empty input field'},{src:'img/sign-up-login/n3.png',label:'04 · Unsupported network'}],
