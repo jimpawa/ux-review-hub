@@ -337,7 +337,7 @@ const topics = [
         {text:"Text formatting is inconsistent across the flow.", n:5, severity:"LOW", law:"Jakob's Law"},
         {text:"The “Send Verification Code” button stays active after all options are exhausted, and redirects to an unavailable “Call” option.", n:6, severity:"MEDIUM", law:"Mental Model"},
        ]},
-      {flow:'Sign up · Nigeria',
+      {flow:'Sign up Nigeria',
        images:[{src:'img/sign-up-login/n1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/n2.png',label:'02 · Empty input field'},{src:'img/sign-up-login/n3.png',label:'04 · Unsupported network'}],
        strengths:[
         {text:"All onboarding requirements are visible, with labels above each input field.", n:1, law:"Cognitive Load"},
