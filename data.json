@@ -2438,6 +2438,14 @@
             {
               "src": "img/deposits-withdrawals/mo4.png",
               "label": "04 · Insufficient funds"
+            },
+            {
+              "src": "img/deposits-withdrawals/mo5.png",
+              "label": "05 · Vague error"
+            },
+            {
+              "src": "img/deposits-withdrawals/mo6.png",
+              "label": "06 · Clearer error"
             }
           ],
           "strengths": [
@@ -2456,6 +2464,10 @@
             {
               "text": "An insufficient-funds notification is shown.",
               "law": "Doherty Threshold"
+            },
+            {
+              "text": "On the follow-up screen the error message gives a bit more clarity about the issue.",
+              "law": "Cognitive Load"
             }
           ],
           "frictions": [
@@ -2740,7 +2752,7 @@
       ],
       "figma": "https://www.figma.com/design/gH7U1dLDcBWqNPWwPs1YFZ/Deposit---Withdrawal-%7C-UX-Review",
       "counts": {
-        "s": 12,
+        "s": 13,
         "f": 19,
         "sev": {
           "CRITICAL": 0,
@@ -3009,7 +3021,7 @@
   ],
   "todo": [],
   "totals": {
-    "s": 111,
+    "s": 112,
     "f": 181,
     "sev": {
       "CRITICAL": 17,

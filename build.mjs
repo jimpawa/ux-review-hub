@@ -311,12 +311,13 @@ const topics = [
     name: 'Deposits & Withdrawals', reviewer: '—', tag: 'severity',
     flows: [
       {flow:'Deposit · MoMo',
-       images:[{src:'img/deposits-withdrawals/mo1.png',label:'01 · Deposit guide'},{src:'img/deposits-withdrawals/mo2.png',label:'02 · Deposit amount'},{src:'img/deposits-withdrawals/mo3.png',label:'03 · Success'},{src:'img/deposits-withdrawals/mo4.png',label:'04 · Insufficient funds'}],
+       images:[{src:'img/deposits-withdrawals/mo1.png',label:'01 · Deposit guide'},{src:'img/deposits-withdrawals/mo2.png',label:'02 · Deposit amount'},{src:'img/deposits-withdrawals/mo3.png',label:'03 · Success'},{src:'img/deposits-withdrawals/mo4.png',label:'04 · Insufficient funds'},{src:'img/deposits-withdrawals/mo5.png',label:'05 · Vague error'},{src:'img/deposits-withdrawals/mo6.png',label:'06 · Clearer error'}],
        strengths:[
         {text:"Successful-deposit confirmation is shown.", law:"Peak-End Rule"},
         {text:"Min & max deposit amounts are enforced — the Deposit CTA disables outside the range.", law:"Jakob's Law"},
         {text:"Deposit-limit validation is in place.", law:"Jakob's Law"},
         {text:"An insufficient-funds notification is shown.", law:"Doherty Threshold"},
+        {text:"On the follow-up screen the error message gives a bit more clarity about the issue.", law:"Cognitive Load"},
        ], frictions:[
         {text:"Too much copy sits before the deposit component, risking it being pushed below the fold — reduce the intro text. (NG)", severity:"MEDIUM", law:"Serial Position Effect"},
         {text:"The guide copy is inconsistent — headings use the same font size as body text. (NG)", severity:"LOW", law:"Jakob's Law"},
