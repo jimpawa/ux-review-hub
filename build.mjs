@@ -570,6 +570,9 @@ function topicCounts(t){
   for(const fl of t.flows){ s+=fl.strengths.length; f+=fl.frictions.length; for(const x of fl.frictions){ if(x.severity&&sev[x.severity]!==undefined) sev[x.severity]++; } }
   return {s,f,sev};
 }
+// hidden topics — kept in code but not shown (remove from HIDDEN to re-enable)
+const HIDDEN=['Sign-up & Login'];
+for(let i=topics.length-1;i>=0;i--){ if(HIDDEN.includes(topics[i].name)) topics.splice(i,1); }
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
 // ---- tab display order (Summary is always first, PreMatch/TODO always last) ----
