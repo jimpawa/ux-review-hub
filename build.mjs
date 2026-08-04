@@ -308,6 +308,80 @@ const topics = [
     ],
   },
   {
+    name: 'Deposits & Withdrawals', reviewer: '—', tag: 'severity',
+    flows: [
+      {flow:'Deposit · MoMo', numbered:false,
+       images:[{src:'img/deposits-withdrawals/mo1.png',label:'01 · Deposit guide'},{src:'img/deposits-withdrawals/mo2.png',label:'02 · Deposit amount'},{src:'img/deposits-withdrawals/mo3.png',label:'03 · Success'},{src:'img/deposits-withdrawals/mo4.png',label:'04 · Insufficient funds'}],
+       strengths:[
+        {text:"Successful-deposit confirmation is shown.", law:"Peak-End Rule"},
+        {text:"Min & max deposit amounts are enforced — the Deposit CTA disables outside the range.", law:"Jakob's Law"},
+        {text:"Deposit-limit validation is in place.", law:"Jakob's Law"},
+        {text:"An insufficient-funds notification is shown.", law:"Doherty Threshold"},
+       ], frictions:[
+        {text:"Too much copy sits before the deposit component, risking it being pushed below the fold — reduce the intro text. (NG)", severity:"MEDIUM", law:"Serial Position Effect"},
+        {text:"The guide copy is inconsistent — headings use the same font size as body text. (NG)", severity:"LOW", law:"Jakob's Law"},
+        {text:"The guide section is text-heavy — consider accordions to cut the wall of text. (NG)", severity:"MEDIUM", law:"Cognitive Load"},
+        {text:"In some markets (seen in MW) the insufficient-funds error is delayed or never shows on betPawa, even though the Telco already sent the SMS.", severity:"HIGH", law:"Doherty Threshold"},
+        {text:"The error message is vague and doesn’t clarify the actual issue — mirror the clearer message shown on the following screen.", severity:"MEDIUM", law:"Cognitive Load"},
+       ]},
+      {flow:'Deposit · Opay', numbered:false,
+       images:[{src:'img/deposits-withdrawals/op1.png',label:'01 · Deposit start'},{src:'img/deposits-withdrawals/op2.png',label:'02 · Opay redirect'},{src:'img/deposits-withdrawals/op3.png',label:'03 · After Return to Merchant'},{src:'img/deposits-withdrawals/op4.png',label:'04 · Unsuccessful message'}],
+       strengths:[
+        {text:"Online deposit via Opay is seamless.", law:"Jakob's Law"},
+        {text:"A deposit-unsuccessful message is shown when it fails.", law:"Doherty Threshold"},
+       ], frictions:[
+        {text:"After tapping “Return to Merchant”, the user lands back on Opay’s deposit page instead of the betPawa site.", severity:"MEDIUM", law:"Mental Model"},
+        {text:"No deposit-success message is shown — you have to reload/refresh the page to see the balance update.", severity:"HIGH", law:"Doherty Threshold"},
+       ]},
+      {flow:'Deposit · Monnify', numbered:false,
+       images:[{src:'img/deposits-withdrawals/mn1.png',label:'01 · Monnify start'},{src:'img/deposits-withdrawals/mn2.png',label:'02 · Payment reference'},{src:'img/deposits-withdrawals/mn3.png',label:'03 · Success without deposit'},{src:'img/deposits-withdrawals/mn4.png',label:'04 · Delay message'}],
+       strengths:[
+        {text:"Clear successful-transaction message.", law:"Peak-End Rule"},
+        {text:"Clear communication when there’s a delay.", law:"Doherty Threshold"},
+       ], frictions:[
+        {text:"The payment reference is too long and spills out of the notification component.", severity:"LOW", law:"Aesthetic-Usability Effect"},
+        {text:"Users have to leave betPawa to complete the transaction.", severity:"MEDIUM", law:"Mental Model"},
+        {text:"A “successful deposit” notification appears even when no deposit was actually made.", severity:"HIGH", law:"Mental Model"},
+       ]},
+      {flow:'Deposit · Palmpay', numbered:false,
+       images:[{src:'img/deposits-withdrawals/pp1.png',label:'01 · Palmpay start'},{src:'img/deposits-withdrawals/pp2.png',label:'02 · Palmpay'},{src:'img/deposits-withdrawals/pp3.png',label:'03 · Success without deposit'}],
+       strengths:[
+        {text:"Clear communication when there’s a delay.", law:"Doherty Threshold"},
+       ], frictions:[
+        {text:"A “successful deposit” notification appears even when no deposit was actually made.", severity:"HIGH", law:"Mental Model"},
+       ]},
+      {flow:'Deposit · Wave', numbered:false,
+       images:[{src:'img/deposits-withdrawals/wv1.png',label:'01 · Deposit'},{src:'img/deposits-withdrawals/wv2.png',label:'02 · Deposit'},{src:'img/deposits-withdrawals/wv3.png',label:'03 · Success despite low balance'}],
+       strengths:[], frictions:[
+        {text:"A “deposit successful” message shows even when the user has insufficient balance.", severity:"HIGH", law:"Mental Model"},
+       ]},
+      {flow:'Withdrawal — MoMo', numbered:false,
+       images:[{src:'img/deposits-withdrawals/wm1.png',label:'01 · Withdraw'},{src:'img/deposits-withdrawals/wm2.png',label:'02 · Insufficient balance'},{src:'img/deposits-withdrawals/wm3.png',label:'03 · Approved'}],
+       strengths:[
+        {text:"User is notified once the withdrawal request is approved.", law:"Doherty Threshold"},
+       ], frictions:[
+        {text:"Insufficient-balance should be flagged before the user taps Withdraw, not after.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"The Withdraw button should disable once the insufficient-balance notice appears.", severity:"MEDIUM", law:"Jakob's Law"},
+       ]},
+      {flow:'Withdrawal — Bank transfer', numbered:false,
+       images:[{src:'img/deposits-withdrawals/wb1.png',label:'01 · Bank withdraw'},{src:'img/deposits-withdrawals/wb2.png',label:'02 · Insufficient balance'},{src:'img/deposits-withdrawals/wb3.png',label:'03 · Add account'},{src:'img/deposits-withdrawals/wb4.png',label:'04 · Account validation'}],
+       strengths:[
+        {text:"Users can add more than one bank account to withdraw to.", law:"Jakob's Law"},
+        {text:"User is notified once the withdrawal request is approved.", law:"Doherty Threshold"},
+       ], frictions:[
+        {text:"Insufficient-balance should be flagged before the user taps Withdraw, not after.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"The Withdraw button should disable once the insufficient-balance notice appears.", severity:"MEDIUM", law:"Jakob's Law"},
+        {text:"No “Contact us” link is provided in the notification.", severity:"LOW", law:"Jakob's Law"},
+        {text:"Account validation should happen in real time, before the user taps “Add New Account”.", severity:"MEDIUM", law:"Doherty Threshold"},
+       ]},
+      {flow:'Dark-mode icons (NG)', numbered:false,
+       images:[{src:'img/deposits-withdrawals/dk1.png',label:'01 · Deposit method icons (dark)'}],
+       strengths:[], frictions:[
+        {text:"Some bank / deposit-method icons have poor contrast in dark mode (NG only).", severity:"LOW", law:"Cognitive Load"},
+       ]},
+    ],
+  },
+  {
     name: 'Sign-up & Login', reviewer: '—', tag: 'severity',
     flows: [
       {flow:'Sign up',
@@ -580,7 +654,7 @@ for(let i=topics.length-1;i>=0;i--){ if(HIDDEN.includes(topics[i].name)) topics.
 const totals = topics.reduce((a,t)=>{const c=topicCounts(t);a.s+=c.s;a.f+=c.f;SEV_ORDER.forEach(k=>a.sev[k]+=c.sev[k]);return a;},{s:0,f:0,sev:{CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0}});
 
 // ---- tab display order (Summary is always first, PreMatch/TODO always last) ----
-const ORDER=['Global Navigation','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support','Sign-up & Login'];
+const ORDER=['Global Navigation','Homepage & Sports Discovery','Pre-Event Betting','Live Betting','My Bets & Cashout','Casino & Virtuals & Other Products','Help & Support','Deposits & Withdrawals','Sign-up & Login'];
 topics.sort((a,b)=>{const ia=ORDER.indexOf(a.name),ib=ORDER.indexOf(b.name);return (ia<0?99:ia)-(ib<0?99:ib);});
 
 const FIGMA = {
@@ -592,6 +666,7 @@ const FIGMA = {
   'Homepage & Sports Discovery':'https://www.figma.com/design/1MQKMFzFTMfBHqu29n5KEY/Homepage---Sports-Discovery-%7C-UX-Review--Copy-',
   'Pre-Event Betting':'https://www.figma.com/design/PoVIhpxPmpC2MtxrIhRHNs/Pre-match-Betting-%7C-UX-Review-%7C-Aleida---Konsta',
   'Sign-up & Login':'https://www.figma.com/design/fuDEdY5Y69N5k0dwhC8AFf/Sign-up-and-Login-Journeys-%7C-UX-Review',
+  'Deposits & Withdrawals':'https://www.figma.com/design/gH7U1dLDcBWqNPWwPs1YFZ/Deposit---Withdrawal-%7C-UX-Review',
 };
 TODO.forEach(t=>{ if(FIGMA[t.name]) t.figma=FIGMA[t.name]; });
 // Law-of-UX descriptions (from the Global Nav "Laws of UX" Figma page; * = standard lawsofux.com definition, not on that page)
