@@ -2421,7 +2421,7 @@
       "tag": "severity",
       "flows": [
         {
-          "flow": "Sign up · Ghana",
+          "flow": "Sign up",
           "images": [
             {
               "src": "img/sign-up-login/g1.png",

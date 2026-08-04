@@ -310,7 +310,7 @@ const topics = [
   {
     name: 'Sign-up & Login', reviewer: '—', tag: 'severity',
     flows: [
-      {flow:'Sign up · Ghana',
+      {flow:'Sign up',
        images:[{src:'img/sign-up-login/g1.png',label:'01 · Sign-up page'},{src:'img/sign-up-login/g2.png',label:'02 · Empty input field'},{src:'img/sign-up-login/g3.png',label:'03 · Nationality change'},{src:'img/sign-up-login/g4.png',label:'04 · Unsupported network'},{src:'img/sign-up-login/g5.png',label:'05 · Network error'}],
        strengths:[
         {text:"All onboarding requirements are visible, with labels above each input field.", n:1, law:"Cognitive Load"},
