@@ -122,14 +122,31 @@ Filter out "Drop screen" and other placeholder texts in both cases.
 
 ---
 
+## 7b. Top Priority is fixed at 54 (critical + high)
+
+Jim's rule: the Top Priority list is **54 findings — 17 CRITICAL + 37 HIGH** — and that number stays put. New findings get MEDIUM / LOW / NIT. Do not raise the critical+high count without asking him. Check after every build:
+
+```bash
+node -e "const d=require('./data.json');console.log(d.totals.sev.CRITICAL + d.totals.sev.HIGH)"
+```
+
+The number is quoted to stakeholders, so silent drift makes the priority list untrustworthy.
+
 ## 8. Open backlog
 
 Nothing is broken and nothing is urgent. If someone asks "what's next":
 
-1. **Mirror the hub-side laws and severities back into the reviewers' Figma files.** Biggest open item — the hub and the source files currently disagree on tagging.
-2. **Help & Support has no real screenshots** — the Figma file only had empty template placeholders. The 14 board cards in `img/help-support/` are the boards, not device screens.
+1. **Sign-up & Login is missing 3–4 findings** (file `fuDEdY5Y69N5k0dwhC8AFf`): product nav + bottom nav distracting on sign-up/login; "error message may confuse a user who doesn't remember creating an account"; "inline error message is generic, doesn't guide the required action" (may overlap the existing "vague error message" item); Flow 6 "improve verification text so users understand how to use the code".
+2. **Live Betting has one orphan text** outside any flow section — *"A live row can show no clock and a dashed score ('–') with nothing explaining why."* Decide whether it duplicates the existing "no actual time/score" item.
+3. **Deposits & Withdrawals has no Figma file key**, so its 35 findings can't be diffed against a source. Ask Jim where they came from.
+4. **Mirror the remaining hub-side laws and severities back into the reviewers' Figma files.** Only Pre-Event Flow 1's four severity chips are synced so far.
+5. **Help & Support has no real screenshots** — the Figma file only had empty template placeholders. The 14 board cards in `img/help-support/` are the boards, not device screens.
 
-Done since first draft of this file: pre-match screens are exported and wired (`img/pre-match/`, 13 screens); `README.md` topic list is current.
+Reviewer-side gaps (nothing to import — needs the reviewer): My Bets *Settled Bets* has 13 badges on screens but only 10 written up; Pre-Event Flow 1 numbering skips 15; the Casino file's Virtuals section still has unfilled template placeholders.
+
+Decided and closed: **Global Navigation's "Request 01/02" sections are out of scope** — they're separate one-off exercises, not review findings, so an audit will always show them as a 13-finding "gap". Leave them out. **Pre-match screen exports** (3 screens exist in Figma, never exported) — Jim decided to leave Pre-Event as is.
+
+Done since first draft of this file: pre-match screens are exported and wired (`img/pre-match/`, 13 screens); `README.md` topic list is current; a full Figma-vs-hub audit (2026-08-05) confirmed GN, My Bets, Homepage, Casino, Help and Pre-Event complete.
 
 ---
 
