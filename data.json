@@ -1,5 +1,5 @@
 {
-  "snapshot": "snapshot",
+  "snapshot": "2026-08-05",
   "topics": [
     {
       "name": "Global Navigation",
@@ -570,7 +570,8 @@
               "label": "04 · Event page · markets",
               "nums": [
                 "r13",
-                "g14"
+                "g14",
+                "r16"
               ]
             }
           ],
@@ -655,6 +656,12 @@
               "n": 13,
               "severity": "HIGH",
               "law": "Hick's Law"
+            },
+            {
+              "text": "On the event page it isn’t clear how the order of markets is decided, and there’s no way to sort or filter them.",
+              "n": 16,
+              "severity": "MEDIUM",
+              "law": "Choice Overload"
             }
           ]
         },
@@ -693,7 +700,11 @@
             },
             {
               "src": "img/pre-match/pm2-5.png",
-              "label": "05 · Exploring the event"
+              "label": "05 · Betslip selection",
+              "nums": [
+                "r7",
+                "r8"
+              ]
             }
           ],
           "strengths": [
@@ -731,6 +742,18 @@
               "n": 6,
               "severity": "HIGH",
               "law": "Doherty Threshold"
+            },
+            {
+              "text": "In the betslip the selection is laid out in a way that’s hard to read at a glance — the structure could be clearer.",
+              "n": 7,
+              "severity": "LOW",
+              "law": "Cognitive Load"
+            },
+            {
+              "text": "A stake below the minimum can’t go through, but the button stays enabled — the user only finds out after tapping it.",
+              "n": 8,
+              "severity": "MEDIUM",
+              "law": "Mental Model"
             }
           ]
         },
@@ -805,6 +828,16 @@
               "text": "Give the stats / H2H entry (findings 5, 11, 12) a collapsed-by-default summary with a clear expand, so insight stays available without burying the markets.",
               "severity": "MEDIUM",
               "law": "Cognitive Load"
+            },
+            {
+              "text": "Add Stats and H2H chips to the sticky navigation, so match insight stays reachable while someone is browsing the markets — without scrolling back to the top.",
+              "severity": "MEDIUM",
+              "law": "Fitts's Law"
+            },
+            {
+              "text": "Replace the alert for a below-minimum stake with an inline validation message next to the field, to cut visual clutter and put the fix where the problem is.",
+              "severity": "LOW",
+              "law": "Cognitive Load"
             }
           ]
         }
@@ -812,12 +845,12 @@
       "figma": "https://www.figma.com/design/PoVIhpxPmpC2MtxrIhRHNs/Pre-match-Betting-%7C-UX-Review-%7C-Aleida---Konsta",
       "counts": {
         "s": 8,
-        "f": 19,
+        "f": 24,
         "sev": {
           "CRITICAL": 0,
           "HIGH": 5,
-          "MEDIUM": 9,
-          "LOW": 5,
+          "MEDIUM": 12,
+          "LOW": 7,
           "NIT": 0
         }
       }
@@ -3306,12 +3339,12 @@
   "todo": [],
   "totals": {
     "s": 113,
-    "f": 183,
+    "f": 188,
     "sev": {
       "CRITICAL": 17,
       "HIGH": 37,
-      "MEDIUM": 69,
-      "LOW": 50,
+      "MEDIUM": 72,
+      "LOW": 52,
       "NIT": 10
     }
   },
