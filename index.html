@@ -150,8 +150,12 @@ main{padding:22px 0 80px}
 .crtopic-link{text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s}
 .crtopic-link:hover{border-color:var(--green2);background:var(--panel)}
 .crtopic-go{color:var(--green2);font-weight:800}
-.dlg-share{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-.dlg-share .dlbtn{text-decoration:none}
+.dlg-share{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.dlg-share .dlbtn{margin-left:0;text-decoration:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:10px;display:inline-flex;align-items:center;gap:7px;transition:filter .12s,border-color .12s,background .12s}
+.dlg-share .dlbtn.primary{background:var(--green2);border-color:var(--green2);color:#fff}
+.dlg-share .dlbtn.primary:hover{filter:brightness(1.06)}
+.dlg-share .dlbtn.secondary{background:var(--panel);color:var(--ink)}
+.dlg-share .dlbtn.secondary:hover{border-color:var(--green2);background:var(--panel2)}
 .find-clickable{cursor:pointer;transition:transform .1s,box-shadow .15s,border-color .15s}
 .find-clickable:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.10)}
 .col.good .find-clickable:hover{border-color:var(--green2)}
@@ -183,7 +187,7 @@ function openPrio(it){var box=document.getElementById('dlgbox');
   var _loc=esc(it.topic)+' · '+esc(it.flow)+(it.sub?' · '+esc(it.sub):'');
   var _sev=it.severity?'<span class="sev '+it.severity+'">'+esc(it.severity)+'</span>':'';
   var _abs=findAbs(it);
-  var _share='<div class="dlg-share"><a class="dlbtn" href="#/'+flowPath(it)+'" onclick="_closeDlg()">↗ Open this page</a><button class="dlbtn" onclick="_copyLink('+"'"+_abs.replace(/'/g,"\'")+"'"+',this)">🔗 Copy link</button></div>';
+  var _share='<div class="dlg-share"><a class="dlbtn primary" href="#/'+flowPath(it)+'" onclick="_closeDlg()">↗ Open this page</a><button class="dlbtn secondary" onclick="_copyLink('+"'"+_abs.replace(/'/g,"\'")+"'"+',this)">🔗 Copy link</button></div>';
   box.innerHTML='<div class="dlg-2col"><div class="dlg-shots" id="dlgshots"></div><div class="dlg-info"><div class="dlg-head">'+_sev+(it.law?'<span class="law" data-law="'+esc(it.law)+'">'+esc(it.law)+'</span>':'')+_badge+'</div><div class="dlg-topic">'+_loc+'</div><p class="dlg-text">'+esc(it.text)+'</p>'+_share+'</div></div>';
   var sh=document.getElementById('dlgshots');(it._imgs||it.images||[]).forEach(function(im){var fig=el('figure','dshot');var img=el('img','dshotimg');img.src=im.src;img.loading='lazy';img.onclick=function(){_lb(im.src);};fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));sh.append(fig);});
   document.getElementById('dlg').classList.add('open');}
