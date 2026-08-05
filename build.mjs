@@ -892,6 +892,11 @@ main{padding:22px 0 80px}
 .dlg-topic{font-size:12px;font-weight:600;color:var(--mut);margin:0 0 14px}
 .crmeta{margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .crtopic{font-size:11px;color:var(--ink);font-weight:600;background:var(--panel2);border:1px solid var(--line);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.crtopic-link{text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s}
+.crtopic-link:hover{border-color:var(--green2);background:var(--panel)}
+.crtopic-go{color:var(--green2);font-weight:800}
+.dlg-share{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.dlg-share .dlbtn{text-decoration:none}
 footer{color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding:18px 0;text-align:center}
 </style></head>
 <body>
@@ -916,15 +921,24 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElement
 function openPrio(it){var box=document.getElementById('dlgbox');
   var _bk=(it.tok||'').charAt(0)==='g'?'g':'r', _bn=(it.tok||'').slice(1);
   var _badge=_bn?'<span class="prio-num '+_bk+'">'+esc(_bn)+'</span><span class="prio-numlab">← this badge on the screen</span>':'';
-  box.innerHTML='<div class="dlg-2col"><div class="dlg-shots" id="dlgshots"></div><div class="dlg-info"><div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span>'+(it.law?'<span class="law" data-law="'+esc(it.law)+'">'+esc(it.law)+'</span>':'')+_badge+'</div><div class="dlg-topic">'+esc(it.topic)+' · '+esc(it.flow)+'</div><p class="dlg-text">'+esc(it.text)+'</p></div></div>';
+  var _loc=esc(it.topic)+' · '+esc(it.flow)+(it.sub?' · '+esc(it.sub):'');
+  var _abs=prioAbs(it);
+  var _share='<div class="dlg-share"><a class="dlbtn" href="#/'+prioPath(it)+'" onclick="_closeDlg()">↗ Open this page</a><button class="dlbtn" onclick="_copyLink('+"'"+_abs.replace(/'/g,"\\'")+"'"+',this)">🔗 Copy link</button></div>';
+  box.innerHTML='<div class="dlg-2col"><div class="dlg-shots" id="dlgshots"></div><div class="dlg-info"><div class="dlg-head"><span class="sev '+it.severity+'">'+it.severity+'</span>'+(it.law?'<span class="law" data-law="'+esc(it.law)+'">'+esc(it.law)+'</span>':'')+_badge+'</div><div class="dlg-topic">'+_loc+'</div><p class="dlg-text">'+esc(it.text)+'</p>'+_share+'</div></div>';
   var sh=document.getElementById('dlgshots');(it._imgs||it.images||[]).forEach(function(im){var fig=el('figure','dshot');var img=el('img','dshotimg');img.src=im.src;img.loading='lazy';img.onclick=function(){_lb(im.src);};fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));sh.append(fig);});
   document.getElementById('dlg').classList.add('open');}
 window._closeDlg=function(){document.getElementById('dlg').classList.remove('open');};
 function slugify(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
 function hashSlug(){let h=location.hash||'';if(h[0]==='#')h=h.slice(1);if(h[0]==='/')h=h.slice(1);return h.trim();}
-function applyHash(){const h=hashSlug();if(!h||h==='summary'){current='summary';return;}const i=DATA.topics.findIndex(t=>slugify(t.name)===h);current=i>=0?i:'summary';}
+let pendingFlow=null;
+function applyHash(){const h=hashSlug();const parts=h.split('/').filter(Boolean);if(!parts.length||parts[0]==='summary'){current='summary';pendingFlow=null;return;}const i=DATA.topics.findIndex(t=>slugify(t.name)===parts[0]);current=i>=0?i:'summary';pendingFlow=parts[1]||null;}
 function nav(slug){if(hashSlug()===slug){route();}else{location.hash='/'+slug;}}
 function route(){applyHash();sevFilter='ALL';flowIdx=0;render();window.scrollTo(0,0);}
+// shareable deep link for a priority item: same page, anchored to its flow tab
+function prioPath(c){return slugify(c.topic)+'/'+slugify(c.flow);}
+function prioAbs(c){return location.origin+location.pathname+'#/'+prioPath(c);}
+window._copyLink=function(url,btn){function done(){if(btn){var o=btn.textContent;btn.textContent='✓ Copied';setTimeout(function(){btn.textContent=o;},1400);}}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,done);}else{var ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();done();}};
 (function(){
   function tipEl(){return document.getElementById('lawtip');}
   function descFor(name){var d=DATA.laws[name];if(!d){var f=(name.split('·')[0]||'').trim();d=DATA.laws[f];}return d;}
@@ -1004,7 +1018,10 @@ function renderSummary(){
   const gw=el('div','sumblock'); gw.append(el('h2',null,'Topics')); gw.append(grid); m.append(gw);
   // top critical across all topics
   const prio=[];
-  DATA.topics.forEach(function(tp){tp.flows.forEach(function(f){f.frictions.forEach(function(x,fi){ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,text:x.text,severity:x.severity,law:x.law||'',images:f.images||[],tok:'r'+(x.n||(fi+1))}); });});});
+  DATA.topics.forEach(function(tp){tp.flows.forEach(function(f){
+    var units=(f.subs&&f.subs.length)?f.subs.map(function(s){return {fr:s.frictions||[],images:s.images||[],sub:s.title||''};}):[{fr:f.frictions||[],images:f.images||[],sub:''}];
+    units.forEach(function(u){ u.fr.forEach(function(x,i){ if(x.severity==='CRITICAL'||x.severity==='HIGH') prio.push({topic:tp.name,flow:f.flow,sub:u.sub,text:x.text,severity:x.severity,law:x.law||'',images:u.images,tok:'r'+(x.n||(i+1))}); }); });
+  });});
   prio.sort((a,b)=>{
     const sv=(a.severity==='CRITICAL'?0:1)-(b.severity==='CRITICAL'?0:1);
     if(sv!==0) return sv;
@@ -1017,9 +1034,9 @@ function renderSummary(){
     const csvEsc=s=>{s=String(s==null?'':s);return /[",\\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
     const curRows=()=>critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter);
     const dlcsv=el('button','dlbtn','⬇ Download CSV'); dlcsv.title='Download the critical & high issues as a spreadsheet';
-    dlcsv.onclick=()=>{const r=curRows();const head=['Severity','Topic','Flow','Law of UX','Issue'];const lines=[head.join(',')].concat(r.map(c=>[c.severity,c.topic,c.flow,(c.law||'').replace(/·/g,'-'),c.text].map(csvEsc).join(',')));const blob=new Blob(['﻿'+lines.join('\\r\\n')],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='betpawa-ux-priority'+(critFilter!=='ALL'?'-'+slugify(critFilter):'')+'.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(a.href);};
+    dlcsv.onclick=()=>{const r=curRows();const head=['Severity','Topic','Flow','Sub-flow','Law of UX','Issue','Page link'];const lines=[head.join(',')].concat(r.map(c=>[c.severity,c.topic,c.flow,c.sub||'',(c.law||'').replace(/·/g,'-'),c.text,prioAbs(c)].map(csvEsc).join(',')));const blob=new Blob(['﻿'+lines.join('\\r\\n')],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='betpawa-ux-priority'+(critFilter!=='ALL'?'-'+slugify(critFilter):'')+'.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(a.href);};
     const dlpdf=el('button','dlbtn','🖨 Download PDF'); dlpdf.title='Open a printable view — save as PDF';
-    dlpdf.onclick=()=>{const r=curRows();const w=window.open('','_blank');if(!w)return;const rowsH=r.map(c=>'<tr><td class="sev '+(c.severity==='CRITICAL'?'c':'h')+'">'+esc(c.severity)+'</td><td>'+esc(c.topic)+'</td><td>'+esc(c.flow)+'</td><td>'+esc(c.law||'')+'</td><td>'+esc(c.text)+'</td></tr>').join('');w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>betPawa UX — Top Priority</title><style>body{font:13px -apple-system,Arial,sans-serif;padding:28px;color:#111}h1{font-size:18px;margin:0 0 4px}p{color:#555;margin:0 0 16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:8px 10px;text-align:left;vertical-align:top}th{background:#f2f2f2}.sev{font-weight:700;white-space:nowrap}.c{color:#c0392b}.h{color:#d35400}@media print{body{padding:0}}</style></head><body><h1>betPawa UX Review — Top Priority (Critical &amp; High)</h1><p>'+r.length+' issues'+(critFilter!=='ALL'?' · '+esc(critFilter):'')+'</p><table><thead><tr><th>Severity</th><th>Topic</th><th>Flow</th><th>Law of UX</th><th>Issue</th></tr></thead><tbody>'+rowsH+'</tbody></table></body></html>');w.document.close();w.focus();setTimeout(function(){w.print();},350);};
+    dlpdf.onclick=()=>{const r=curRows();const w=window.open('','_blank');if(!w)return;const rowsH=r.map(c=>'<tr><td class="sev '+(c.severity==='CRITICAL'?'c':'h')+'">'+esc(c.severity)+'</td><td>'+esc(c.topic)+'</td><td>'+esc(c.flow)+(c.sub?' <span class="sub">· '+esc(c.sub)+'</span>':'')+'</td><td>'+esc(c.law||'')+'</td><td>'+esc(c.text)+'</td><td><a href="'+esc(prioAbs(c))+'">Open page ↗</a></td></tr>').join('');w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>betPawa UX — Top Priority</title><style>body{font:13px -apple-system,Arial,sans-serif;padding:28px;color:#111}h1{font-size:18px;margin:0 0 4px}p{color:#555;margin:0 0 16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:8px 10px;text-align:left;vertical-align:top}th{background:#f2f2f2}.sev{font-weight:700;white-space:nowrap}.c{color:#c0392b}.h{color:#d35400}.sub{color:#777;font-weight:400}a{color:#1a73e8}@media print{body{padding:0}}</style></head><body><h1>betPawa UX Review — Top Priority (Critical &amp; High)</h1><p>'+r.length+' issues'+(critFilter!=='ALL'?' · '+esc(critFilter):'')+'</p><table><thead><tr><th>Severity</th><th>Topic</th><th>Flow</th><th>Law of UX</th><th>Issue</th><th>Page link</th></tr></thead><tbody>'+rowsH+'</tbody></table></body></html>');w.document.close();w.focus();setTimeout(function(){w.print();},350);};
     hr.append(dlcsv,dlpdf); cb.append(hr);
     const T=DATA.totals;
     cb.append(el('p','about-intro','The list below pulls together the most severe issues — <b>'+T.sev.CRITICAL+' critical</b> and <b>'+T.sev.HIGH+' high-priority</b> — from across all '+DATA.topics.length+' journeys, so the highest-impact problems sit in one place before you dive into each topic. Filter by topic with the tabs; every row shows the severity, the UX principle it breaks, where it happens, and — where a screen is available — a thumbnail you can open.'));
@@ -1029,7 +1046,9 @@ function renderSummary(){
     function chipEl(label,key,count){const c=el('span','chip'+(critFilter===key?' active':''),label+' <b style="opacity:.6">'+count+'</b>');c.dataset.key=key;c.onclick=()=>{critFilter=key;[...ct.children].forEach(ch=>ch.classList.toggle('active',ch.dataset.key===key));paint();};return c;}
     function paint(){ list.innerHTML=''; const shown=critFilter==='ALL'?prio:prio.filter(c=>c.topic===critFilter);
       shown.forEach(function(c){ var m=(c.images||[]).filter(function(im){return im.nums&&im.nums.indexOf(c.tok)>=0;}); c._imgs=m.length?m:(c.images||[]); var hasImg=c._imgs.length>0; const card=el('div','card bad'+(hasImg?' prio-clickable':''));
-        card.innerHTML='<div class="prio-row">'+(hasImg?'<img class="prio-thumb" loading="lazy" src="'+c._imgs[0].src+'" alt="">':'')+'<div class="prio-main"><div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span>'+(c.law?'<span class="law" data-law="'+esc(c.law)+'">'+esc(c.law)+'</span>':'')+'<span class="crtopic">'+esc(c.topic)+' · '+esc(c.flow)+'</span></div>'+esc(c.text)+(hasImg?'<div class="prio-hint">Click to view the screen →</div>':'')+'</div></div>';
+        var loc=esc(c.topic)+' · '+esc(c.flow)+(c.sub?' · '+esc(c.sub):'');
+        card.innerHTML='<div class="prio-row">'+(hasImg?'<img class="prio-thumb" loading="lazy" src="'+c._imgs[0].src+'" alt="">':'')+'<div class="prio-main"><div class="crmeta"><span class="sev '+c.severity+'">'+c.severity+'</span>'+(c.law?'<span class="law" data-law="'+esc(c.law)+'">'+esc(c.law)+'</span>':'')+'<a class="crtopic crtopic-link" href="#/'+prioPath(c)+'" title="Open this page">'+loc+' <span class="crtopic-go">↗</span></a></div>'+esc(c.text)+(hasImg?'<div class="prio-hint">Click to view the screen →</div>':'')+'</div></div>';
+        var lk=card.querySelector('.crtopic-link'); if(lk) lk.onclick=function(e){e.stopPropagation();};
         if(hasImg) card.onclick=function(){openPrio(c);};
         list.append(card); }); }
     ct.append(chipEl('All','ALL',prio.length));
@@ -1049,13 +1068,15 @@ function renderTopic(){
   const SEVR=s=>{const i=SEV.indexOf(s);return i<0?99:i;};
   const frSort=arr=>arr.slice().sort((a,b)=>SEVR(a.severity)-SEVR(b.severity));
   const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && cStr(o.f).length===0 && cFr(o.f).length===0));
+  if(pendingFlow){const pj=visFlows.findIndex(o=>slugify(o.f.flow)===pendingFlow);if(pj>=0)flowIdx=pj;pendingFlow=null;}
   if(flowIdx>=visFlows.length) flowIdx=0;
   const tabbed=visFlows.length>1;
+  const tslug=slugify(t.name);
   if(tabbed){
     const ft=el('div','flowtabs');
-    visFlows.forEach((o,j)=>{const p=o.f.flow.indexOf('·');const lbl=p>=0?o.f.flow.slice(p+1).trim():o.f.flow;const c=el('span','ftab'+(j===flowIdx?' active':''),esc(lbl));c.onclick=()=>{flowIdx=j;render();window.scrollTo(0,0);};ft.append(c);});
+    visFlows.forEach((o,j)=>{const p=o.f.flow.indexOf('·');const lbl=p>=0?o.f.flow.slice(p+1).trim():o.f.flow;const c=el('span','ftab'+(j===flowIdx?' active':''),esc(lbl));c.onclick=()=>{flowIdx=j;history.replaceState(null,'','#/'+tslug+'/'+slugify(o.f.flow));render();window.scrollTo(0,0);};ft.append(c);});
     m.append(ft);
-  }
+  } else if(visFlows.length===1){ history.replaceState(null,'','#/'+tslug); }
   function renderBody(flow, part){
     const frShown=frSort(part.frictions||[]);
     const strs=part.strengths||[];
