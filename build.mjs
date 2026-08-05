@@ -310,20 +310,26 @@ const topics = [
   {
     name: 'Deposits & Withdrawals', reviewer: '—', tag: 'severity',
     flows: [
-      {flow:'Deposit · MoMo',
-       images:[{src:'img/deposits-withdrawals/mo1.png',label:'01 · Deposit guide'},{src:'img/deposits-withdrawals/mo2.png',label:'02 · Deposit amount'},{src:'img/deposits-withdrawals/mo3.png',label:'03 · Success'},{src:'img/deposits-withdrawals/mo4.png',label:'04 · Insufficient funds'},{src:'img/deposits-withdrawals/mo5.png',label:'05 · Vague error'},{src:'img/deposits-withdrawals/mo6.png',label:'06 · Clearer error'}],
-       strengths:[
-        {text:"Successful-deposit confirmation is shown.", law:"Peak-End Rule"},
-        {text:"Min & max deposit amounts are enforced — the Deposit CTA disables outside the range.", law:"Jakob's Law"},
-        {text:"Deposit-limit validation is in place.", law:"Jakob's Law"},
-        {text:"An insufficient-funds notification is shown.", law:"Doherty Threshold"},
-        {text:"On the follow-up screen the error message gives a bit more clarity about the issue.", law:"Cognitive Load"},
-       ], frictions:[
-        {text:"Too much copy sits before the deposit component, risking it being pushed below the fold — reduce the intro text. (NG)", severity:"MEDIUM", law:"Serial Position Effect"},
-        {text:"The guide copy is inconsistent — headings use the same font size as body text. (NG)", severity:"LOW", law:"Jakob's Law"},
-        {text:"The guide section is text-heavy — consider accordions to cut the wall of text. (NG)", severity:"MEDIUM", law:"Cognitive Load"},
-        {text:"In some markets (seen in MW) the insufficient-funds error is delayed or never shows on betPawa, even though the Telco already sent the SMS.", severity:"HIGH", law:"Doherty Threshold"},
-        {text:"The error message is vague and doesn’t clarify the actual issue — mirror the clearer message shown on the following screen.", severity:"MEDIUM", law:"Cognitive Load"},
+      {flow:'Deposit · MoMo', subs:[
+        {title:'Flow 1 · Deposit journey',
+         images:[{src:'img/deposits-withdrawals/mo1.png',label:'01 · Deposit guide'},{src:'img/deposits-withdrawals/mo2.png',label:'02 · Deposit amount'},{src:'img/deposits-withdrawals/mo3.png',label:'03 · Success'}],
+         strengths:[
+          {text:"Successful-deposit confirmation is shown.", n:1, law:"Peak-End Rule"},
+          {text:"Min & max deposit amounts are enforced — the Deposit CTA disables outside the range.", n:2, law:"Jakob's Law"},
+          {text:"Deposit-limit validation is in place.", n:3, law:"Jakob's Law"},
+         ], frictions:[
+          {text:"Too much copy sits before the deposit component, risking it being pushed below the fold — reduce the intro text. (NG)", n:4, severity:"MEDIUM", law:"Serial Position Effect"},
+          {text:"The guide copy is inconsistent — headings use the same font size as body text. (NG)", n:5, severity:"LOW", law:"Jakob's Law"},
+          {text:"The guide section is text-heavy — consider accordions to cut the wall of text. (NG)", n:6, severity:"MEDIUM", law:"Cognitive Load"},
+         ]},
+        {title:'Flow 2 · Insufficient funds',
+         images:[{src:'img/deposits-withdrawals/mo4.png',label:'01 · Insufficient funds'}],
+         strengths:[{text:"An insufficient-funds notification is shown.", n:1, law:"Doherty Threshold"}],
+         frictions:[{text:"In some markets (seen in MW) the insufficient-funds error is delayed or never shows on betPawa, even though the Telco already sent the SMS.", n:2, severity:"HIGH", law:"Doherty Threshold"}]},
+        {title:'Flow 3 · Error message',
+         images:[{src:'img/deposits-withdrawals/mo5.png',label:'01 · Vague error'},{src:'img/deposits-withdrawals/mo6.png',label:'02 · Clearer error'}],
+         strengths:[{text:"On the follow-up screen the error message gives a bit more clarity about the issue.", n:1, law:"Cognitive Load"}],
+         frictions:[{text:"The error message is vague and doesn’t clarify the actual issue — mirror the clearer message shown on the following screen.", n:2, severity:"MEDIUM", law:"Cognitive Load"}]},
        ]},
       {flow:'Deposit · Opay',
        images:[{src:'img/deposits-withdrawals/op1.png',label:'01 · Deposit start'},{src:'img/deposits-withdrawals/op2.png',label:'02 · Opay redirect'},{src:'img/deposits-withdrawals/op3.png',label:'03 · After Return to Merchant'},{src:'img/deposits-withdrawals/op4.png',label:'04 · Unsuccessful message'}],
@@ -601,7 +607,9 @@ const SEV_ASSIGN = {
     ['next button leads','MEDIUM'],['match is live','LOW'],['active betslip','MEDIUM'],['dedicated betslip','LOW'],
   ],
 };
-for(const t of topics){ const map=SEV_ASSIGN[t.name]; if(!map) continue; for(const f of t.flows){ for(const x of f.frictions){ if(x.severity) continue; const l=x.text.toLowerCase(); for(const [k,v] of map){ if(l.includes(k)){ x.severity=v; break; } } } } }
+const flowStr=f=>f.subs?f.subs.flatMap(s=>s.strengths||[]):(f.strengths||[]);
+const flowFr=f=>f.subs?f.subs.flatMap(s=>s.frictions||[]):(f.frictions||[]);
+for(const t of topics){ const map=SEV_ASSIGN[t.name]; if(!map) continue; for(const f of t.flows){ for(const x of flowFr(f)){ if(x.severity) continue; const l=x.text.toLowerCase(); for(const [k,v] of map){ if(l.includes(k)){ x.severity=v; break; } } } } }
 
 // Law-of-UX assignment for topics whose reviewers didn't tag laws (hub-side, first pass — refine per-finding as needed)
 const LAW_ASSIGN=[
@@ -640,13 +648,13 @@ const LAW_ASSIGN=[
   ["no single view of all active filters","Cognitive Load"],["aren't summarised on the results list","Cognitive Load"],["event sub-tabs","Law of Common Region"],["in-play visualiser dominates","Serial Position Effect"],
   ["date picker only allows a single date","Mental Model"],["grouped into scannable tabs","Law of Common Region"],["market groups carry counts","Von Restorff Effect"],["statistics fill the whole first screen","Serial Position Effect"],
 ];
-for(const t of topics){ for(const f of t.flows){ for(const arr of [f.strengths,f.frictions]){ for(const x of arr){ if(x.law) continue; const l=x.text.toLowerCase(); for(const [k,v] of LAW_ASSIGN){ if(l.includes(k)){ x.law=v; break; } } } } } }
+for(const t of topics){ for(const f of t.flows){ for(const arr of [flowStr(f),flowFr(f)]){ for(const x of arr){ if(x.law) continue; const l=x.text.toLowerCase(); for(const [k,v] of LAW_ASSIGN){ if(l.includes(k)){ x.law=v; break; } } } } } }
 
 // ---- counts ----
 const SEV_ORDER = ['CRITICAL','HIGH','MEDIUM','LOW','NIT'];
 function topicCounts(t){
   let s=0,f=0; const sev={CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0,NIT:0};
-  for(const fl of t.flows){ s+=fl.strengths.length; f+=fl.frictions.length; for(const x of fl.frictions){ if(x.severity&&sev[x.severity]!==undefined) sev[x.severity]++; } }
+  for(const fl of t.flows){ const strs=flowStr(fl),frs=flowFr(fl); s+=strs.length; f+=frs.length; for(const x of frs){ if(x.severity&&sev[x.severity]!==undefined) sev[x.severity]++; } }
   return {s,f,sev};
 }
 // hidden topics — kept in code but not shown (remove from HIDDEN to re-enable)
@@ -716,7 +724,7 @@ const IMG_NUMS = {
   'img/help-support/b2-1.png':['g1','g2'],'img/help-support/b2-2.png':['r1','r2','r3'],
   'img/help-support/b3-1.png':['g1','g3','r1'],'img/help-support/b3-2.png':['g2','r2'],
 };
-for(const t of topics){ for(const f of t.flows){ if(f.images) for(const im of f.images){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
+for(const t of topics){ for(const f of t.flows){ const ims=f.subs?f.subs.flatMap(s=>s.images||[]):(f.images||[]); for(const im of ims){ if(IMG_NUMS[im.src]) im.nums=IMG_NUMS[im.src]; } } }
 const payload = { snapshot: SNAPSHOT, topics: topics.map(t=>({...t, figma:FIGMA[t.name]||null, counts:topicCounts(t)})), todo: TODO, totals, laws: LAWS };
 fs.writeFileSync(new URL('./data.json', import.meta.url), JSON.stringify(payload,null,2));
 
@@ -768,6 +776,8 @@ main{padding:22px 0 80px}
 .sevf .chip{cursor:pointer;font-size:11px;font-weight:700;border-radius:999px;padding:4px 11px;border:1px solid var(--line);color:var(--mut);background:var(--panel)}
 .sevf .chip.active{color:#fff;border-color:var(--ink)}
 .flow{margin:0 0 26px;scroll-margin-top:64px}
+.flow .subhead{font-size:15px;font-weight:700;color:var(--ink);margin:26px 0 12px;padding-top:16px;border-top:1px solid var(--line)}
+.flow .subhead:first-child{margin-top:2px;padding-top:0;border-top:0}
 .flowtabs{position:sticky;top:0;z-index:15;display:flex;gap:30px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 0 18px;background:var(--bg);border-bottom:1px solid var(--line)}
 .flowtabs::-webkit-scrollbar{display:none}
 .ftab{flex:0 0 auto;font-size:13px;font-weight:600;color:var(--mut);padding:11px 2px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px}
@@ -1017,12 +1027,14 @@ function renderSummary(){
 function renderTopic(){
   const m=document.getElementById('main'); m.innerHTML='';
   const t=DATA.topics[current];
-  const hasSev=t.flows.some(f=>f.frictions.some(x=>x.severity));
+  const cStr=f=>f.subs?f.subs.flatMap(s=>s.strengths||[]):(f.strengths||[]);
+  const cFr=f=>f.subs?f.subs.flatMap(s=>s.frictions||[]):(f.frictions||[]);
+  const hasSev=t.flows.some(f=>cFr(f).some(x=>x.severity));
   const head=el('div','topichead','<h1>'+esc(t.name)+'</h1>'+figLink(t.figma));
   m.append(head);
   const SEVR=s=>{const i=SEV.indexOf(s);return i<0?99:i;};
-  const frShownOf=f=> f.frictions.slice().sort((a,b)=>SEVR(a.severity)-SEVR(b.severity));
-  const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && o.f.strengths.length===0 && frShownOf(o.f).length===0));
+  const frSort=arr=>arr.slice().sort((a,b)=>SEVR(a.severity)-SEVR(b.severity));
+  const visFlows=t.flows.map((f,i)=>({f,i})).filter(o=> !(t.flows.length>1 && cStr(o.f).length===0 && cFr(o.f).length===0));
   if(flowIdx>=visFlows.length) flowIdx=0;
   const tabbed=visFlows.length>1;
   if(tabbed){
@@ -1030,40 +1042,32 @@ function renderTopic(){
     visFlows.forEach((o,j)=>{const p=o.f.flow.indexOf('·');const lbl=p>=0?o.f.flow.slice(p+1).trim():o.f.flow;const c=el('span','ftab'+(j===flowIdx?' active':''),esc(lbl));c.onclick=()=>{flowIdx=j;render();window.scrollTo(0,0);};ft.append(c);});
     m.append(ft);
   }
-  (tabbed?[visFlows[flowIdx]]:visFlows).forEach(o=>{
-    const f=o.f;
-    const frShown = frShownOf(f);
-    const showNum = f.numbered!==false && !!(f.images && f.images.length);
-    const flow=el('div','flow'); flow.id='flow-'+o.i; if(!tabbed) flow.append(el('h2',null,esc(f.flow)));
-    if(f.images && f.images.length){
+  function renderBody(flow, part){
+    const frShown=frSort(part.frictions||[]);
+    const strs=part.strengths||[];
+    const showNum = part.numbered!==false && !!(part.images && part.images.length);
+    if(part.images && part.images.length){
       flow.append(el('div','flowimg-cap','Annotated screens — the numbered badges map to the findings below. Click any to zoom.'));
       const w=el('div','shots');
-      f.images.forEach(im=>{const fig=el('figure','shot');const img=el('img','shotimg');img.src=im.src;img.alt=esc(im.label||'');img.loading='lazy';img.onclick=()=>_lb(im.src);fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));w.append(fig);});
-      flow.append(w);
-    } else if(f.image){
-      const w=el('div','flowimg-wrap');
-      const img=el('img','flowimg'); img.src=f.image; img.alt=esc(f.flow); img.loading='lazy'; img.onclick=()=>_lb(f.image);
-      w.append(img); w.append(el('div','flowimg-cap','Annotated screens — click to zoom.'));
+      part.images.forEach(im=>{const fig=el('figure','shot');const img=el('img','shotimg');img.src=im.src;img.alt=esc(im.label||'');img.loading='lazy';img.onclick=()=>_lb(im.src);fig.append(img);if(im.label)fig.append(el('figcaption','shotcap',esc(im.label)));w.append(fig);});
       flow.append(w);
     }
     const cols=el('div','cols');
     const good=el('div','col good'); good.append(el('h3',null,'<span class="dot"></span>Works well'));
-    if(f.strengths.length===0) good.append(el('div','empty','—'));
-    f.strengths.forEach((s,i)=>{
-      const inner=esc(s.text)+(s.law?'<div class="meta"><span class="law" data-law="'+esc(s.law)+'">'+esc(s.law)+'</span></div>':'');
-      good.append(el('div','card good'+(showNum?' hasnum':''), showNum?'<span class="fnum g">'+(s.n||(i+1))+'</span><div class="fbody">'+inner+'</div>':inner));
-    });
+    if(strs.length===0) good.append(el('div','empty','—'));
+    strs.forEach((s,i)=>{const inner=esc(s.text)+(s.law?'<div class="meta"><span class="law" data-law="'+esc(s.law)+'">'+esc(s.law)+'</span></div>':'');good.append(el('div','card good'+(showNum?' hasnum':''), showNum?'<span class="fnum g">'+(s.n||(i+1))+'</span><div class="fbody">'+inner+'</div>':inner));});
     const bad=el('div','col bad'); bad.append(el('h3',null,'<span class="dot"></span>Friction / ideas'));
     if(frShown.length===0) bad.append(el('div','empty','—'));
-    frShown.forEach(x=>{
-      let meta='';
-      if(x.severity) meta+='<span class="sev '+x.severity+'">'+x.severity+'</span>';
-      if(x.law) meta+='<span class="law" data-law="'+esc(x.law)+'">'+esc(x.law)+'</span>';
-      const inner=esc(x.text)+(meta?'<div class="meta">'+meta+'</div>':'');
-      const n=x.n||(f.frictions.indexOf(x)+1);
-      bad.append(el('div','card bad'+(showNum?' hasnum':''), showNum?'<span class="fnum r">'+n+'</span><div class="fbody">'+inner+'</div>':inner));
-    });
-    cols.append(good,bad); flow.append(cols); m.append(flow);
+    frShown.forEach(x=>{let meta='';if(x.severity)meta+='<span class="sev '+x.severity+'">'+x.severity+'</span>';if(x.law)meta+='<span class="law" data-law="'+esc(x.law)+'">'+esc(x.law)+'</span>';const inner=esc(x.text)+(meta?'<div class="meta">'+meta+'</div>':'');const n=x.n||((part.frictions||[]).indexOf(x)+1);bad.append(el('div','card bad'+(showNum?' hasnum':''), showNum?'<span class="fnum r">'+n+'</span><div class="fbody">'+inner+'</div>':inner));});
+    cols.append(good,bad); flow.append(cols);
+  }
+  (tabbed?[visFlows[flowIdx]]:visFlows).forEach(o=>{
+    const f=o.f;
+    const flow=el('div','flow'); flow.id='flow-'+o.i; if(!tabbed) flow.append(el('h2',null,esc(f.flow)));
+    if(f.subs && f.subs.length){ f.subs.forEach(sub=>{ if(sub.title) flow.append(el('div','subhead',esc(sub.title))); renderBody(flow,sub); }); }
+    else if(f.image){ const w=el('div','flowimg-wrap');const img=el('img','flowimg');img.src=f.image;img.alt=esc(f.flow);img.loading='lazy';img.onclick=()=>_lb(f.image);w.append(img);w.append(el('div','flowimg-cap','Annotated screens — click to zoom.'));flow.append(w);const cols=el('div','cols');const good=el('div','col good');good.append(el('h3',null,'<span class="dot"></span>Works well'));if(!f.strengths.length)good.append(el('div','empty','—'));f.strengths.forEach((s,i)=>{const inner=esc(s.text)+(s.law?'<div class="meta"><span class="law" data-law="'+esc(s.law)+'">'+esc(s.law)+'</span></div>':'');good.append(el('div','card good',inner));});const bad=el('div','col bad');bad.append(el('h3',null,'<span class="dot"></span>Friction / ideas'));frSort(f.frictions).forEach(x=>{let meta='';if(x.severity)meta+='<span class="sev '+x.severity+'">'+x.severity+'</span>';if(x.law)meta+='<span class="law" data-law="'+esc(x.law)+'">'+esc(x.law)+'</span>';bad.append(el('div','card bad',esc(x.text)+(meta?'<div class="meta">'+meta+'</div>':'')));});cols.append(good,bad);flow.append(cols); }
+    else { renderBody(flow,f); }
+    m.append(flow);
   });
 }
 function render(){renderTabs(); if(current==='summary') renderSummary(); else renderTopic(); paintThemeBtn();}
