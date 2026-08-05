@@ -127,9 +127,9 @@ Filter out "Drop screen" and other placeholder texts in both cases.
 Nothing is broken and nothing is urgent. If someone asks "what's next":
 
 1. **Mirror the hub-side laws and severities back into the reviewers' Figma files.** Biggest open item — the hub and the source files currently disagree on tagging.
-2. **Pre-match screens** — the only topic still without exported screens.
-3. **Help & Support has no real screenshots** — the Figma file only had empty template placeholders. The 14 board cards in `img/help-support/` are the boards, not device screens.
-4. **`README.md` "Topics ready / TODO" lines are stale** — they predate the last four topics.
+2. **Help & Support has no real screenshots** — the Figma file only had empty template placeholders. The 14 board cards in `img/help-support/` are the boards, not device screens.
+
+Done since first draft of this file: pre-match screens are exported and wired (`img/pre-match/`, 13 screens); `README.md` topic list is current.
 
 ---
 

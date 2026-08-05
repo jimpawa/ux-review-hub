@@ -6,5 +6,4 @@ Static snapshot that aggregates the UX Findings from each reviewer's Figma "UX F
 - Rebuild: `node build.mjs YYYY-MM-DD`
 - Snapshot only (Figma isn't live-fetchable from a webpage); re-run the build to refresh.
 
-Topics ready: Global Navigation, Live Betting, My Bets & Cashout, Help & Support, Casino & Virtuals & Other Products.
-TODO: PreMatch, Homepage & Sports Discovery.
+Topics live (9): Global Navigation, Sign-up & Login, Homepage & Sports Discovery, Pre-Event Betting, Live Betting, My Bets & Cashout, Deposits & Withdrawals, Casino & Virtuals & Other Products, Help & Support.
