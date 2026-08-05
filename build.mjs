@@ -331,31 +331,41 @@ const topics = [
          strengths:[{text:"On the follow-up screen the error message gives a bit more clarity about the issue.", n:1, law:"Cognitive Load"}],
          frictions:[{text:"The error message is vague and doesn’t clarify the actual issue — mirror the clearer message shown on the following screen.", n:2, severity:"MEDIUM", law:"Cognitive Load"}]},
        ]},
-      {flow:'Deposit · Opay',
-       images:[{src:'img/deposits-withdrawals/op1.png',label:'01 · Deposit start'},{src:'img/deposits-withdrawals/op2.png',label:'02 · Opay redirect'},{src:'img/deposits-withdrawals/op3.png',label:'03 · After Return to Merchant'},{src:'img/deposits-withdrawals/op4.png',label:'04 · Unsuccessful message'}],
-       strengths:[
-        {text:"Online deposit via Opay is seamless.", law:"Jakob's Law"},
-        {text:"A deposit-unsuccessful message is shown when it fails.", law:"Doherty Threshold"},
-       ], frictions:[
-        {text:"After tapping “Return to Merchant”, the user lands back on Opay’s deposit page instead of the betPawa site.", severity:"MEDIUM", law:"Mental Model"},
-        {text:"No deposit-success message is shown — you have to reload/refresh the page to see the balance update.", severity:"HIGH", law:"Doherty Threshold"},
+      {flow:'Deposit · Opay', subs:[
+        {title:'Flow 4 · Online deposit',
+         images:[{src:'img/deposits-withdrawals/opa1.png',label:'01 · Deposit method'},{src:'img/deposits-withdrawals/opa2.png',label:'02 · Seamless deposit'}],
+         strengths:[{text:"Online deposit via Opay is seamless.", n:1, law:"Jakob's Law"}], frictions:[]},
+        {title:'Flow 5 · Return to merchant',
+         images:[{src:'img/deposits-withdrawals/opb1.png',label:'01 · Return to Merchant'},{src:'img/deposits-withdrawals/opb2.png',label:'02 · No success message'}],
+         strengths:[], frictions:[
+          {text:"After tapping “Return to Merchant”, the user lands back on Opay’s deposit page instead of the betPawa site.", n:1, severity:"MEDIUM", law:"Mental Model"},
+          {text:"No deposit-success message is shown — you have to reload/refresh the page to see the balance update.", n:2, severity:"HIGH", law:"Doherty Threshold"}]},
+        {title:'Flow 6 · Unsuccessful deposit',
+         images:[{src:'img/deposits-withdrawals/opc1.png',label:'01 · Unsuccessful message'}],
+         strengths:[{text:"A clear deposit-unsuccessful message is shown when it fails.", n:1, law:"Doherty Threshold"}], frictions:[]},
        ]},
-      {flow:'Deposit · Monnify',
-       images:[{src:'img/deposits-withdrawals/mn1.png',label:'01 · Monnify start'},{src:'img/deposits-withdrawals/mn2.png',label:'02 · Payment reference'},{src:'img/deposits-withdrawals/mn3.png',label:'03 · Success without deposit'},{src:'img/deposits-withdrawals/mn4.png',label:'04 · Delay message'}],
-       strengths:[
-        {text:"Clear successful-transaction message.", law:"Peak-End Rule"},
-        {text:"Clear communication when there’s a delay.", law:"Doherty Threshold"},
-       ], frictions:[
-        {text:"The payment reference is too long and spills out of the notification component.", severity:"LOW", law:"Aesthetic-Usability Effect"},
-        {text:"Users have to leave betPawa to complete the transaction.", severity:"MEDIUM", law:"Mental Model"},
-        {text:"A “successful deposit” notification appears even when no deposit was actually made.", severity:"HIGH", law:"Mental Model"},
+      {flow:'Deposit · Monnify', subs:[
+        {title:'Flow 7 · Successful transaction',
+         images:[{src:'img/deposits-withdrawals/mna1.png',label:'01 · Success'},{src:'img/deposits-withdrawals/mna2.png',label:'02 · Leaves betPawa'}],
+         strengths:[{text:"Clear successful-transaction message.", n:1, law:"Peak-End Rule"}], frictions:[
+          {text:"The payment reference is too long and spills out of the notification component.", n:2, severity:"LOW", law:"Aesthetic-Usability Effect"},
+          {text:"Users have to leave betPawa to complete the transaction.", n:3, severity:"MEDIUM", law:"Mental Model"}]},
+        {title:'Flow 8 · Success without deposit',
+         images:[{src:'img/deposits-withdrawals/mnb1.png',label:'01 · Delay message'},{src:'img/deposits-withdrawals/mnb2.png',label:'02 · Success without deposit'}],
+         strengths:[{text:"Clear communication when there’s a delay.", n:1, law:"Doherty Threshold"}], frictions:[
+          {text:"A “successful deposit” notification appears even when no deposit was actually made.", n:2, severity:"HIGH", law:"Mental Model"}]},
+        {title:'Flow 9 · Delay handling',
+         images:[{src:'img/deposits-withdrawals/mnc1.png',label:'01 · Delay message'},{src:'img/deposits-withdrawals/mnc2.png',label:'02 · Payment reference'},{src:'img/deposits-withdrawals/mnc3.png',label:'03 · Leaves betPawa'}],
+         strengths:[{text:"Clear communication when there’s a delay.", n:1, law:"Doherty Threshold"}], frictions:[
+          {text:"The payment reference is too long and spills out of the notification component.", n:2, severity:"LOW", law:"Aesthetic-Usability Effect"},
+          {text:"Users have to leave betPawa to complete the transaction.", n:3, severity:"MEDIUM", law:"Mental Model"}]},
        ]},
       {flow:'Deposit · Palmpay',
-       images:[{src:'img/deposits-withdrawals/pp1.png',label:'01 · Palmpay start'},{src:'img/deposits-withdrawals/pp2.png',label:'02 · Palmpay'},{src:'img/deposits-withdrawals/pp3.png',label:'03 · Success without deposit'}],
+       images:[{src:'img/deposits-withdrawals/ppa1.png',label:'01 · Deposit start'},{src:'img/deposits-withdrawals/ppa2.png',label:'02 · Deposit'},{src:'img/deposits-withdrawals/ppb1.png',label:'03 · Success without deposit'}],
        strengths:[
-        {text:"Clear communication when there’s a delay.", law:"Doherty Threshold"},
+        {text:"Clear communication when there’s a delay.", n:1, law:"Doherty Threshold"},
        ], frictions:[
-        {text:"A “successful deposit” notification appears even when no deposit was actually made.", severity:"HIGH", law:"Mental Model"},
+        {text:"A “successful deposit” notification appears even when no deposit was actually made.", n:2, severity:"HIGH", law:"Mental Model"},
        ]},
       {flow:'Deposit · Wave',
        images:[{src:'img/deposits-withdrawals/wv1.png',label:'01 · Deposit'},{src:'img/deposits-withdrawals/wv2.png',label:'02 · Deposit'},{src:'img/deposits-withdrawals/wv3.png',label:'03 · Success despite low balance'}],
@@ -370,16 +380,20 @@ const topics = [
         {text:"Insufficient-balance should be flagged before the user taps Withdraw, not after.", severity:"MEDIUM", law:"Jakob's Law"},
         {text:"The Withdraw button should disable once the insufficient-balance notice appears.", severity:"MEDIUM", law:"Jakob's Law"},
        ]},
-      {flow:'Withdrawal — Bank transfer',
-       images:[{src:'img/deposits-withdrawals/wb1.png',label:'01 · Bank withdraw'},{src:'img/deposits-withdrawals/wb2.png',label:'02 · Insufficient balance'},{src:'img/deposits-withdrawals/wb3.png',label:'03 · Add account'},{src:'img/deposits-withdrawals/wb4.png',label:'04 · Account validation'}],
-       strengths:[
-        {text:"Users can add more than one bank account to withdraw to.", law:"Jakob's Law"},
-        {text:"User is notified once the withdrawal request is approved.", law:"Doherty Threshold"},
-       ], frictions:[
-        {text:"Insufficient-balance should be flagged before the user taps Withdraw, not after.", severity:"MEDIUM", law:"Jakob's Law"},
-        {text:"The Withdraw button should disable once the insufficient-balance notice appears.", severity:"MEDIUM", law:"Jakob's Law"},
-        {text:"No “Contact us” link is provided in the notification.", severity:"LOW", law:"Jakob's Law"},
-        {text:"Account validation should happen in real time, before the user taps “Add New Account”.", severity:"MEDIUM", law:"Doherty Threshold"},
+      {flow:'Withdrawal — Bank transfer', subs:[
+        {title:'Withdraw to bank',
+         images:[{src:'img/deposits-withdrawals/wba2.png',label:'01 · Approved'},{src:'img/deposits-withdrawals/wba3.png',label:'02 · Insufficient balance'}],
+         strengths:[
+          {text:"Users can add more than one bank account to withdraw to.", n:1, law:"Jakob's Law"},
+          {text:"User is notified once the withdrawal request is approved.", n:2, law:"Doherty Threshold"}],
+         frictions:[
+          {text:"Insufficient-balance should be flagged before the user taps Withdraw, not after.", n:3, severity:"MEDIUM", law:"Jakob's Law"},
+          {text:"The Withdraw button should disable once the insufficient-balance notice appears.", n:4, severity:"MEDIUM", law:"Jakob's Law"}]},
+        {title:'Add new account',
+         images:[{src:'img/deposits-withdrawals/wbb1.png',label:'01 · No contact link'},{src:'img/deposits-withdrawals/wbb2.png',label:'02 · Validation timing'}],
+         strengths:[], frictions:[
+          {text:"No “Contact us” link is provided in the notification.", n:1, severity:"LOW", law:"Jakob's Law"},
+          {text:"Account validation should happen in real time, before the user taps “Add New Account”.", n:2, severity:"MEDIUM", law:"Doherty Threshold"}]},
        ]},
       {flow:'Dark-mode icons (NG)',
        images:[{src:'img/deposits-withdrawals/dk1.png',label:'01 · Deposit method icons (dark)'}],
