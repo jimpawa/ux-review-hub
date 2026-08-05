@@ -2428,15 +2428,27 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/mo1.png",
-                  "label": "01 · Deposit guide"
+                  "label": "01 · Deposit guide",
+                  "nums": [
+                    "r4",
+                    "r5",
+                    "r6"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mo2.png",
-                  "label": "02 · Deposit amount"
+                  "label": "02 · Deposit amount",
+                  "nums": [
+                    "g2",
+                    "g3"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mo3.png",
-                  "label": "03 · Success"
+                  "label": "03 · Success",
+                  "nums": [
+                    "g1"
+                  ]
                 }
               ],
               "strengths": [
@@ -2482,7 +2494,11 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/mo4.png",
-                  "label": "01 · Insufficient funds"
+                  "label": "01 · Insufficient funds",
+                  "nums": [
+                    "g1",
+                    "r2"
+                  ]
                 }
               ],
               "strengths": [
@@ -2506,11 +2522,17 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/mo5.png",
-                  "label": "01 · Vague error"
+                  "label": "01 · Vague error",
+                  "nums": [
+                    "r2"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mo6.png",
-                  "label": "02 · Clearer error"
+                  "label": "02 · Clearer error",
+                  "nums": [
+                    "g1"
+                  ]
                 }
               ],
               "strengths": [
@@ -2545,7 +2567,10 @@
                 },
                 {
                   "src": "img/deposits-withdrawals/opa2.png",
-                  "label": "02 · Seamless deposit"
+                  "label": "02 · Seamless deposit",
+                  "nums": [
+                    "g1"
+                  ]
                 }
               ],
               "strengths": [
@@ -2562,11 +2587,17 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/opb1.png",
-                  "label": "01 · Return to Merchant"
+                  "label": "01 · Return to Merchant",
+                  "nums": [
+                    "r1"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/opb2.png",
-                  "label": "02 · No success message"
+                  "label": "02 · No success message",
+                  "nums": [
+                    "r2"
+                  ]
                 }
               ],
               "strengths": [],
@@ -2590,7 +2621,10 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/opc1.png",
-                  "label": "01 · Unsuccessful message"
+                  "label": "01 · Unsuccessful message",
+                  "nums": [
+                    "g1"
+                  ]
                 }
               ],
               "strengths": [
@@ -2614,11 +2648,17 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/mna1.png",
-                  "label": "01 · Success"
+                  "label": "01 · Success",
+                  "nums": [
+                    "g1"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mna2.png",
-                  "label": "02 · Leaves betPawa"
+                  "label": "02 · Leaves betPawa",
+                  "nums": [
+                    "r3"
+                  ]
                 }
               ],
               "strengths": [
@@ -2648,11 +2688,17 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/mnb1.png",
-                  "label": "01 · Delay message"
+                  "label": "01 · Delay message",
+                  "nums": [
+                    "g1"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mnb2.png",
-                  "label": "02 · Success without deposit"
+                  "label": "02 · Success without deposit",
+                  "nums": [
+                    "r2"
+                  ]
                 }
               ],
               "strengths": [
@@ -2676,15 +2722,24 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/mnc1.png",
-                  "label": "01 · Delay message"
+                  "label": "01 · Delay message",
+                  "nums": [
+                    "g1"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mnc2.png",
-                  "label": "02 · Payment reference"
+                  "label": "02 · Payment reference",
+                  "nums": [
+                    "r2"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/mnc3.png",
-                  "label": "03 · Leaves betPawa"
+                  "label": "03 · Leaves betPawa",
+                  "nums": [
+                    "r3"
+                  ]
                 }
               ],
               "strengths": [
@@ -2722,11 +2777,17 @@
             },
             {
               "src": "img/deposits-withdrawals/ppa2.png",
-              "label": "02 · Deposit"
+              "label": "02 · Deposit",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/deposits-withdrawals/ppb1.png",
-              "label": "03 · Success without deposit"
+              "label": "03 · Success without deposit",
+              "nums": [
+                "g1"
+              ]
             }
           ],
           "strengths": [
@@ -2758,7 +2819,10 @@
             },
             {
               "src": "img/deposits-withdrawals/wv3.png",
-              "label": "03 · Success despite low balance"
+              "label": "03 · Success despite low balance",
+              "nums": [
+                "r1"
+              ]
             }
           ],
           "strengths": [],
@@ -2779,11 +2843,18 @@
             },
             {
               "src": "img/deposits-withdrawals/wm2.png",
-              "label": "02 · Insufficient balance"
+              "label": "02 · Insufficient balance",
+              "nums": [
+                "r1",
+                "r2"
+              ]
             },
             {
               "src": "img/deposits-withdrawals/wm3.png",
-              "label": "03 · Approved"
+              "label": "03 · Approved",
+              "nums": [
+                "g1"
+              ]
             }
           ],
           "strengths": [
@@ -2813,11 +2884,19 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/wba2.png",
-                  "label": "01 · Approved"
+                  "label": "01 · Approved",
+                  "nums": [
+                    "g2"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/wba3.png",
-                  "label": "02 · Insufficient balance"
+                  "label": "02 · Insufficient balance",
+                  "nums": [
+                    "g1",
+                    "r3",
+                    "r4"
+                  ]
                 }
               ],
               "strengths": [
@@ -2852,11 +2931,17 @@
               "images": [
                 {
                   "src": "img/deposits-withdrawals/wbb1.png",
-                  "label": "01 · No contact link"
+                  "label": "01 · No contact link",
+                  "nums": [
+                    "r1"
+                  ]
                 },
                 {
                   "src": "img/deposits-withdrawals/wbb2.png",
-                  "label": "02 · Validation timing"
+                  "label": "02 · Validation timing",
+                  "nums": [
+                    "r2"
+                  ]
                 }
               ],
               "strengths": [],
@@ -2920,23 +3005,38 @@
           "images": [
             {
               "src": "img/sign-up-login/g1.png",
-              "label": "01 · Sign-up page"
+              "label": "01 · Sign-up page",
+              "nums": [
+                "g1"
+              ]
             },
             {
               "src": "img/sign-up-login/g2.png",
-              "label": "02 · Empty input field"
+              "label": "02 · Empty input field",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/sign-up-login/g3.png",
-              "label": "03 · Nationality change"
+              "label": "03 · Nationality change",
+              "nums": [
+                "r3"
+              ]
             },
             {
               "src": "img/sign-up-login/g4.png",
-              "label": "04 · Unsupported network"
+              "label": "04 · Unsupported network",
+              "nums": [
+                "r4"
+              ]
             },
             {
               "src": "img/sign-up-login/g5.png",
-              "label": "05 · Network error"
+              "label": "05 · Network error",
+              "nums": [
+                "r5"
+              ]
             }
           ],
           "strengths": [
@@ -2978,15 +3078,24 @@
           "images": [
             {
               "src": "img/sign-up-login/l1.png",
-              "label": "01 · Empty state"
+              "label": "01 · Empty state",
+              "nums": [
+                "r1"
+              ]
             },
             {
               "src": "img/sign-up-login/l2.png",
-              "label": "02 · Incorrect login detail"
+              "label": "02 · Incorrect login detail",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/sign-up-login/l3.png",
-              "label": "03 · Network error"
+              "label": "03 · Network error",
+              "nums": [
+                "r3"
+              ]
             }
           ],
           "strengths": [],
@@ -3020,23 +3129,39 @@
             },
             {
               "src": "img/sign-up-login/p2.png",
-              "label": "03 · Verification code"
+              "label": "03 · Verification code",
+              "nums": [
+                "r1"
+              ]
             },
             {
               "src": "img/sign-up-login/p3.png",
-              "label": "04 · Exhaust SMS codes"
+              "label": "04 · Exhaust SMS codes",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/sign-up-login/p4.png",
-              "label": "04 · Second preferred method"
+              "label": "04 · Second preferred method",
+              "nums": [
+                "r3"
+              ]
             },
             {
               "src": "img/sign-up-login/p5.png",
-              "label": "USSD verification"
+              "label": "USSD verification",
+              "nums": [
+                "r4",
+                "r5"
+              ]
             },
             {
               "src": "img/sign-up-login/p6.png",
-              "label": "All options used"
+              "label": "All options used",
+              "nums": [
+                "r6"
+              ]
             }
           ],
           "strengths": [],
@@ -3084,11 +3209,17 @@
           "images": [
             {
               "src": "img/sign-up-login/n1.png",
-              "label": "01 · Sign-up page"
+              "label": "01 · Sign-up page",
+              "nums": [
+                "g1"
+              ]
             },
             {
               "src": "img/sign-up-login/n2.png",
-              "label": "02 · Empty input field"
+              "label": "02 · Empty input field",
+              "nums": [
+                "r2"
+              ]
             },
             {
               "src": "img/sign-up-login/n3.png",
@@ -3128,11 +3259,17 @@
           "images": [
             {
               "src": "img/sign-up-login/s1.png",
-              "label": "01 · Landing after verification"
+              "label": "01 · Landing after verification",
+              "nums": [
+                "r1"
+              ]
             },
             {
               "src": "img/sign-up-login/s2.png",
-              "label": "02 · Limit reached"
+              "label": "02 · Limit reached",
+              "nums": [
+                "r2"
+              ]
             }
           ],
           "strengths": [],
